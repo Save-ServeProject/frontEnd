@@ -2,8 +2,8 @@
     <div class="container-fluid">
         <img src="assets/IMG/logo.png" width="50px"><a class="navbar-brand p-20" href="index.html"> Save &
             Serve</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
-            data-bs-target="#offcanvasNavbar2" aria-controls="offcanvasNavbar2" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar2"
+            aria-controls="offcanvasNavbar2" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="offcanvas offcanvas-start bg-dark" tabindex="-1" id="offcanvasNavbar2"
@@ -23,17 +23,17 @@
                             data-bs-toggle="dropdown" aria-expanded="false">
                             Get Involved
                         </a>
-                        <ul class="dropdown-menu dropdown-menu-dark bg-dark"
-                            aria-labelledby="getInvolvedDropdown">
-                            <li><a class="dropdown-item text-white" href="#offcanvasRegister" data-bs-toggle="offcanvas">Volunteers</a></li>
-                            <li><a class="dropdown-item text-white" href="#offcanvasRegister" data-bs-toggle="offcanvas">Partners</a></li>
+                        <ul class="dropdown-menu dropdown-menu-dark bg-dark" aria-labelledby="getInvolvedDropdown">
+                            <li><a class="dropdown-item text-white" href="#offcanvasRegister"
+                                    data-bs-toggle="offcanvas">Volunteers</a></li>
+                            <li><a class="dropdown-item text-white" href="#offcanvasRegister"
+                                    data-bs-toggle="offcanvas">Partners</a></li>
                         </ul>
                     </li>
                     <form class="d-flex mt-3 mt-lg-0" role="search">
                         <input class="form-control me-2 rounded-pill border-2 border-dark" type="search"
                             placeholder="Search" aria-label="Search">
-                        <button class="btn btn-dark rounded-pill text-white border-2 border-white"
-                            type="submit">
+                        <button class="btn btn-dark rounded-pill text-white border-2 border-white" type="submit">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                 class="bi bi-search" viewBox="0 0 16 16">
                                 <path
@@ -43,113 +43,140 @@
                         </button>
                     </form><br>
                 </ul>
-                    <a class="btn btn-warning text-white" data-bs-toggle="offcanvas" href="#offcanvasLogin" 
-                    role="button" aria-controls="offcanvasLogin">Login</a>
+                <a class="btn btn-warning text-white" data-bs-toggle="offcanvas" href="#offcanvasLogin" role="button"
+                    aria-controls="offcanvasLogin">Login</a>
             </div>
         </div>
     </div>
     <div>
     </div>
 </nav>
- <!-- Login -->
- <div class="offcanvas offcanvas-start bg-dark text-white" tabindex="-1" id="offcanvasLogin" aria-labelledby="offcanvasLoginLabel" data-bs-backdrop="true">
+<!-- Login -->
+<div class="offcanvas offcanvas-start bg-dark text-white" tabindex="-1" id="offcanvasLogin"
+    aria-labelledby="offcanvasLoginLabel" data-bs-backdrop="true">
 
     <div class="offcanvas-header">
         <h5 class="offcanvas-title" id="offcanvasLoginLabel">Login</h5>
-        <button type="button" class="btn-close btn-close-white" 
-        data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
 
     </div>
     <div class="offcanvas-body">
         <form action="index.html" class="p-3">
             <div class="mb-3">
                 <label for="floatingInput" class="form-label">Email address</label>
-                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com"
-                    required>
+                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" required>
             </div>
 
             <div class="mb-3">
                 <label for="floatingPassword" class="form-label">Password</label>
-                <input type="password" class="form-control" id="floatingPassword" placeholder="Password"
-                    required>
+                <input type="password" class="form-control" id="floatingPassword" placeholder="Password" required>
             </div>
             <button type="submit" class="btn btn-warning w-100">Login</button>
         </form>
 
-<div class="text-center mt-3">
-  <a href="#" class="text-white text-decoration-underline">Forgot your password?</a><br>
-  Don't have an account? <a class="btn btn-p text-white text-decoration-underline" data-bs-toggle="offcanvas"
-    href="#offcanvasRegister" role="button" aria-controls="offcanvasExample">Sign up</a>
-</div>
-</div>
+        <div class="text-center mt-3">
+            <a href="#offcanvasForgotPassword"  data-bs-toggle="offcanvas" class="text-white text-decoration-underline">Forgot your password?</a><br>
+            
+            Don't have an account? <a class="btn btn-p text-white text-decoration-underline" data-bs-toggle="offcanvas"
+                href="#offcanvasRegister" role="button" aria-controls="offcanvasExample">Sign up</a>
+        </div>
+    </div>
 </div>
 <!-- Registroo -->
 <div class="offcanvas offcanvas-start bg-dark text-white" tabindex="-1" id="offcanvasRegister"
-aria-labelledby="offcanvasRegisterLabel">
-<div class="offcanvas-header">
-<h5 class="offcanvas-title" id="offcanvasRegisterLabel">Sign Up</h5>
-<button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    aria-labelledby="offcanvasRegisterLabel">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasRegisterLabel">Sign Up</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <form class="p-3 " action="#">
+            <div class="mb-3">
+                <label for="fullName" class="form-label">Full Name</label>
+                <input type="text" class="form-control" id="fullName" name="fullName" placeholder="Enter your full name"
+                    required>
+            </div>
+
+            <div class="mb-3">
+                <label for="email" class="form-label">Email address</label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com"
+                    required>
+            </div>
+
+            <div class="mb-3">
+                <label for="phone" class="form-label">Phone Number</label>
+                <input type="tel" class="form-control" id="phone" name="phone" placeholder="Enter your phone number"
+                    required>
+            </div>
+
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password" name="password"
+                    placeholder="Enter your password" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="CIF" class="form-label">CIF</label>
+                <input type="CIF" class="form-control" id="CIF" name="CIF" placeholder="Enter your CIF(Company)">
+            </div>
+            <div class="form-check">
+                <input class="form-check-input " type="radio" name="userType" id="Volunteer">
+                <label class="form-check-label " for="Volunteer">
+                    Volunteer
+                </label>
+            </div>
+            <div class="form-check ">
+                <input class="form-check-input " type="radio" name="userType" id="Company">
+                <label class="form-check-label " for="Company">
+                    Company
+                </label>
+            </div><br>
+
+            <div class="form-check mb-3  d-flex justify-content-center gap-3">
+                <input class="form-check-input " type="checkbox" value="" id="terms" required>
+                <label class="form-check-label fs-6" for="terms">
+                    I agree to the <a href="#" class="text-decoration-underline text-white fs-6">terms and
+                        conditions</a>
+                </label>
+            </div>
+
+            <button type="button" class="btn btn-warning w-100" data-bs-toggle="modal" data-bs-target="#registerModal"
+                data-bs-dismiss="offcanvas">
+                Sign Up
+            </button>
+        </form>
+    </div>
 </div>
-<div class="offcanvas-body">
-<form class="p-3 " action="#">
-  <div class="mb-3">
-    <label for="fullName" class="form-label">Full Name</label>
-    <input type="text" class="form-control" id="fullName" name="fullName" placeholder="Enter your full name"
-      required>
-  </div>
+<!-- Contraseña Olvidada   -->
+<div class="offcanvas offcanvas-start bg-dark text-white" tabindex="-1" id="offcanvasForgotPassword"
+    aria-labelledby="offcanvasForgotPasswordLabel" data-bs-backdrop="true">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasForgotPasswordLabel">Forgot Password</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <form class="p-3 needs-validation" id="forgotPasswordForm" novalidate>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email Address</label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com" required
+                    aria-describedby="emailHelp">
+                <div class="invalid-feedback">
+                    Please provide a valid email address.
+                </div>
+            </div>
 
-  <div class="mb-3">
-    <label for="email" class="form-label">Email address</label>
-    <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com" required>
-  </div>
-
-  <div class="mb-3">
-    <label for="phone" class="form-label">Phone Number</label>
-    <input type="tel" class="form-control" id="phone" name="phone" placeholder="Enter your phone number"
-      required>
-  </div>
-
-  <div class="mb-3">
-    <label for="password" class="form-label">Password</label>
-    <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password"
-      required>
-  </div>
-
-  <div class="mb-3">
-    <label for="CIF" class="form-label">CIF</label>
-    <input type="CIF" class="form-control" id="CIF" name="CIF" placeholder="Enter your CIF(Company)">
-  </div>
-  <div class="form-check">
-    <input class="form-check-input " type="radio" name="userType" id="Volunteer">
-    <label class="form-check-label " for="Volunteer">
-      Volunteer
-    </label>
-  </div>
-  <div class="form-check ">
-    <input class="form-check-input " type="radio" name="userType" id="Company">
-    <label class="form-check-label " for="Company">
-      Company
-    </label>
-  </div><br>
-
-  <div class="form-check mb-3  d-flex justify-content-center gap-3">
-    <input class="form-check-input " type="checkbox" value="" id="terms" required>
-    <label class="form-check-label fs-6" for="terms">
-      I agree to the <a href="#" class="text-decoration-underline text-white fs-6">terms and
-        conditions</a>
-    </label>
-  </div>
-
-  <button type="button" class="btn btn-warning w-100" data-bs-toggle="modal" data-bs-target="#registerModal"
-    data-bs-dismiss="offcanvas">
-    Sign Up
-  </button>
-</form>
-</div>
+            <button type="submit" class="btn btn-warning w-100" id="sendButton">
+                <span id="sendButtonText">Send</span>
+                <span id="sendButtonSpinner" class="spinner-border spinner-border-sm d-none" role="status"
+                    aria-hidden="true"></span>
+            </button>
+        </form>
+    </div>
 </div>
 
-<div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel"
-    aria-hidden="true">
+
+<!-- Modal -->
+<div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
