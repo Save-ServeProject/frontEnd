@@ -11,20 +11,22 @@ import { FooterComponent } from './components/footer-component/footer-component.
 import { HerosectionComponent } from './components/herosection-component/herosection-component.component';
 import { HowworksComponent } from './components/howworks-component/howworks-component.component';
 import { AppRoutingModule } from './app-routing.module';
+import { ArticlesComponent } from './pages/articles/articles.component';
 
 @NgModule({
   imports: [
     BrowserModule,
     FormsModule,
-    NgbModule, 
-    AppComponent, 
-    NavbarComponent, 
-    LoginComponent, 
-    RegisterComponent, 
+    NgbModule,
+    AppRoutingModule,
+    AppComponent,
+    NavbarComponent,
+    LoginComponent,
+    RegisterComponent,
     FooterComponent,
     HerosectionComponent,
     HowworksComponent,
-    AppRoutingModule
+    ArticlesComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
