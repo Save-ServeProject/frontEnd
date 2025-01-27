@@ -3,11 +3,11 @@ import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 @Component({
-  selector: 'app-banco-alimentos',
+  selector: 'app-empresas',
   imports: [RouterModule, CommonModule],
-  templateUrl: './banco-alimentos.component.html',
-  styleUrl: './banco-alimentos.component.scss'
+  templateUrl: './empresas.component.html',
+  styleUrl: './empresas.component.scss'
 })
-export class BancoAlimentosComponent {
+export class EmpresasComponent {
 
 }

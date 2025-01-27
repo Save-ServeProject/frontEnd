@@ -3,11 +3,11 @@ import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 @Component({
-  selector: 'app-banco-alimentos',
+  selector: 'app-subscription',
   imports: [RouterModule, CommonModule],
-  templateUrl: './banco-alimentos.component.html',
-  styleUrl: './banco-alimentos.component.scss'
+  templateUrl: './subscription.component.html',
+  styleUrl: './subscription.component.scss'
 })
-export class BancoAlimentosComponent {
+export class SubscriptionComponent {
 
 }

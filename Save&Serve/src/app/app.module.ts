@@ -5,13 +5,13 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar-component/navbar-component.component';
-import { LoginComponent } from './login-component/login-component.component';
-import { RegisterComponent } from './register-component/register-component.component';
 import { FooterComponent } from './components/footer-component/footer-component.component'; 
 import { HerosectionComponent } from './components/herosection-component/herosection-component.component';
 import { HowworksComponent } from './components/howworks-component/howworks-component.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ArticlesComponent } from './pages/articles/articles.component';
+import { SubscriptionComponent } from './pages/subscription/subscription.component';
+import { EmpresasComponent } from './pages/empresas/empresas.component';
 
 @NgModule({
   imports: [
@@ -21,12 +21,12 @@ import { ArticlesComponent } from './pages/articles/articles.component';
     AppRoutingModule,
     AppComponent,
     NavbarComponent,
-    LoginComponent,
-    RegisterComponent,
     FooterComponent,
     HerosectionComponent,
     HowworksComponent,
-    ArticlesComponent
+    ArticlesComponent,
+    SubscriptionComponent,
+    EmpresasComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
