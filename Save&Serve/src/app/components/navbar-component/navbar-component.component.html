@@ -31,10 +31,10 @@
                                     data-bs-toggle="offcanvas">Voluntarios</a></li>
                             <li><a class="dropdown-item text-white" href="#offcanvasRegister"
                                     data-bs-toggle="offcanvas">Empresas</a></li>
-                                    <li><a class="dropdown-item text-white" routerLink="/suscription" 
-                                        routerLinkActive="active" data-bs-toggle="offcanvas">
-                                        Suscripciones</a>
-                                    </li>
+                            <li><a class="dropdown-item text-white" routerLink="/suscription" routerLinkActive="active"
+                                    data-bs-toggle="offcanvas">
+                                    Suscripciones</a>
+                            </li>
                         </ul>
                     </li>
                     <form class="d-flex mt-3 mt-lg-0" role="search">
@@ -82,8 +82,9 @@
         </form>
 
         <div class="text-center mt-3">
-            <a href="#offcanvasForgotPassword"  data-bs-toggle="offcanvas" class="text-white text-decoration-underline">Olvidaste tu contraseña?</a><br>
-            
+            <a href="#offcanvasForgotPassword" data-bs-toggle="offcanvas"
+                class="text-white text-decoration-underline">Olvidaste tu contraseña?</a><br>
+
             ¿No tienes cuenta? <a class="btn btn-p text-white text-decoration-underline" data-bs-toggle="offcanvas"
                 href="#offcanvasOpciones" role="button" aria-controls="offcanvasExample">Registrate</a>
         </div>
@@ -98,32 +99,126 @@
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body">
-       
-            <!-- Donante -->
-            <div class="mb-4 text-center">
-                <label for="donante" class="form-label fs-5 fw-bold">Contrata nuestros servicios</label>
-            </div>
-            <div class="d-grid gap-2">
-                <button type="submit" class="btn btn-warning btn-lg" id="donanteButton">
-                    <span id="donanteButtonText">Ser Donante</span>
-                    <span id="donanteButtonSpinner" class="spinner-border spinner-border-sm d-none" role="status"
-                        aria-hidden="true"></span>
-                </button>
-            </div>
-            <!-- Separador -->
-            <hr class="my-5 text-secondary">
 
-            <!--  Beneficiario -->
-            <div class="mb-4 text-center">
-                <label for="beneficiario" class="form-label fs-5 fw-bold">Recibe nuestras donaciones</label>
+        <!-- Donante -->
+        <div class="mb-4 text-center">
+            <label for="donante" class="form-label fs-5 fw-bold">Contrata nuestros servicios</label>
+        </div>
+        <div class="d-grid gap-2">
+            <button type="button" class="btn btn-warning btn-lg" id="donanteButton" data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasRegisterDonante">
+                <span id="donanteButtonText">Ser Donante</span>
+                <span id="donanteButtonSpinner" class="spinner-border spinner-border-sm d-none" role="status"
+                    aria-hidden="true"></span>
+            </button>
+        </div>
+        <!-- Separador -->
+        <hr class="my-5 text-secondary">
+
+        <!--  Beneficiario -->
+        <div class="mb-4 text-center">
+            <label for="beneficiario" class="form-label fs-5 fw-bold">Recibe nuestras donaciones</label>
+        </div>
+        <div class="d-grid gap-2">
+            <button type="submit" class="btn btn-warning btn-lg" id="beneficiarioButton">
+                <span id="beneficiarioButtonText">Ser Beneficiario</span>
+                <span id="beneficiarioButtonSpinner" class="spinner-border spinner-border-sm d-none" role="status"
+                    aria-hidden="true"></span>
+            </button>
+        </div>
+    </div>
+</div>
+<!-- Registro Donante -->
+<div class="offcanvas offcanvas-start bg-dark text-white" tabindex="-1" id="offcanvasRegisterDonante"
+    aria-labelledby="offcanvasRegisterDonanteLabel">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasRegisterDonanteLabel">Registrate como Donante</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <form class="p-3 " action="#">
+            <div class="mb-3">
+                <label for="nombreEmpresa" class="form-label">Nombre Empresa</label>
+                <input type="text" class="form-control" id="nombreEmpresa" name="nombreEmpresa" placeholder="Introduce el nombre de tu empresa"
+                    required>
             </div>
-            <div class="d-grid gap-2">
-                <button type="submit" class="btn btn-warning btn-lg" id="beneficiarioButton">
-                    <span id="beneficiarioButtonText">Ser Beneficiario</span>
-                    <span id="beneficiarioButtonSpinner" class="spinner-border spinner-border-sm d-none" role="status"
-                        aria-hidden="true"></span>
-                </button>
+
+            <div class="mb-3">
+                <label for="TipoEmpresa" class="form-label">Tipo empresa</label>
+                <input type="text" class="form-control" id="TipoEmpresa" name="TipoEmpresa" placeholder="Hotel, supermercado, restaurante..."
+                    required>
             </div>
+
+            <div class="mb-3">
+                <label for="phone" class="form-label">Teléfono</label>
+                <input type="tel" class="form-control" id="phone" name="phone" placeholder="Introduce el número de teléfono de tu empresa"
+                    required>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com"
+                    required>
+            </div>
+
+          <!-- Nota! TENER EN CUENTA LA BASE DE DATOS -->
+          <div class="d-flex gap-2">
+            <button type="button" class="btn btn-outline-primary" id="planBasic" data-plan="BASIC">
+                Plan Básico
+            </button>
+            <button type="button" class="btn btn-outline-primary" id="planStandard" data-plan="STANDARD">
+                Plan Standar
+            </button>
+            <button type="button" class="btn btn-outline-primary" id="planPremium" data-plan="PREMIUM">
+                Plan Premium
+            </button>
+        </div>
+        
+        <script>
+            // Manejo de eventos para los botones
+            const buttons = document.querySelectorAll('button[data-plan]');
+            buttons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Limpiar la selección previa
+                    buttons.forEach(btn => btn.classList.remove('active'));
+                    // Marcar el botón actual como activo
+                    button.classList.add('active');
+        
+                    // Obtener el valor del plan seleccionado
+                    const selectedPlan = button.getAttribute('data-plan');
+                    console.log('Plan seleccionado:', selectedPlan);
+                });
+            });
+        </script>
+        
+
+            <!-- hasta aqui son los planes -->
+            
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password" name="password"
+                    placeholder="Enter your password" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="CIF" class="form-label">CIF</label>
+                <input type="CIF" class="form-control" id="CIF" name="CIF" placeholder="Enter your CIF(Company)">
+            </div>
+          
+          
+
+            <div class="form-check mb-3  d-flex justify-content-center gap-3">
+                <input class="form-check-input " type="checkbox" value="" id="terms" required>
+                <label class="form-check-label fs-6" for="terms">
+                    I agree to the <a href="#" class="text-decoration-underline text-white fs-6">terms and
+                        conditions</a>
+                </label>
+            </div>
+
+            <button type="button" class="btn btn-warning w-100" data-bs-toggle="modal" data-bs-target="#registerModal"
+                data-bs-dismiss="offcanvas">
+                Sign Up
+            </button>
+        </form>
     </div>
 </div>
 
