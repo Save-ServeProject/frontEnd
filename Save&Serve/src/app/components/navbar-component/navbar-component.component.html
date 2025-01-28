@@ -12,10 +12,10 @@
             <div class="offcanvas-body">
                 <ul class="navbar-nav justify-content-center flex-grow-1 pe-3">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        <a class="nav-link active" aria-current="page" href="#">Inicio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#cardAndButton">How we work?</a>
+                        <a class="nav-link" href="#cardAndButton">Como trabajamos?</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" routerLink="/articles" routerLinkActive="active">Blog</a>
@@ -24,22 +24,22 @@
                     <li class="nav-item dropdown ">
                         <a class="nav-link dropdown-toggle" href="#" id="getInvolvedDropdown" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">
-                            Get Involved
+                            Involucrate
                         </a>
                         <ul class="dropdown-menu dropdown-menu-dark bg-dark" aria-labelledby="getInvolvedDropdown">
                             <li><a class="dropdown-item text-white" href="#offcanvasRegister"
-                                    data-bs-toggle="offcanvas">Volunteers</a></li>
+                                    data-bs-toggle="offcanvas">Voluntarios</a></li>
                             <li><a class="dropdown-item text-white" href="#offcanvasRegister"
-                                    data-bs-toggle="offcanvas">Partners</a></li>
+                                    data-bs-toggle="offcanvas">Empresas</a></li>
                                     <li><a class="dropdown-item text-white" routerLink="/suscription" 
                                         routerLinkActive="active" data-bs-toggle="offcanvas">
-                                        Suscription</a>
+                                        Suscripciones</a>
                                     </li>
                         </ul>
                     </li>
                     <form class="d-flex mt-3 mt-lg-0" role="search">
                         <input class="form-control me-2 rounded-pill border-2 border-dark" type="search"
-                            placeholder="Search" aria-label="Search">
+                            placeholder="Buscar" aria-label="Search">
                         <button class="btn btn-dark rounded-pill text-white border-2 border-white" type="submit">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                 class="bi bi-search" viewBox="0 0 16 16">
@@ -51,7 +51,7 @@
                     </form><br>
                 </ul>
                 <a class="btn btn-warning text-white" data-bs-toggle="offcanvas" href="#offcanvasLogin" role="button"
-                    aria-controls="offcanvasLogin">Login</a>
+                    aria-controls="offcanvasLogin">Iniciar Sesión</a>
             </div>
         </div>
     </div>
@@ -63,34 +63,73 @@
     aria-labelledby="offcanvasLoginLabel" data-bs-backdrop="true">
 
     <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="offcanvasLoginLabel">Login</h5>
+        <h5 class="offcanvas-title" id="offcanvasLoginLabel">Iniciar sesión</h5>
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
 
     </div>
     <div class="offcanvas-body">
         <form action="index.html" class="p-3">
             <div class="mb-3">
-                <label for="floatingInput" class="form-label">Email address</label>
+                <label for="floatingInput" class="form-label">Dirección Email</label>
                 <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" required>
             </div>
 
             <div class="mb-3">
-                <label for="floatingPassword" class="form-label">Password</label>
+                <label for="floatingPassword" class="form-label">Contraseña</label>
                 <input type="password" class="form-control" id="floatingPassword" placeholder="Password" required>
             </div>
-            <button type="submit" class="btn btn-warning w-100">Login</button>
+            <button type="submit" class="btn btn-warning w-100">Iniciar Sesión</button>
         </form>
 
         <div class="text-center mt-3">
-            <a href="#offcanvasForgotPassword"  data-bs-toggle="offcanvas" class="text-white text-decoration-underline">Forgot your password?</a><br>
+            <a href="#offcanvasForgotPassword"  data-bs-toggle="offcanvas" class="text-white text-decoration-underline">Olvidaste tu contraseña?</a><br>
             
-            Don't have an account? <a class="btn btn-p text-white text-decoration-underline" data-bs-toggle="offcanvas"
-                href="#offcanvasRegister" role="button" aria-controls="offcanvasExample">Sign up</a>
+            ¿No tienes cuenta? <a class="btn btn-p text-white text-decoration-underline" data-bs-toggle="offcanvas"
+                href="#offcanvasOpciones" role="button" aria-controls="offcanvasExample">Registrate</a>
         </div>
     </div>
 </div>
+<!-- Opciones Registro Leti -->
+
+<div class="offcanvas offcanvas-start bg-dark text-white" tabindex="-1" id="offcanvasOpciones"
+    aria-labelledby="offcanvasOpcionesLabel" data-bs-backdrop="true">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasOpcionesLabel">Opciones</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+       
+            <!-- Donante -->
+            <div class="mb-4 text-center">
+                <label for="donante" class="form-label fs-5 fw-bold">Contrata nuestros servicios</label>
+            </div>
+            <div class="d-grid gap-2">
+                <button type="submit" class="btn btn-warning btn-lg" id="donanteButton">
+                    <span id="donanteButtonText">Ser Donante</span>
+                    <span id="donanteButtonSpinner" class="spinner-border spinner-border-sm d-none" role="status"
+                        aria-hidden="true"></span>
+                </button>
+            </div>
+            <!-- Separador -->
+            <hr class="my-5 text-secondary">
+
+            <!--  Beneficiario -->
+            <div class="mb-4 text-center">
+                <label for="beneficiario" class="form-label fs-5 fw-bold">Recibe nuestras donaciones</label>
+            </div>
+            <div class="d-grid gap-2">
+                <button type="submit" class="btn btn-warning btn-lg" id="beneficiarioButton">
+                    <span id="beneficiarioButtonText">Ser Beneficiario</span>
+                    <span id="beneficiarioButtonSpinner" class="spinner-border spinner-border-sm d-none" role="status"
+                        aria-hidden="true"></span>
+                </button>
+            </div>
+    </div>
+</div>
+
+
 <!-- Registroo -->
-<div class="offcanvas offcanvas-start bg-dark text-white" tabindex="-1" id="offcanvasRegister"
+<!-- <div class="offcanvas offcanvas-start bg-dark text-white" tabindex="-1" id="offcanvasRegister"
     aria-labelledby="offcanvasRegisterLabel">
     <div class="offcanvas-header">
         <h5 class="offcanvas-title" id="offcanvasRegisterLabel">Sign Up</h5>
@@ -153,7 +192,7 @@
             </button>
         </form>
     </div>
-</div>
+</div> -->
 <!-- Contraseña Olvidada   -->
 <div class="offcanvas offcanvas-start bg-dark text-white" tabindex="-1" id="offcanvasForgotPassword"
     aria-labelledby="offcanvasForgotPasswordLabel" data-bs-backdrop="true">
