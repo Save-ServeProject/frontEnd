@@ -9,9 +9,6 @@ import { FooterComponent } from './components/footer-component/footer-component.
 import { HerosectionComponent } from './components/herosection-component/herosection-component.component';
 import { HowworksComponent } from './components/howworks-component/howworks-component.component';
 import { AppRoutingModule } from './app-routing.module';
-import { ArticlesComponent } from './pages/articles/articles.component';
-import { SubscriptionComponent } from './pages/subscription/subscription.component';
-import { EmpresasComponent } from './pages/empresas/empresas.component';
 
 @NgModule({
   imports: [
@@ -24,9 +21,6 @@ import { EmpresasComponent } from './pages/empresas/empresas.component';
     FooterComponent,
     HerosectionComponent,
     HowworksComponent,
-    ArticlesComponent,
-    SubscriptionComponent,
-    EmpresasComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

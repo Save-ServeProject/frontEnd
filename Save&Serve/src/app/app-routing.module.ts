@@ -1,16 +1,12 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { IndexComponent } from './pages/index/index.component';
 import { RouterModule, Routes } from '@angular/router';
-import { ArticlesComponent } from './pages/articles/articles.component';
-import { SubscriptionComponent } from './pages/subscription/subscription.component';
-import { EmpresasComponent } from './pages/empresas/empresas.component';
 
 const routes: Routes = [
   { path: '', component: IndexComponent },
-  {path: 'articles', component: ArticlesComponent}, 
-  {path: 'suscription', component: SubscriptionComponent}, 
-  {path: 'empresas', component: EmpresasComponent},
+  { path: 'articles', loadComponent: () => import('./pages/articles/articles.component').then(m => m.ArticlesComponent) }, 
+  { path: 'suscription', loadComponent: () => import('./pages/subscription/subscription.component').then(m => m.SubscriptionComponent) },
+  { path: 'empresas', loadComponent: () => import('./pages/empresas/empresas.component').then(m => m.EmpresasComponent) },
  
 ];
 
