@@ -120,7 +120,8 @@
             <label for="beneficiario" class="form-label fs-5 fw-bold">Recibe nuestras donaciones</label>
         </div>
         <div class="d-grid gap-2">
-            <button type="submit" class="btn btn-warning btn-lg" id="beneficiarioButton">
+            <button type="submit" class="btn btn-warning btn-lg" id="beneficiarioButton"data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasRegisterBeneficiario">
                 <span id="beneficiarioButtonText">Ser Beneficiario</span>
                 <span id="beneficiarioButtonSpinner" class="spinner-border spinner-border-sm d-none" role="status"
                     aria-hidden="true"></span>
@@ -216,7 +217,7 @@
 
             <div class="mb-3">
                 <label for="ciudadEmpresa" class="form-label">Ciudad</label>
-                <input type="ciudadEmpresa" class="form-control" id="ciudad" name="ciudad" placeholder="Ciudad">
+                <input type="ciudadEmpresa" class="form-control" id="ciudadEmpresa" name="ciudadEmpresa" placeholder="Ciudad">
             </div>
 
 
@@ -225,46 +226,6 @@
                 <input type="contraseñaEmpresa" class="form-control" id="contraseñaEmpresa" name="contraseñaEmpresa"
                     placeholder="Introduce tu contraseña" required>
             </div>
-
-            <!--            
-          Terminos y condiciones -->
-
-
-            <!-- <div class="form-check mb-3  d-flex justify-content-center gap-3">
-                <input class="form-check-input " type="checkbox" value="" id="terms" required>
-                <label class="form-check-label fs-6" for="terms">
-                    Yo acepto los <a href="#" class="text-decoration-underline text-white fs-6">terminos y condiciones
-                        </a>
-                </label>
-            </div> -->
-            <!-- <div class="form-check mb-3 d-flex justify-content-center gap-3">
-                <input class="form-check-input" type="checkbox" value="" id="terms" required>
-                <label class="form-check-label fs-6" for="terms">
-                    Yo acepto los <a href="#" class="text-decoration-underline text-white fs-6" data-bs-toggle="modal"  data-bs-dismiss="offcanvas" data-bs-target="#termsModal">términos y condiciones</a>
-
-                </label>
-            </div> -->
-
-            <!-- Modal -->
-            <!-- <div class="modal fade" id="termsModal" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content  bg-dark text-white">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="termsModalLabel">Términos y Condiciones</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <p>Bienvenido a nuestro servicio. Al aceptar estos términos, te comprometes a usar nuestra plataforma de manera responsable.</p>
-                            <p><strong>1. Uso adecuado:</strong> No puedes usar el servicio para actividades ilícitas.</p>
-                            <p><strong>2. Protección de datos:</strong> Tus datos están seguros con nosotros y solo se usarán para mejorar tu experiencia.</p>
-                            <p><strong>3. Cambios en los términos:</strong> Podemos actualizar estos términos en cualquier momento.</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div> -->
 
             <div class="form-check mb-3 d-flex justify-content-center gap-3">
                 <input class="form-check-input" type="checkbox" value="" id="terms" required>
@@ -309,91 +270,120 @@
 </div>
 
 
-<!-- Registroo -->
-<!-- <div class="offcanvas offcanvas-start bg-dark text-white" tabindex="-1" id="offcanvasRegister"
-    aria-labelledby="offcanvasRegisterLabel">
+
+<!-- Registro Beneficiario -->
+<div class="offcanvas offcanvas-start bg-dark text-white" tabindex="-1" id="offcanvasRegisterBeneficiario"
+    aria-labelledby="offcanvasRegisterBeneficiarioLabel">
     <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="offcanvasRegisterLabel">Sign Up</h5>
+        <h5 class="offcanvas-title" id="offcanvasRegisterBeneficiarioLabel">Registrate como Beneficiario</h5>
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body">
         <form class="p-3 " action="#">
             <div class="mb-3">
-                <label for="fullName" class="form-label">Full Name</label>
-                <input type="text" class="form-control" id="fullName" name="fullName" placeholder="Enter your full name"
-                    required>
+                <label for="nombreBeneficiario" class="form-label">Nombre Beneficiario</label>
+                <input type="text" class="form-control" id="nombreBeneficiario" name="nombreBeneficiario"
+                    placeholder="Introduce el nombre de tu organización" required>
             </div>
 
             <div class="mb-3">
-                <label for="email" class="form-label">Email address</label>
-                <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com"
-                    required>
+                <label for="telefonoBeneficiario" class="form-label">Teléfono</label>
+                <input type="tel" class="form-control" id="telefonoBeneficiario" name="telefonoBeneficiario"
+                    placeholder="Introduce el número de teléfono" required>
+            </div>
+            <div class="mb-3">
+                <label for="emailBeneficiario" class="form-label">Email</label>
+                <input type="emailBeneficiario" class="form-control" id="emailBeneficiario" name="emailBeneficiario"
+                    placeholder="name@example.com" required>
             </div>
 
             <div class="mb-3">
-                <label for="phone" class="form-label">Phone Number</label>
-                <input type="tel" class="form-control" id="phone" name="phone" placeholder="Enter your phone number"
-                    required>
+                <label for="CIFBeneficiario" class="form-label">CIF</label>
+                <input type="CIFBeneficiario" class="form-control" id="CIFBeneficiario" name="CIFBeneficiario"
+                    placeholder="Introduce tu CIF">
             </div>
 
             <div class="mb-3">
-                <label for="password" class="form-label">Password</label>
-                <input type="password" class="form-control" id="password" name="password"
-                    placeholder="Enter your password" required>
+                <label for="direccionBeneficiario" class="form-label">Direccion</label>
+                <input type="direccionBeneficiario" class="form-control" id="direccionBeneficiario" name="direccionBeneficiario"
+                    placeholder="Direccion ">
             </div>
 
             <div class="mb-3">
-                <label for="CIF" class="form-label">CIF</label>
-                <input type="CIF" class="form-control" id="CIF" name="CIF" placeholder="Enter your CIF(Company)">
+                <label for="ciudadBeneficiario" class="form-label">Ciudad</label>
+                <input type="ciudadBeneficiario" class="form-control" id="ciudadBeneficiario" name="ciudadBeneficiario" placeholder="Ciudad">
             </div>
-            <div class="form-check">
-                <input class="form-check-input " type="radio" name="userType" id="Volunteer">
-                <label class="form-check-label " for="Volunteer">
-                    Volunteer
-                </label>
-            </div>
-            <div class="form-check ">
-                <input class="form-check-input " type="radio" name="userType" id="Company">
-                <label class="form-check-label " for="Company">
-                    Company
-                </label>
-            </div><br>
 
-            <div class="form-check mb-3  d-flex justify-content-center gap-3">
-                <input class="form-check-input " type="checkbox" value="" id="terms" required>
+
+            <div class="mb-3">
+                <label for="contraseñaBneficiario" class="form-label">Contraseña</label>
+                <input type="contraseñaBneficiario" class="form-control" id="contraseñaBneficiario" name="contraseñaBneficiario"
+                    placeholder="Introduce tu contraseña" required>
+            </div>
+
+            <div class="form-check mb-3 d-flex justify-content-center gap-3">
+                <input class="form-check-input" type="checkbox" value="" id="terms" required>
                 <label class="form-check-label fs-6" for="terms">
-                    I agree to the <a href="#" class="text-decoration-underline text-white fs-6">terms and
-                        conditions</a>
+                    Yo acepto los
+                    <a href="#" class="text-decoration-underline text-white fs-6" data-bs-toggle="modal"
+                        data-bs-target="#termsModal">
+                        términos y condiciones
+                    </a>
                 </label>
             </div>
-
             <button type="button" class="btn btn-warning w-100" data-bs-toggle="modal" data-bs-target="#registerModal"
                 data-bs-dismiss="offcanvas">
-                Sign Up
+                Registrarse
             </button>
         </form>
     </div>
-</div> -->
+</div>
+<!-- Modal de Términos y Condiciones -->
+<div class="modal fade" id="termsModal" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content bg-dark text-white">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="termsModalLabel">Términos y Condiciones</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            </div>
+            <div class="modal-body">
+                <p>Bienvenido a nuestro servicio. Al aceptar estos términos, te comprometes a usar nuestra
+                    plataforma de manera responsable.</p>
+                <p><strong>1. Uso adecuado:</strong> No puedes usar el servicio para actividades ilícitas.
+                </p>
+                <p><strong>2. Protección de datos:</strong> Tus datos están seguros con nosotros y solo se
+                    usarán para mejorar tu experiencia.</p>
+                <p><strong>3. Cambios en los términos:</strong> Podemos actualizar estos términos en
+                    cualquier momento.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <!-- Contraseña Olvidada   -->
 <div class="offcanvas offcanvas-start bg-dark text-white" tabindex="-1" id="offcanvasForgotPassword"
     aria-labelledby="offcanvasForgotPasswordLabel" data-bs-backdrop="true">
     <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="offcanvasForgotPasswordLabel">Forgot Password</h5>
+        <h5 class="offcanvas-title" id="offcanvasForgotPasswordLabel">Recuperar Contraseña</h5>
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body">
         <form class="p-3 needs-validation" id="forgotPasswordForm" novalidate>
             <div class="mb-3">
-                <label for="email" class="form-label">Email Address</label>
+                <label for="email" class="form-label">Dirección de Email </label>
                 <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com" required
                     aria-describedby="emailHelp">
                 <div class="invalid-feedback">
-                    Please provide a valid email address.
+                    Porfavor introduce una dirección de email valida.
                 </div>
             </div>
 
             <button type="submit" class="btn btn-warning w-100" id="sendButton">
-                <span id="sendButtonText">Send</span>
+                <span id="sendButtonText">Enviar</span>
                 <span id="sendButtonSpinner" class="spinner-border spinner-border-sm d-none" role="status"
                     aria-hidden="true"></span>
             </button>
