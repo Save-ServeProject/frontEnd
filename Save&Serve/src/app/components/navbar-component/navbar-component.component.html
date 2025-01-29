@@ -27,8 +27,8 @@
                             Involucrate
                         </a>
                         <ul class="dropdown-menu dropdown-menu-dark bg-dark" aria-labelledby="getInvolvedDropdown">
-                            <li><a class="dropdown-item text-white"  routerLink="/HazteVoluntario" routerLinkActive="active"
-                                    >Hazte Voluntario</a></li>
+                            <li><a class="dropdown-item text-white" routerLink="/HazteVoluntario"
+                                    routerLinkActive="active">Hazte Voluntario</a></li>
                             <li><a class="dropdown-item text-white" href="#offcanvasRegister"
                                     data-bs-toggle="offcanvas">Empresas</a></li>
                             <li><a class="dropdown-item text-white" routerLink="/suscription" routerLinkActive="active"
@@ -52,9 +52,9 @@
                 </ul>
                 <!-- CONTROLAR ESTO SOLO ADMIN -->
                 <a class="btn btn-dark text-white" routerLink="/zonaAdmin" routerLinkActive="active"
-                                    data-bs-toggle="offcanvas">
-                                    Zona Admin</a>
-                                    
+                    data-bs-toggle="offcanvas">
+                    Zona Admin</a>
+
                 <a class="btn btn-warning text-white" data-bs-toggle="offcanvas" href="#offcanvasLogin" role="button"
                     aria-controls="offcanvasLogin">Iniciar Sesión</a>
             </div>
@@ -125,8 +125,8 @@
             <label for="beneficiario" class="form-label fs-5 fw-bold">Recibe nuestras donaciones</label>
         </div>
         <div class="d-grid gap-2">
-            <button type="submit" class="btn btn-warning btn-lg" id="beneficiarioButton"data-bs-toggle="offcanvas"
-            data-bs-target="#offcanvasRegisterBeneficiario">
+            <button type="submit" class="btn btn-warning btn-lg" id="beneficiarioButton" data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasRegisterBeneficiario">
                 <span id="beneficiarioButtonText">Ser Beneficiario</span>
                 <span id="beneficiarioButtonSpinner" class="spinner-border spinner-border-sm d-none" role="status"
                     aria-hidden="true"></span>
@@ -167,25 +167,30 @@
             </div>
 
             <!-- Nota! TENER EN CUENTA LA BASE DE DATOS -->
-           
+
             <div class="d-flex gap-2 mt-4">
-                <input type="radio" class="btn-check" name="plan-options" id="planBasic" value="BASIC" autocomplete="off">
+                <input type="radio" class="btn-check" name="plan-options" id="planBasic" value="BASIC"
+                    autocomplete="off">
                 <label class="btn btn-outline-warning" for="planBasic">Plan Básico</label>
-        
-                <input type="radio" class="btn-check" name="plan-options" id="planStandard" value="STANDARD" autocomplete="off">
+
+                <input type="radio" class="btn-check" name="plan-options" id="planStandard" value="STANDARD"
+                    autocomplete="off">
                 <label class="btn btn-outline-warning" for="planStandard">Plan Standar</label>
-        
-                <input type="radio" class="btn-check" name="plan-options" id="planPremium" value="PREMIUM" autocomplete="off">
+
+                <input type="radio" class="btn-check" name="plan-options" id="planPremium" value="PREMIUM"
+                    autocomplete="off">
                 <label class="btn btn-outline-warning" for="planPremium">Plan Premium</label>
             </div>
-        
+
             <script>
                 document.querySelectorAll('input[name="plan-options"]').forEach(radio => {
                     radio.addEventListener('change', (e) => {
                         console.log('Plan seleccionado:', e.target.value);
                     });
                 });
+
             </script>
+            
 
             <div class="form-check mb-3  mt-3 d-flex justify-content-center gap-3">
                 <label class="form-check-label fs-6" for="terms">
@@ -211,7 +216,8 @@
 
             <div class="mb-3">
                 <label for="ciudadEmpresa" class="form-label">Ciudad</label>
-                <input type="ciudadEmpresa" class="form-control" id="ciudadEmpresa" name="ciudadEmpresa" placeholder="Ciudad">
+                <input type="ciudadEmpresa" class="form-control" id="ciudadEmpresa" name="ciudadEmpresa"
+                    placeholder="Ciudad">
             </div>
 
 
@@ -231,8 +237,8 @@
                     </a>
                 </label>
             </div>
-            <button type="button" class="btn btn-warning w-100" data-bs-toggle="modal" data-bs-target="#registerModal"
-                data-bs-dismiss="offcanvas">
+            <button type="button" class="btn btn-warning w-100" routerLink="/pasarelaPago" rout data-bs-toggle="modal"
+                data-bs-target="#registerModal" routerLinkActive="active" data-bs-dismiss="offcanvas">
                 Registrarse
             </button>
         </form>
@@ -299,20 +305,20 @@
 
             <div class="mb-3">
                 <label for="direccionBeneficiario" class="form-label">Direccion</label>
-                <input type="direccionBeneficiario" class="form-control" id="direccionBeneficiario" name="direccionBeneficiario"
-                    placeholder="Direccion ">
+                <input type="direccionBeneficiario" class="form-control" id="direccionBeneficiario"
+                    name="direccionBeneficiario" placeholder="Direccion ">
             </div>
 
             <div class="mb-3">
                 <label for="ciudadBeneficiario" class="form-label">Ciudad</label>
-                <input type="ciudadBeneficiario" class="form-control" id="ciudadBeneficiario" name="ciudadBeneficiario" placeholder="Ciudad">
+                <input type="ciudadBeneficiario" class="form-control" id="ciudadBeneficiario" name="ciudadBeneficiario"
+                    placeholder="Ciudad">
             </div>
-
 
             <div class="mb-3">
                 <label for="contraseñaBneficiario" class="form-label">Contraseña</label>
-                <input type="contraseñaBneficiario" class="form-control" id="contraseñaBneficiario" name="contraseñaBneficiario"
-                    placeholder="Introduce tu contraseña" required>
+                <input type="contraseñaBneficiario" class="form-control" id="contraseñaBneficiario"
+                    name="contraseñaBneficiario" placeholder="Introduce tu contraseña" required>
             </div>
 
             <div class="form-check mb-3 d-flex justify-content-center gap-3">
@@ -384,4 +390,3 @@
         </form>
     </div>
 </div>
-
