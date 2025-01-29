@@ -167,33 +167,22 @@
             </div>
 
             <!-- Nota! TENER EN CUENTA LA BASE DE DATOS -->
-
-
+           
             <div class="d-flex gap-2 mt-4">
-                <button type="button" class="btn btn-outline-warning" id="planBasic" data-plan="BASIC">
-                    Plan Básico
-                </button>
-                <button type="button" class="btn btn-outline-warning" id="planStandard" data-plan="STANDARD">
-                    Plan Standar
-                </button>
-                <button type="button" class="btn btn-outline-warning" id="planPremium" data-plan="PREMIUM">
-                    Plan Premium
-                </button>
+                <input type="radio" class="btn-check" name="plan-options" id="planBasic" value="BASIC" autocomplete="off">
+                <label class="btn btn-outline-warning" for="planBasic">Plan Básico</label>
+        
+                <input type="radio" class="btn-check" name="plan-options" id="planStandard" value="STANDARD" autocomplete="off">
+                <label class="btn btn-outline-warning" for="planStandard">Plan Standar</label>
+        
+                <input type="radio" class="btn-check" name="plan-options" id="planPremium" value="PREMIUM" autocomplete="off">
+                <label class="btn btn-outline-warning" for="planPremium">Plan Premium</label>
             </div>
-
+        
             <script>
-                // Manejo de eventos para los botones
-                const buttons = document.querySelectorAll('button[data-plan]');
-                buttons.forEach(button => {
-                    button.addEventListener('click', () => {
-                        // Limpiar la selección previa
-                        buttons.forEach(btn => btn.classList.remove('active'));
-                        // Marcar el botón actual como activo
-                        button.classList.add('active');
-
-                        // Obtener el valor del plan seleccionado
-                        const selectedPlan = button.getAttribute('data-plan');
-                        console.log('Plan seleccionado:', selectedPlan);
+                document.querySelectorAll('input[name="plan-options"]').forEach(radio => {
+                    radio.addEventListener('change', (e) => {
+                        console.log('Plan seleccionado:', e.target.value);
                     });
                 });
             </script>
