@@ -139,83 +139,86 @@
         <form class="p-3 " action="#">
             <div class="mb-3">
                 <label for="nombreEmpresa" class="form-label">Nombre Empresa</label>
-                <input type="text" class="form-control" id="nombreEmpresa" name="nombreEmpresa" placeholder="Introduce el nombre de tu empresa"
-                    required>
+                <input type="text" class="form-control" id="nombreEmpresa" name="nombreEmpresa"
+                    placeholder="Introduce el nombre de tu empresa" required>
             </div>
 
             <div class="mb-3">
                 <label for="TipoEmpresa" class="form-label">Tipo empresa</label>
-                <input type="text" class="form-control" id="TipoEmpresa" name="TipoEmpresa" placeholder="Hotel, supermercado, restaurante..."
-                    required>
+                <input type="text" class="form-control" id="TipoEmpresa" name="TipoEmpresa"
+                    placeholder="Hotel, supermercado, restaurante..." required>
             </div>
 
             <div class="mb-3">
                 <label for="telefonoEmpresa" class="form-label">Teléfono</label>
-                <input type="tel" class="form-control" id="telefonoEmpresa" name="telefonoEmpresa" placeholder="Introduce el número de teléfono"
-                    required>
+                <input type="tel" class="form-control" id="telefonoEmpresa" name="telefonoEmpresa"
+                    placeholder="Introduce el número de teléfono" required>
             </div>
             <div class="mb-3">
                 <label for="emailEmpresa" class="form-label">Email</label>
-                <input type="emailEmpresa" class="form-control" id="emailEmpresa" name="emailEmpresa" placeholder="name@example.com"
-                    required>
+                <input type="emailEmpresa" class="form-control" id="emailEmpresa" name="emailEmpresa"
+                    placeholder="name@example.com" required>
             </div>
 
-          <!-- Nota! TENER EN CUENTA LA BASE DE DATOS -->
+            <!-- Nota! TENER EN CUENTA LA BASE DE DATOS -->
 
-        
-          <div class="d-flex gap-2 mt-4">
-            <button type="button" class="btn btn-outline-warning" id="planBasic" data-plan="BASIC">
-                Plan Básico
-            </button>
-            <button type="button" class="btn btn-outline-warning" id="planStandard" data-plan="STANDARD">
-                Plan Standar
-            </button>
-            <button type="button" class="btn btn-outline-warning" id="planPremium" data-plan="PREMIUM">
-                Plan Premium
-            </button>
-        </div>
-        
-        <script>
-            // Manejo de eventos para los botones
-            const buttons = document.querySelectorAll('button[data-plan]');
-            buttons.forEach(button => {
-                button.addEventListener('click', () => {
-                    // Limpiar la selección previa
-                    buttons.forEach(btn => btn.classList.remove('active'));
-                    // Marcar el botón actual como activo
-                    button.classList.add('active');
-        
-                    // Obtener el valor del plan seleccionado
-                    const selectedPlan = button.getAttribute('data-plan');
-                    console.log('Plan seleccionado:', selectedPlan);
+
+            <div class="d-flex gap-2 mt-4">
+                <button type="button" class="btn btn-outline-warning" id="planBasic" data-plan="BASIC">
+                    Plan Básico
+                </button>
+                <button type="button" class="btn btn-outline-warning" id="planStandard" data-plan="STANDARD">
+                    Plan Standar
+                </button>
+                <button type="button" class="btn btn-outline-warning" id="planPremium" data-plan="PREMIUM">
+                    Plan Premium
+                </button>
+            </div>
+
+            <script>
+                // Manejo de eventos para los botones
+                const buttons = document.querySelectorAll('button[data-plan]');
+                buttons.forEach(button => {
+                    button.addEventListener('click', () => {
+                        // Limpiar la selección previa
+                        buttons.forEach(btn => btn.classList.remove('active'));
+                        // Marcar el botón actual como activo
+                        button.classList.add('active');
+
+                        // Obtener el valor del plan seleccionado
+                        const selectedPlan = button.getAttribute('data-plan');
+                        console.log('Plan seleccionado:', selectedPlan);
+                    });
                 });
-            });
-        </script>
+            </script>
 
-          <div class="form-check mb-3  mt-3 d-flex justify-content-center gap-3">
-            <label class="form-check-label fs-6" for="terms">
-               Más información de <a routerLink="/suscription" routerLinkActive="active" class="text-decoration-underline text-white fs-6">nuestros planes
+            <div class="form-check mb-3  mt-3 d-flex justify-content-center gap-3">
+                <label class="form-check-label fs-6" for="terms">
+                    Más información de <a routerLink="/suscription" routerLinkActive="active"
+                        class="text-decoration-underline text-white fs-6">nuestros planes
                     </a>
-            </label>
-        </div>
-        
+                </label>
+            </div>
+
 
             <!-- hasta aqui son los planes -->
             <div class="mb-3">
                 <label for="CIFEmpresa" class="form-label">CIF</label>
-                <input type="CIFEmpresa" class="form-control" id="CIFEmpresa" name="CIFEmpresa" placeholder="Introduce tu CIF">
+                <input type="CIFEmpresa" class="form-control" id="CIFEmpresa" name="CIFEmpresa"
+                    placeholder="Introduce tu CIF">
             </div>
 
             <div class="mb-3">
                 <label for="direccionEmpresa" class="form-label">Direccion</label>
-                <input type="direccionEmpresa" class="form-control" id="direccionEmpresa" name="direccionEmpresa" placeholder="Direccion empresa">
+                <input type="direccionEmpresa" class="form-control" id="direccionEmpresa" name="direccionEmpresa"
+                    placeholder="Direccion empresa">
             </div>
 
             <div class="mb-3">
                 <label for="ciudadEmpresa" class="form-label">Ciudad</label>
                 <input type="ciudadEmpresa" class="form-control" id="ciudad" name="ciudad" placeholder="Ciudad">
             </div>
-            
+
 
             <div class="mb-3">
                 <label for="contraseñaEmpresa" class="form-label">Contraseña</label>
@@ -223,9 +226,9 @@
                     placeholder="Introduce tu contraseña" required>
             </div>
 
-<!--            
+            <!--            
           Terminos y condiciones -->
-          
+
 
             <!-- <div class="form-check mb-3  d-flex justify-content-center gap-3">
                 <input class="form-check-input " type="checkbox" value="" id="terms" required>
@@ -241,9 +244,9 @@
 
                 </label>
             </div> -->
-        
+
             <!-- Modal -->
-<!-- <div class="modal fade" id="termsModal" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true">
+            <!-- <div class="modal fade" id="termsModal" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content  bg-dark text-white">
             <div class="modal-header">
@@ -263,16 +266,23 @@
     </div>
 </div> -->
 
-<div class="form-check mb-3 d-flex justify-content-center gap-3">
-    <input class="form-check-input" type="checkbox" value="" id="terms" required>
-    <label class="form-check-label fs-6" for="terms">
-        Yo acepto los 
-        <a href="#" class="text-decoration-underline text-white fs-6" data-bs-toggle="modal" data-bs-target="#termsModal">
-            términos y condiciones
-        </a>
-    </label>
+            <div class="form-check mb-3 d-flex justify-content-center gap-3">
+                <input class="form-check-input" type="checkbox" value="" id="terms" required>
+                <label class="form-check-label fs-6" for="terms">
+                    Yo acepto los
+                    <a href="#" class="text-decoration-underline text-white fs-6" data-bs-toggle="modal"
+                        data-bs-target="#termsModal">
+                        términos y condiciones
+                    </a>
+                </label>
+            </div>
+            <button type="button" class="btn btn-warning w-100" data-bs-toggle="modal" data-bs-target="#registerModal"
+                data-bs-dismiss="offcanvas">
+                Registrarse
+            </button>
+        </form>
+    </div>
 </div>
-
 <!-- Modal de Términos y Condiciones -->
 <div class="modal fade" id="termsModal" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -282,25 +292,19 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
             </div>
             <div class="modal-body">
-                <p>Bienvenido a nuestro servicio. Al aceptar estos términos, te comprometes a usar nuestra plataforma de manera responsable.</p>
-                <p><strong>1. Uso adecuado:</strong> No puedes usar el servicio para actividades ilícitas.</p>
-                <p><strong>2. Protección de datos:</strong> Tus datos están seguros con nosotros y solo se usarán para mejorar tu experiencia.</p>
-                <p><strong>3. Cambios en los términos:</strong> Podemos actualizar estos términos en cualquier momento.</p>
+                <p>Bienvenido a nuestro servicio. Al aceptar estos términos, te comprometes a usar nuestra
+                    plataforma de manera responsable.</p>
+                <p><strong>1. Uso adecuado:</strong> No puedes usar el servicio para actividades ilícitas.
+                </p>
+                <p><strong>2. Protección de datos:</strong> Tus datos están seguros con nosotros y solo se
+                    usarán para mejorar tu experiencia.</p>
+                <p><strong>3. Cambios en los términos:</strong> Podemos actualizar estos términos en
+                    cualquier momento.</p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cerrar</button>
             </div>
         </div>
-    </div>
-</div>
-                
-            <!-- hasta aqui -->
-
-            <button type="button" class="btn btn-warning w-100" data-bs-toggle="modal" data-bs-target="#registerModal"
-                data-bs-dismiss="offcanvas">
-                Registrarse
-            </button>
-        </form>
     </div>
 </div>
 
@@ -398,7 +402,7 @@
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
+<!-- <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -414,4 +418,4 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
