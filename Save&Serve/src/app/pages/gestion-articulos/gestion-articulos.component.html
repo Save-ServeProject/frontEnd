@@ -1,0 +1,63 @@
+<div class="container mt-5">
+    <h1 class="text-center">Gestión de Artículos</h1>
+    <p class="text-center text-muted">Agrega un nuevo artículo.</p>
+
+    <form id="articuloForm">
+        <div class="mb-3">
+            <label for="titulo" class="form-label">Título del Artículo</label>
+            <input type="text" class="form-control" id="titulo" placeholder="Ingresa el título del artículo" required minlength="5" maxlength="100">
+            <div class="invalid-feedback">El título es obligatorio y debe tener entre 5 y 100 caracteres.</div>
+        </div>
+        
+        <div class="mb-3">
+            <label for="subtitulo" class="form-label">Subtítulo</label>
+            <input type="text" class="form-control" id="subtitulo" placeholder="Ingresa el subtítulo del artículo" required minlength="4" maxlength="100">
+            <div class="invalid-feedback">El subtítulo es obligatorio y debe tener entre 5 y 100 caracteres.</div>
+        </div>
+        
+        <div class="mb-3">
+            <label for="texto" class="form-label">Texto del Artículo</label>
+            <textarea class="form-control" id="texto" rows="5" placeholder="Escribe el contenido del artículo" required minlength="20"></textarea>
+            <div class="invalid-feedback">El texto es obligatorio y debe tener al menos 20 caracteres.</div>
+        </div>
+
+        <div class="mb-3">
+            <label for="imagen" class="form-label">Imagen</label>
+            <input type="file" class="form-control" id="imagen" accept="image/*" required>
+            <div class="invalid-feedback">Por favor, selecciona una imagen válida.</div>
+        </div>
+
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary mt-3 mb-5">Guardar Artículo</button>
+        </div>
+    </form>
+</div>
+
+
+<script>
+    document.getElementById('articuloForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const form = this;
+        const fields = form.querySelectorAll('input, textarea');
+
+        let valid = true;
+        fields.forEach(field => {
+            if (!field.checkValidity()) {
+                field.classList.add('is-invalid'); 
+                valid = false;
+            } else {
+                field.classList.remove('is-invalid'); 
+                field.classList.add('is-valid');
+            }
+        });
+
+        if (valid) {
+            alert("Artículo guardado correctamente.");
+            
+            form.reset(); 
+        } else {
+            alert("Por favor, revisa los errores en el formulario.");
+        }
+    });
+</script>

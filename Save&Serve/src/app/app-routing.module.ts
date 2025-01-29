@@ -7,6 +7,10 @@ const routes: Routes = [
   { path: 'articles', loadComponent: () => import('./pages/articles/articles.component').then(m => m.ArticlesComponent) }, 
   { path: 'suscription', loadComponent: () => import('./pages/subscription/subscription.component').then(m => m.SubscriptionComponent) },
   { path: 'empresas', loadComponent: () => import('./pages/empresas/empresas.component').then(m => m.EmpresasComponent) },
+  { path: 'zonaAdmin', loadComponent: () => import('./pages/zona-admin/zona-admin.component').then(m => m.ZonaAdminComponent) },
+  { path: 'gestionArticulos', loadComponent: () => import('./pages/gestion-articulos/gestion-articulos.component').then(m => m.GestionArticulosComponent) },
+
+
  
 ];
 
