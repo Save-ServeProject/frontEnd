@@ -27,8 +27,8 @@
                             Involucrate
                         </a>
                         <ul class="dropdown-menu dropdown-menu-dark bg-dark" aria-labelledby="getInvolvedDropdown">
-                            <li><a class="dropdown-item text-white" href="#offcanvasRegister"
-                                    data-bs-toggle="offcanvas">Voluntarios</a></li>
+                            <li><a class="dropdown-item text-white"  routerLink="/HazteVoluntario" routerLinkActive="active"
+                                    >Hazte Voluntario</a></li>
                             <li><a class="dropdown-item text-white" href="#offcanvasRegister"
                                     data-bs-toggle="offcanvas">Empresas</a></li>
                             <li><a class="dropdown-item text-white" routerLink="/suscription" routerLinkActive="active"
@@ -50,6 +50,11 @@
                         </button>
                     </form><br>
                 </ul>
+                <!-- CONTROLAR ESTO SOLO ADMIN -->
+                <a class="btn btn-dark text-white" routerLink="/zonaAdmin" routerLinkActive="active"
+                                    data-bs-toggle="offcanvas">
+                                    Zona Admin</a>
+                                    
                 <a class="btn btn-warning text-white" data-bs-toggle="offcanvas" href="#offcanvasLogin" role="button"
                     aria-controls="offcanvasLogin">Iniciar Sesión</a>
             </div>
