@@ -1,37 +1,37 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Transporte } from '../models/transporte.model';
+import { Transporte } from '../../models/transporte.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TransporteService {
-  private apiUrl = 'http://localhost:8080/api/transportes';
+  private url = 'http://localhost:9000/transportes';
 
   constructor(private http: HttpClient) { }
 
   getAll(): Observable<Transporte[]> {
-    return this.http.get<Transporte[]>(this.apiUrl);
+    return this.http.get<Transporte[]>(this.url);
   }
 
   getById(id: number): Observable<Transporte> {
-    return this.http.get<Transporte>(`${this.apiUrl}/${id}`);
+    return this.http.get<Transporte>(`${this.url}/${id}`);
   }
 
   create(transporte: Transporte): Observable<Transporte> {
-    return this.http.post<Transporte>(this.apiUrl, transporte);
+    return this.http.post<Transporte>(this.url, transporte);
   }
 
   update(id: number, transporte: Transporte): Observable<Transporte> {
-    return this.http.put<Transporte>(`${this.apiUrl}/${id}`, transporte);
+    return this.http.put<Transporte>(`${this.url}/${id}`, transporte);
   }
 
   delete(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/${id}`);
+    return this.http.delete<void>(`${this.url}/${id}`);
   }
 
   getByTipoTransporte(tipoId: number): Observable<Transporte[]> {
-    return this.http.get<Transporte[]>(`${this.apiUrl}/tipo/${tipoId}`);
+    return this.http.get<Transporte[]>(`${this.url}/tipo/${tipoId}`);
   }
 }

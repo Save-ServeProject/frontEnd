@@ -1,33 +1,33 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { TipoTransporte } from '../models/tipo-transporte.model';
+import { TipoTransporte } from '../../models/tipoTransporte.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TipoTransporteService {
-  private apiUrl = 'http://localhost:8080/api/tipos-transporte';
+  private url = 'http://localhost:9000/tipo-transporte';
 
   constructor(private http: HttpClient) { }
 
   getAll(): Observable<TipoTransporte[]> {
-    return this.http.get<TipoTransporte[]>(this.apiUrl);
+    return this.http.get<TipoTransporte[]>(this.url);
   }
 
   getById(id: number): Observable<TipoTransporte> {
-    return this.http.get<TipoTransporte>(`${this.apiUrl}/${id}`);
+    return this.http.get<TipoTransporte>(`${this.url}/${id}`);
   }
 
   create(tipoTransporte: TipoTransporte): Observable<TipoTransporte> {
-    return this.http.post<TipoTransporte>(this.apiUrl, tipoTransporte);
+    return this.http.post<TipoTransporte>(this.url, tipoTransporte);
   }
 
   update(id: number, tipoTransporte: TipoTransporte): Observable<TipoTransporte> {
-    return this.http.put<TipoTransporte>(`${this.apiUrl}/${id}`, tipoTransporte);
+    return this.http.put<TipoTransporte>(`${this.url}/${id}`, tipoTransporte);
   }
 
   delete(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/${id}`);
+    return this.http.delete<void>(`${this.url}/${id}`);
   }
 }

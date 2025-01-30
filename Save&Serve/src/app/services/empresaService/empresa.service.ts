@@ -1,37 +1,37 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Empresa } from '../models/empresa.model';
+import { Empresa } from '../../models/empresa.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EmpresaService {
-  private apiUrl = 'http://localhost:8080/api/empresas';
+  private ulr = 'http://localhost:9000/empresas';
 
   constructor(private http: HttpClient) { }
 
   getAll(): Observable<Empresa[]> {
-    return this.http.get<Empresa[]>(this.apiUrl);
+    return this.http.get<Empresa[]>(this.ulr);
   }
 
   getById(id: number): Observable<Empresa> {
-    return this.http.get<Empresa>(`${this.apiUrl}/${id}`);
+    return this.http.get<Empresa>(`${this.ulr}/${id}`);
   }
 
   create(empresa: Empresa): Observable<Empresa> {
-    return this.http.post<Empresa>(this.apiUrl, empresa);
+    return this.http.post<Empresa>(this.ulr, empresa);
   }
 
   update(id: number, empresa: Empresa): Observable<Empresa> {
-    return this.http.put<Empresa>(`${this.apiUrl}/${id}`, empresa);
+    return this.http.put<Empresa>(`${this.ulr}/${id}`, empresa);
   }
 
   delete(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/${id}`);
+    return this.http.delete<void>(`${this.ulr}/${id}`);
   }
 
   getEmpresasByTipo(tipo: string): Observable<Empresa[]> {
-    return this.http.get<Empresa[]>(`${this.apiUrl}/tipo/${tipo}`);
+    return this.http.get<Empresa[]>(`${this.ulr}/tipo/${tipo}`);
   }
 }

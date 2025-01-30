@@ -1,41 +1,41 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Donacion } from '../models/donacion.model';
+import { Donacion } from '../../models/donacion.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DonacionService {
-  private apiUrl = 'http://localhost:8080/api/donaciones';
+  private url = 'http://localhost:9000/donaciones';
 
   constructor(private http: HttpClient) { }
 
   getAll(): Observable<Donacion[]> {
-    return this.http.get<Donacion[]>(this.apiUrl);
+    return this.http.get<Donacion[]>(this.url);
   }
 
   getById(id: number): Observable<Donacion> {
-    return this.http.get<Donacion>(`${this.apiUrl}/${id}`);
+    return this.http.get<Donacion>(`${this.url}/${id}`);
   }
 
   create(donacion: Donacion): Observable<Donacion> {
-    return this.http.post<Donacion>(this.apiUrl, donacion);
+    return this.http.post<Donacion>(this.url, donacion);
   }
 
   update(id: number, donacion: Donacion): Observable<Donacion> {
-    return this.http.put<Donacion>(`${this.apiUrl}/${id}`, donacion);
+    return this.http.put<Donacion>(`${this.url}/${id}`, donacion);
   }
 
   delete(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/${id}`);
+    return this.http.delete<void>(`${this.url}/${id}`);
   }
 
   getDonacionesByEmpresa(empresaId: number): Observable<Donacion[]> {
-    return this.http.get<Donacion[]>(`${this.apiUrl}/empresa/${empresaId}`);
+    return this.http.get<Donacion[]>(`${this.url}/empresa/${empresaId}`);
   }
 
   getDonacionesByBanco(bancoId: number): Observable<Donacion[]> {
-    return this.http.get<Donacion[]>(`${this.apiUrl}/banco/${bancoId}`);
+    return this.http.get<Donacion[]>(`${this.url}/banco/${bancoId}`);
   }
 }

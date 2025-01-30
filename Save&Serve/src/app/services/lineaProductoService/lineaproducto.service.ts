@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { LineaProducto } from '../models/linea-producto.model';
+import { LineaProducto } from '../../models/lineaProdcuto.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LineaProductoService {
-  private apiUrl = 'http://localhost:8080/api/lineas-producto';
+  private apiUrl = 'http://localhost:9000/lineas-producto';
 
   constructor(private http: HttpClient) { }
 
