@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Alergenos } from '../alergenosService/';
+import { Alergenos } from '../../models/alergenos.model';
 
 @Injectable({
   providedIn: 'root'
