@@ -12,3 +12,7 @@ export interface Empresa {
     donaciones?: Donacion[];
     //Puede que toque cambiar cosas cuando la base de datos este
 }
+
+
+
+
