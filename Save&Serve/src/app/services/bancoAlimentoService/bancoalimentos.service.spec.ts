@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { BancoalimentosService } from './bancoalimentos.service';
+import { BancoalimentosService } from '../bancoAlimentoService/bancoalimentos.service';
 
 describe('BancoalimentosService', () => {
   let service: BancoalimentosService;
