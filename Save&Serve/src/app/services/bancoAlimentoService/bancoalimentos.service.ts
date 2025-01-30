@@ -7,28 +7,28 @@ import { BancoDeAlimentos } from '../../models/bancoAlimentos.model';
   providedIn: 'root'
 })
 export class BancoalimentosService {
-  private apiUrl = 'http://localhost:9000/bancos';
+  private url = 'http://localhost:9000/bancos';
 
   constructor(private http: HttpClient) { }
 
   getAll(): Observable<BancoDeAlimentos[]> {
-    return this.http.get<BancoDeAlimentos[]>(this.apiUrl);
+    return this.http.get<BancoDeAlimentos[]>(this.url);
   }
 
   getById(id: number): Observable<BancoDeAlimentos> {
-    return this.http.get<BancoDeAlimentos>(`${this.apiUrl}/${id}`);
+    return this.http.get<BancoDeAlimentos>(`${this.url}/${id}`);
   }
 
   create(banco: BancoDeAlimentos): Observable<BancoDeAlimentos> {
-    return this.http.post<BancoDeAlimentos>(this.apiUrl, banco);
+    return this.http.post<BancoDeAlimentos>(this.url, banco);
   }
 
   update(id: number, banco: BancoDeAlimentos): Observable<BancoDeAlimentos> {
-    return this.http.put<BancoDeAlimentos>(`${this.apiUrl}/${id}`, banco);
+    return this.http.put<BancoDeAlimentos>(`${this.url}/${id}`, banco);
   }
 
   delete(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/${id}`);
+    return this.http.delete<void>(`${this.url}/${id}`);
   }
 }
 
