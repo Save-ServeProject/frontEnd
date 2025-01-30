@@ -113,7 +113,7 @@ export class GestionArticulosComponent implements OnInit {
       titulo: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(100)]],
       subtitulo: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(100)]],
       contenido: ['', [Validators.required, Validators.minLength(20)]],
-      imagen: [null, Validators.required]  // Asegúrate de agregar la validación para la imagen
+      imagen: [null, Validators.required] 
     });
   }
 
@@ -123,18 +123,15 @@ export class GestionArticulosComponent implements OnInit {
     const file = event.target.files[0];
     this.imagenSeleccionada = file;
 
-    // Actualiza el valor del campo imagen en el formulario
     this.articuloForm.patchValue({
       imagen: file
     });
 
-    // Marca el campo de imagen como tocado para aplicar las validaciones
     this.articuloForm.get('imagen')?.markAsTouched();
   }
 
   async guardarArticulo(): Promise<void> {
     if (this.articuloForm.valid && this.imagenSeleccionada) {
-      // Convertir la imagen a Base64
       const base64 = await this.convertirImagenABase64(this.imagenSeleccionada);
       
       const articulo: Articulos = {
@@ -149,7 +146,7 @@ export class GestionArticulosComponent implements OnInit {
           console.log('Artículo guardado:', response);
           alert('Artículo guardado correctamente');
           this.articuloForm.reset();
-          this.imagenSeleccionada = null;  // Limpiar la imagen después de guardar
+          this.imagenSeleccionada = null;  
         },
         error: (error) => {
           console.error('Error al guardar:', error);
