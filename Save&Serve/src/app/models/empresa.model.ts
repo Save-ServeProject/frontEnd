@@ -9,6 +9,6 @@ export interface Empresa {
     tipo?: string;
     ciudad?: string;
     suscripcion?: 'ADMIN' | 'USER' | 'GUEST';
-   // donaciones?: Donacion[];
+    donaciones?: Donacion[];
     //Puede que toque cambiar cosas cuando la base de datos este
 }
