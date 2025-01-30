@@ -9,7 +9,6 @@ import { FooterComponent } from './components/footer-component/footer-component.
 import { HerosectionComponent } from './components/herosection-component/herosection-component.component';
 import { HowworksComponent } from './components/howworks-component/howworks-component.component';
 import { AppRoutingModule } from './app-routing.module';
-import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   imports: [
@@ -22,7 +21,7 @@ import { HttpClientModule } from '@angular/common/http';
     FooterComponent,
     HerosectionComponent,
     HowworksComponent,
-    HttpClientModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
