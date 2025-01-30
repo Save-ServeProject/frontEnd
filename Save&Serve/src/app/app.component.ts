@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { NavbarComponent } from './components/navbar-component/navbar-component.component';
 import { FooterComponent } from './components/footer-component/footer-component.component';
+import { ArticuloService } from './services/articuloService/articulo.service';
 
 @Component({
   selector: 'app-root',
