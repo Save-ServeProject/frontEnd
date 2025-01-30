@@ -7,27 +7,27 @@ import { Alergenos } from '../../models/alergenos.model';
   providedIn: 'root'
 })
 export class AlergenosService {
-  private apiUrl = 'http://localhost:8080/api/alergenos';
+  private url = 'http://localhost:9000/alergenos';
 
   constructor(private http: HttpClient) { }
 
   getAll(): Observable<Alergenos[]> {
-    return this.http.get<Alergenos[]>(this.apiUrl);
+    return this.http.get<Alergenos[]>(this.url);
   }
 
   getById(id: number): Observable<Alergenos> {
-    return this.http.get<Alergenos>(`${this.apiUrl}/${id}`);
+    return this.http.get<Alergenos>(`${this.url}/${id}`);
   }
 
   create(alergeno: Alergenos): Observable<Alergenos> {
-    return this.http.post<Alergenos>(this.apiUrl, alergeno);
+    return this.http.post<Alergenos>(this.url, alergeno);
   }
 
   update(id: number, alergeno: Alergenos): Observable<Alergenos> {
-    return this.http.put<Alergenos>(`${this.apiUrl}/${id}`, alergeno);
+    return this.http.put<Alergenos>(`${this.url}/${id}`, alergeno);
   }
 
   delete(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/${id}`);
+    return this.http.delete<void>(`${this.url}/${id}`);
   }
 }
