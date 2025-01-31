@@ -7,7 +7,7 @@ import { Empresa } from '../../models/empresa.model';
   providedIn: 'root'
 })
 export class EmpresaService {
-  private ulr = 'http://localhost:9000/empresas';
+  private ulr = 'http://localhost:9000/empresas'; //nube
 
   constructor(private http: HttpClient) { }
 

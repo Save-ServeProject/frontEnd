@@ -7,7 +7,7 @@ import { Donacion } from '../../models/donacion.model';
   providedIn: 'root'
 })
 export class DonacionService {
-  private url = 'http://localhost:9000/donaciones';
+  private url = 'http://localhost:9000/donaciones'; //nube
 
   constructor(private http: HttpClient) { }
 

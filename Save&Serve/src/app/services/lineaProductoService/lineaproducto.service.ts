@@ -7,7 +7,7 @@ import { LineaProducto } from '../../models/lineaProdcuto.model';
   providedIn: 'root'
 })
 export class LineaProductoService {
-  private apiUrl = 'http://localhost:9000/lineas-producto';
+  private apiUrl = 'http://localhost:9000/lineas-producto'; //nube
 
   constructor(private http: HttpClient) { }
 

@@ -7,7 +7,7 @@ import { BancoDeAlimentos } from '../../models/bancoAlimentos.model';
   providedIn: 'root'
 })
 export class BancoalimentosService {
-  private url = 'http://localhost:9000/bancos';
+  private url = 'http://localhost:9000/bancos'; //nube
 
   constructor(private http: HttpClient) { }
 

@@ -7,7 +7,7 @@ import { Producto } from '../../models/producto.model';
   providedIn: 'root'
 })
 export class ProductoService {
-  private url = 'http://localhost:9000/productos';
+  private url = 'http://localhost:9000/productos'; //nube
 
   constructor(private http: HttpClient) { }
 

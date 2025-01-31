@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ArticuloService {
-  private url = 'http://localhost:9000/articulos';
+  private url = 'http://localhost:9000/articulos'; //nube
   private headers = new HttpHeaders({
     'Content-Type': 'application/json'
   });
@@ -19,8 +19,15 @@ export class ArticuloService {
   getById(id: number) : Observable<Articulos> {
     return this.http.get<Articulos>(`${this.url}/${id}`);
   }
+  obtenerArticuloPorId(id: number): Observable<Articulos> {
+    return this.http.get<Articulos>(`${this.url}/${id}`);
+  }
+  
   getAllByTitulo(titulo: string) {
     return this.http.get<Articulos[]>(`${this.url}/titulo/${titulo}`);
+  }
+  obtenerArticulos(id?: string): Observable<Articulos[]> {
+    return this.http.get<Articulos[]>(this.url);
   }
   create(articulo: Articulos) {
     return this.http.post<Articulos>(this.url, articulo, { headers: this.headers });

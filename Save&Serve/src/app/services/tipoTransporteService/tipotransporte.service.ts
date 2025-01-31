@@ -7,7 +7,7 @@ import { TipoTransporte } from '../../models/tipoTransporte.model';
   providedIn: 'root'
 })
 export class TipoTransporteService {
-  private url = 'http://localhost:9000/tipo-transporte';
+  private url = 'http://localhost:9000/tipo-transporte'; //nube
 
   constructor(private http: HttpClient) { }
 

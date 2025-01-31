@@ -7,7 +7,7 @@ import { Transporte } from '../../models/transporte.model';
   providedIn: 'root'
 })
 export class TransporteService {
-  private url = 'http://localhost:9000/transportes';
+  private url = 'http://localhost:9000/transportes'; //nube
 
   constructor(private http: HttpClient) { }
 
