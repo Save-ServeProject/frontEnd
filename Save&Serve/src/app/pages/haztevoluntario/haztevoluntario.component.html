@@ -1,0 +1,42 @@
+<div class="container py-4">
+    <h2 class="text-center mb-4">!Encuentra a quien ayudar!</h2>
+
+    <div class="row justify-content-center mb-4">
+        <!-- Tarjeta 1 -->
+        <div class="col-md-6 col-lg-4 mb-3">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h3 class="card-title">Sitio de prueba</h3>
+                    <p class="card-text">📞 Tel: 123-456-789</p>
+                    <p class="card-text">📍 Ubicación: Alicante, España</p>
+                    <button class="btn btn-primary w-100" 
+                            (click)="mostrarUbicacion(38.36196095364202, -0.4910713826646036, 'Ies doctor Balmis')">
+                        Ver en el mapa
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tarjeta 2 -->
+        <div class="col-md-6 col-lg-4 mb-3">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h3 class="card-title">La casa de leti</h3>
+                    <p class="card-text">📞 Tel: 987-654-321</p>
+                    <p class="card-text">📍 Ubicación: Alicante, España</p>
+                    <button class="btn btn-primary w-100" 
+                            (click)="mostrarUbicacion(38.3452, -0.4815, 'La casa de leti')">
+                        Ver en el mapa
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contenedor del mapa -->
+    <div class="row justify-content-center">
+        <div class="col-12">
+            <div id="mapa"></div>
+        </div>
+    </div>
+</div>
