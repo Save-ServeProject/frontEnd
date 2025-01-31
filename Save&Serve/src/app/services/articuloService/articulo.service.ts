@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Articulos } from '../../models/articulos.model';
 import { Observable } from 'rxjs';
@@ -8,6 +8,9 @@ import { Observable } from 'rxjs';
 })
 export class ArticuloService {
   private url = 'http://localhost:9000/articulos';
+  private headers = new HttpHeaders({
+    'Content-Type': 'application/json'
+  });
   constructor(private http: HttpClient) { }
 
   getAll() {
@@ -20,7 +23,7 @@ export class ArticuloService {
     return this.http.get<Articulos[]>(`${this.url}/titulo/${titulo}`);
   }
   create(articulo: Articulos) {
-    return this.http.post<Articulos>(this.url, articulo);
+    return this.http.post<Articulos>(this.url, articulo, { headers: this.headers });
   }
   update(id: number, articulo: Articulos) : Observable<Articulos> {
     return this.http.put<Articulos>(`${this.url}/${id}`, articulo);
