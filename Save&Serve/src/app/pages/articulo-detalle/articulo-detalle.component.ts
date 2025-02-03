@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute,RouterModule } from '@angular/router';
 import { ArticuloService } from '../../services/articuloService/articulo.service';
 import { Articulos } from '../../models/articulos.model';
+import { CommonModule } from '@angular/common';
 
 @Component({
     selector: 'app-articulo-detalle',
     standalone: true,
-    imports: [],
+    imports: [CommonModule, RouterModule],
     templateUrl: './articulo-detalle.component.html',
     styleUrls: ['./articulo-detalle.component.css']
 })
@@ -19,8 +20,8 @@ export class ArticuloDetalleComponent implements OnInit {
     ) { }
     ngOnInit(): void {
 
-        this.route.paramMap.subscribe(params => {
-            const id = params.get('id');
+        this.route.params.subscribe(params => {
+            const id = params['idArticulo'];
             console.log('ID recibido:', id);
 
             if (id) {

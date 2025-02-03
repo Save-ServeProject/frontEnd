@@ -1,5 +1,5 @@
 export interface Articulos {
-    id?: number;
+    idArticulo?: number;
     titulo: string;
     subtitulo: string;
     contenido: string;

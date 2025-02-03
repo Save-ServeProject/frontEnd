@@ -19,9 +19,9 @@ export class ArticuloService {
   getById(id: number) : Observable<Articulos> {
     return this.http.get<Articulos>(`${this.url}/${id}`);
   }
-  obtenerArticuloPorId(id: number): Observable<Articulos> {
-    return this.http.get<Articulos>(`${this.url}/${id}`);
-  }
+  // obtenerArticuloPorId(id: number): Observable<Articulos> {
+  //   return this.http.get<Articulos>(`${this.url}/${id}`);
+  // }
   
   getAllByTitulo(titulo: string) {
     return this.http.get<Articulos[]>(`${this.url}/titulo/${titulo}`);
@@ -29,6 +29,13 @@ export class ArticuloService {
   obtenerArticulos(id?: string): Observable<Articulos[]> {
     return this.http.get<Articulos[]>(this.url);
   }
+  obtenerArticulosAll(): Observable<Articulos[]> {
+    return this.http.get<Articulos[]>(`${this.url}/articles`);
+}
+
+obtenerArticuloPorId(id: number): Observable<Articulos> {
+    return this.http.get<Articulos>(`${this.url}/${id}`);
+}
   create(articulo: Articulos) {
     return this.http.post<Articulos>(this.url, articulo, { headers: this.headers });
   }
