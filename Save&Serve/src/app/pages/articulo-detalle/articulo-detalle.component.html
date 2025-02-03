@@ -3,7 +3,7 @@
   <h2 class="text-lg text-gray-600 mb-4">{{ articulo.subtitulo }}</h2>
   <img [src]="articulo.imagen" [alt]="articulo.titulo" class="w-full max-w-3xl mx-auto rounded-lg shadow-lg mb-6">
   <p class="text-md leading-relaxed">{{ articulo.contenido }}</p>
-  <a routerLink="/articulos" class="mt-4 inline-block text-blue-500 hover:underline">Volver a la lista</a>
+  <a routerLink="/articles" routerLinkActive="active" class="mt-4 inline-block text-blue-500 hover:underline">Volver a la lista</a>
 </div>
 
 <ng-template #loading>

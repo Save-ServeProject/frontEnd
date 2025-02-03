@@ -6,5 +6,5 @@ export interface BancoDeAlimentos {
     email: string;
     ciudad: string;
     contrasenia: string;
-    donaciones?: Donacion[];
+    // donaciones?: Donacion[];
 }
