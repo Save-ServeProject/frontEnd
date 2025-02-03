@@ -11,7 +11,7 @@ const routes: Routes = [
   { path: 'gestionArticulos', loadComponent: () => import('./pages/gestion-articulos/gestion-articulos.component').then(m => m.GestionArticulosComponent) },
   { path: 'pasarelaPago', loadComponent: () => import('./pages/pasarela-pago/pasarela-pago.component').then(m => m.PasarelaPagoComponent) },
   { path: 'hazteVoluntario', loadComponent: () => import('./pages/haztevoluntario/haztevoluntario.component').then(m => m.HaztevoluntarioComponent) },
-  { path: 'articulo-detalle/:id', loadComponent: () => import('./pages/articulo-detalle/articulo-detalle.component').then(m => m.ArticuloDetalleComponent) },
+  // { path: 'articulo-detalle/:id', loadComponent: () => import('./pages/articulo-detalle/articulo-detalle.component').then(m => m.ArticuloDetalleComponent) },
   // { Path: 'informacionEmpresas', loadComponent: () => import('./pages/informacionEmpresas/informacionEmpresas.component').then(m => m.InformacionEmpresasComponent) },
 
 
