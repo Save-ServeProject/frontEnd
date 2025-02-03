@@ -27,7 +27,7 @@
                             Involucrate
                         </a>
                         <ul class="dropdown-menu dropdown-menu-dark bg-dark" aria-labelledby="getInvolvedDropdown">
-                            <li><a class="dropdown-item text-white" routerLink="/HazteVoluntario"
+                            <li><a class="dropdown-item text-white" routerLink="/hazteVoluntario"
                                     routerLinkActive="active">Hazte Voluntario</a></li>
                             <li><a class="dropdown-item text-white" href="#offcanvasRegister"
                                     data-bs-toggle="offcanvas">Empresas</a></li>
@@ -105,7 +105,7 @@
     </div>
     <div class="offcanvas-body">
 
-        <!-- Donante -->
+        <!-- Este es el boton que redirige al registro de la entidad Empresa / Donante-->
         <div class="mb-4 text-center">
             <label for="donante" class="form-label fs-5 fw-bold">Contrata nuestros servicios</label>
         </div>
@@ -117,10 +117,9 @@
                     aria-hidden="true"></span>
             </button>
         </div>
-        <!-- Separador -->
         <hr class="my-5 text-secondary">
 
-        <!--  Beneficiario -->
+        <!-- Este es el boton que redirige al registro de la entidad Banco de Alimentos / Beneficiario-->
         <div class="mb-4 text-center">
             <label for="beneficiario" class="form-label fs-5 fw-bold">Recibe nuestras donaciones</label>
         </div>
@@ -134,7 +133,7 @@
         </div>
     </div>
 </div>
-<!-- Registro Donante -->
+<!-- Registro Empresa // Donante -->
 <div class="offcanvas offcanvas-start bg-dark text-white" tabindex="-1" id="offcanvasRegisterDonante"
     aria-labelledby="offcanvasRegisterDonanteLabel">
     <div class="offcanvas-header">
@@ -165,8 +164,6 @@
                 <input type="emailEmpresa" class="form-control" id="emailEmpresa" name="emailEmpresa"
                     placeholder="name@example.com" required>
             </div>
-
-            <!-- Nota! TENER EN CUENTA LA BASE DE DATOS -->
 
             <div class="d-flex gap-2 mt-4">
                 <input type="radio" class="btn-check" name="plan-options" id="planBasic" value="BASIC"
@@ -200,8 +197,6 @@
                 </label>
             </div>
 
-
-            <!-- hasta aqui son los planes -->
             <div class="mb-3">
                 <label for="CIFEmpresa" class="form-label">CIF</label>
                 <input type="CIFEmpresa" class="form-control" id="CIFEmpresa" name="CIFEmpresa"
@@ -271,7 +266,7 @@
 
 
 
-<!-- Registro Beneficiario -->
+<!-- Registro Bancos de alimentos // Beneficiario -->
 <div class="offcanvas offcanvas-start bg-dark text-white" tabindex="-1" id="offcanvasRegisterBeneficiario"
     aria-labelledby="offcanvasRegisterBeneficiarioLabel">
     <div class="offcanvas-header">
