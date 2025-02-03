@@ -10,6 +10,9 @@ const routes: Routes = [
   { path: 'zonaAdmin', loadComponent: () => import('./pages/zona-admin/zona-admin.component').then(m => m.ZonaAdminComponent) },
   { path: 'gestionArticulos', loadComponent: () => import('./pages/gestion-articulos/gestion-articulos.component').then(m => m.GestionArticulosComponent) },
   { path: 'pasarelaPago', loadComponent: () => import('./pages/pasarela-pago/pasarela-pago.component').then(m => m.PasarelaPagoComponent) },
+  { path: 'hazteVoluntario', loadComponent: () => import('./pages/haztevoluntario/haztevoluntario.component').then(m => m.HaztevoluntarioComponent) },
+  // { Path: 'articulo-detalle/:id', loadComponent: () => import('./pages/articulo-detalle/articulo-detalle.component').then(m => m.ArticuloDetalleComponent) },
+
 
 
 
