@@ -9,7 +9,7 @@ import { CommonModule } from '@angular/common';
     standalone: true,
     imports: [CommonModule, RouterModule],
     templateUrl: './articulo-detalle.component.html',
-    styleUrls: ['./articulo-detalle.component.css']
+    styleUrls: ['./articulo-detalle.component.scss']
 })
 export class ArticuloDetalleComponent implements OnInit {
     articulo: Articulos | undefined;
