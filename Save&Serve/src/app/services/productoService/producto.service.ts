@@ -1,3 +1,44 @@
+// import { Injectable } from '@angular/core';
+// import { HttpClient } from '@angular/common/http';
+// import { Observable } from 'rxjs';
+// import { Producto } from '../../models/producto.model';
+
+// @Injectable({
+//   providedIn: 'root'
+// })
+// export class ProductoService {
+//   private url = 'http://localhost:9000/productos'; //nube
+
+//   constructor(private http: HttpClient) { }
+
+//   getAll(): Observable<Producto[]> {
+//     return this.http.get<Producto[]>(this.url);
+//   }
+
+//   getById(id: number): Observable<Producto> {
+//     return this.http.get<Producto>(`${this.url}/${id}`);
+//   }
+
+//   create(producto: Producto): Observable<Producto> {
+//     return this.http.post<Producto>(this.url, producto);
+//   }
+
+//   update(id: number, producto: Producto): Observable<Producto> {
+//     return this.http.put<Producto>(`${this.url}/${id}`, producto);
+//   }
+
+//   delete(id: number): Observable<void> {
+//     return this.http.delete<void>(`${this.url}/${id}`);
+//   }
+
+//   getByTipo(tipo: string): Observable<Producto[]> {
+//     return this.http.get<Producto[]>(`${this.url}/tipo/${tipo}`);
+//   }
+// }
+
+
+//cambios leti
+
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -7,31 +48,31 @@ import { Producto } from '../../models/producto.model';
   providedIn: 'root'
 })
 export class ProductoService {
-  private url = 'http://localhost:9000/productos'; //nube
+  private baseUrl = 'http://localhost:9000/productos';
 
   constructor(private http: HttpClient) { }
 
-  getAll(): Observable<Producto[]> {
-    return this.http.get<Producto[]>(this.url);
+  obtenerTodos(): Observable<Producto[]> {
+    return this.http.get<Producto[]>(this.baseUrl);
   }
 
-  getById(id: number): Observable<Producto> {
-    return this.http.get<Producto>(`${this.url}/${id}`);
+  obtenerPorId(id: number): Observable<Producto> {
+    return this.http.get<Producto>(`${this.baseUrl}/${id}`);
   }
 
-  create(producto: Producto): Observable<Producto> {
-    return this.http.post<Producto>(this.url, producto);
+  crear(producto: Producto): Observable<Producto> {
+    return this.http.post<Producto>(this.baseUrl, producto);
   }
 
-  update(id: number, producto: Producto): Observable<Producto> {
-    return this.http.put<Producto>(`${this.url}/${id}`, producto);
+  actualizar(id: number, producto: Producto): Observable<Producto> {
+    return this.http.put<Producto>(`${this.baseUrl}/${id}`, producto);
   }
 
-  delete(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.url}/${id}`);
+  eliminar(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.baseUrl}/${id}`);
   }
 
-  getByTipo(tipo: string): Observable<Producto[]> {
-    return this.http.get<Producto[]>(`${this.url}/tipo/${tipo}`);
+  obtenerPorIdProducto(idProducto: string): Observable<Producto> {
+    return this.http.get<Producto>(`${this.baseUrl}/codigo/${idProducto}`);
   }
 }
