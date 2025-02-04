@@ -1,1 +1,54 @@
-<p>informacionempresa works!</p>
+<div class="container py-4">
+    <h1 class="text-center mb-4">Empresas colaboradoras</h1>
+
+    <div class="row justify-content-center mb-4">
+        
+        <div class="col-md-6 col-lg-4 mb-3">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h3 class="card-title">Empresa 1</h3>
+                    <p class="card-text">📞 Tel: 123-456-789</p>
+                    <p class="card-text">📍 Ubicación: Alicante, España</p>
+                    <button class="btn btn-primary w-100" 
+                            (click)="mostrarUbicacion(38.36045395197822, -0.490226425602576, 'Mercadona Altozano')">
+                        Ver en el mapa
+                    </button>
+                </div>
+            </div>
+        </div>
+       
+        <div class="col-md-6 col-lg-4 mb-3">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h3 class="card-title">Empresa 2</h3>
+                    <p class="card-text">📞 Tel: 987-654-321</p>
+                    <p class="card-text">📍 Ubicación: Alicante, España</p>
+                    <button class="btn btn-primary w-100" 
+                            (click)="mostrarUbicacion(38.343123510773, -0.49306854513705256, 'El corte ingles Maisonave')">
+                        Ver en el mapa
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4 mb-3">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h3 class="card-title">Empresa 3</h3>
+                    <p class="card-text">📞 Tel: 321-654-987</p>
+                    <p class="card-text">📍 Ubicación: Alicante, España</p>
+                    <button class="btn btn-primary w-100" 
+                            (click)="mostrarUbicacion(38.40673089656071, -0.42285147397054124, 'Carrefour san Juan')">
+                        Ver en el mapa
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-12">
+            <div id="mapa"></div>
+        </div>
+    </div>
+</div>
