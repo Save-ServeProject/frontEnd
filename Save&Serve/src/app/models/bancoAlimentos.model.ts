@@ -1,3 +1,5 @@
+import { Donacion } from './donacion.model';
+
 export interface BancoDeAlimentos {
     id?: number;
     nombre: string;
@@ -6,5 +8,5 @@ export interface BancoDeAlimentos {
     email: string;
     ciudad: string;
     contrasenia: string;
-    // donaciones?: Donacion[];
+    donaciones?: Donacion[];
 }
