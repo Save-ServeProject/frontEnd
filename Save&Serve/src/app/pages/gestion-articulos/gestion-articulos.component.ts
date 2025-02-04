@@ -2,7 +2,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ArticuloService } from '../../services/articuloService/articulo.service';
-import { Articulos } from '../../models/articulos.model';
+import { Articulo } from '../../models/articulo.model';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -15,7 +15,7 @@ import { CommonModule } from '@angular/common';
 export class GestionArticulosComponent implements OnInit {
   articuloForm: FormGroup;
   imagenSeleccionada: File | null = null;
-  articulos: Articulos[] = [];
+  articulos: Articulo[] = [];
   modoEdicion = false;
   articuloIdEditando: number | null = null;
   imagenPrevia: string | null = null;
@@ -29,7 +29,7 @@ export class GestionArticulosComponent implements OnInit {
       titulo: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(100)]],
       subtitulo: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(100)]],
       contenido: ['', [Validators.required, Validators.minLength(20)]],
-      imagen: [null, Validators.required] 
+      imagen: [null, Validators.required]
     });
   }
 
@@ -48,6 +48,17 @@ export class GestionArticulosComponent implements OnInit {
       }
     });
   }
+  getImagenUrl(imagen: string): string {
+    if (!imagen) {
+      return 'assets/img/default.jpg'; 
+    }
+  
+    if (imagen.startsWith('http') || imagen.startsWith('assets') || imagen.startsWith('data:image')) {
+      return imagen;
+    }
+  
+    return `http://localhost:9000${imagen}`;
+  }
 
   onImagenSeleccionada(event: any): void {
     const file = event.target.files[0];
@@ -59,73 +70,27 @@ export class GestionArticulosComponent implements OnInit {
       this.articuloForm.get('imagen')?.markAsTouched();
       // Limpiar imagen previa si existe
       this.imagenPrevia = URL.createObjectURL(file);
+    }
   }
-  }
-  // async guardarArticulo(): Promise<void> {
-  //   if (this.articuloForm.valid && (this.imagenSeleccionada || this.modoEdicion)) {
-  //     let base64 = '';
-      
-  //     if (this.imagenSeleccionada) {
-  //       base64 = await this.convertirImagenABase64(this.imagenSeleccionada);
-  //     }
-      
-  //     const articulo: Articulos = {
-  //       titulo: this.articuloForm.get('titulo')?.value,
-  //       subtitulo: this.articuloForm.get('subtitulo')?.value,
-  //       contenido: this.articuloForm.get('contenido')?.value,
-  //       imagen: base64 || this.articuloForm.get('imagen')?.value
-  //     };
 
-  //     if (this.modoEdicion && this.articuloIdEditando) {
-  //       // Actualizar artículo existente
-  //       articulo.idArticulo = this.articuloIdEditando;
-  //       this.articuloService.update(this.articuloIdEditando, articulo).subscribe({
-  //         next: () => {
-  //           alert('Artículo actualizado correctamente');
-  //           this.resetForm();
-  //           this.cargarArticulos();
-  //         },
-  //         error: (error) => {
-  //           console.error('Error al actualizar:', error);
-  //           alert('Error al actualizar el artículo');
-  //         }
-  //       });
-  //     } else {
-  //       // Crear nuevo artículo
-  //       this.articuloService.create(articulo).subscribe({
-  //         next: () => {
-  //           alert('Artículo guardado correctamente');
-  //           this.resetForm();
-  //           this.cargarArticulos();
-  //         },
-  //         error: (error) => {
-  //           console.error('Error al guardar:', error);
-  //           alert('Error al guardar el artículo');
-  //         }
-  //       });
-  //     }
-  //   }
-  // }
   async guardarArticulo(): Promise<void> {
     if (this.articuloForm.valid && (this.imagenSeleccionada || this.modoEdicion)) {
       let base64 = '';
-  
+
       if (this.imagenSeleccionada) {
         base64 = await this.convertirImagenABase64(this.imagenSeleccionada);
       } else if (this.modoEdicion && this.imagenPrevia) {
-        // Si no se seleccionó una nueva imagen en modo edición, se utiliza la imagen previa
         base64 = this.imagenPrevia;
       }
-  
-      const articulo: Articulos = {
+
+      const articulo: Articulo = {
         titulo: this.articuloForm.get('titulo')?.value,
         subtitulo: this.articuloForm.get('subtitulo')?.value,
         contenido: this.articuloForm.get('contenido')?.value,
         imagen: base64 || this.articuloForm.get('imagen')?.value
       };
-  
+
       if (this.modoEdicion && this.articuloIdEditando) {
-        // Actualizar artículo existente
         articulo.idArticulo = this.articuloIdEditando;
         this.articuloService.update(this.articuloIdEditando, articulo).subscribe({
           next: () => {
@@ -139,7 +104,6 @@ export class GestionArticulosComponent implements OnInit {
           }
         });
       } else {
-        // Crear nuevo artículo
         this.articuloService.create(articulo).subscribe({
           next: () => {
             alert('Artículo guardado correctamente');
@@ -154,30 +118,28 @@ export class GestionArticulosComponent implements OnInit {
       }
     }
   }
-  
+
   resetForm() {
     this.articuloForm.reset();
     this.imagenSeleccionada = null;
     this.modoEdicion = false;
     this.articuloIdEditando = null;
   }
-  editarArticulo(articulo: Articulos) {
+  editarArticulo(articulo: Articulo) {
     this.modoEdicion = true;
     this.articuloIdEditando = articulo.idArticulo!;
-    this.imagenPrevia = articulo.imagen; // Guardar la imagen actual
-    
-    // Actualizar el formulario con los datos del artículo
+    this.imagenPrevia = articulo.imagen;
+
     this.articuloForm.patchValue({
       titulo: articulo.titulo,
       subtitulo: articulo.subtitulo,
       contenido: articulo.contenido,
-      imagen: null // Resetear el input de imagen
+      imagen: null
     });
 
-    // Hacer el campo de imagen opcional en modo edición
     this.articuloForm.get('imagen')?.clearValidators();
     this.articuloForm.get('imagen')?.updateValueAndValidity();
-    
+
     this.imagenSeleccionada = null;
     window.scrollTo(0, 0);
   }

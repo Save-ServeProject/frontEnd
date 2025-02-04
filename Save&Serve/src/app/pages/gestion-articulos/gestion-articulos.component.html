@@ -157,7 +157,7 @@
             <td>{{ articulo.titulo }}</td>
             <td>{{ articulo.subtitulo }}</td>
             <td>
-              <img [src]="articulo.imagen" 
+              <img [src]="getImagenUrl(articulo.imagen)" 
                    alt="Imagen del artículo" 
                    class="img-thumbnail" 
                    style="max-width: 100px;">

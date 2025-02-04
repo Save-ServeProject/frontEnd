@@ -1,14 +1,12 @@
-
 <div *ngIf="articulo; else loading" class="container my-5">
   <div class="card border-0 shadow-lg overflow-hidden">
     <div class="position-relative">
-      <img 
-        [src]="articulo.imagen" 
-        [alt]="articulo.titulo" 
-        class="img-fluid w-100" 
+
+      <img [src]="getImagenUrl(articulo.imagen)" [alt]="articulo.titulo" class="img-fluid w-100"
         style="max-height: 400px; object-fit: cover;">
       <div class="position-absolute top-0 start-0 w-100 h-100" style="background: rgba(0,0,0,0.3);"></div>
-      <h1 class="position-absolute bottom-0 start-0 text-white p-3 fw-bold display-5" style="text-shadow: 1px 1px 5px rgba(0,0,0,0.7);">
+      <h1 class="position-absolute bottom-0 start-0 text-white p-3 fw-bold display-5"
+        style="text-shadow: 1px 1px 5px rgba(0,0,0,0.7);">
         {{ articulo.titulo }}
       </h1>
     </div>
