@@ -1,10 +1,10 @@
-// Variables opcionales
-$bg-article: #ffffff; // fondo blanco para el bloque de contenido
+
+$bg-article: #ffffff; 
 $border-radius: 0.5rem;
 $box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-$font-size: 1.125rem; // 18px aprox.
+$font-size: 1.125rem; 
 $line-height: 1.8;
-$text-color: #333; // Color de texto ligeramente oscuro para buena legibilidad
+$text-color: #333;
 
 .article-content {
   background-color: $bg-article;
@@ -14,7 +14,6 @@ $text-color: #333; // Color de texto ligeramente oscuro para buena legibilidad
   font-size: $font-size;
   line-height: $line-height;
   color: $text-color;
-  // Opcional: margenes internos para separar los párrafos
   p {
     margin-bottom: 1.5rem;
   }

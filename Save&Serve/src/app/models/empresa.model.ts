@@ -27,12 +27,12 @@ export interface Empresa {
     id?: number;
     nombre: string;
     email: string;
-    direccion?: string;
+    direccion: string;
     telefono?: string;
     cif: string;
     contrasenia: string;
     tipo?: string;
-    ciudad?: string;
+    ciudad: string;
     suscripcion?: Suscripcion;
     donaciones?: Donacion[];
 }
