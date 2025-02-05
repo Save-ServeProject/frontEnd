@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute,RouterModule } from '@angular/router';
 import { ArticuloService } from '../../services/articuloService/articulo.service';
-import { Articulos } from '../../models/articulos.model';
+import { Articulo } from '../../models/articulo.model';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -12,7 +12,7 @@ import { CommonModule } from '@angular/common';
     styleUrls: ['./articulo-detalle.component.scss']
 })
 export class ArticuloDetalleComponent implements OnInit {
-    articulo: Articulos | undefined;
+    articulo: Articulo | undefined;
 
     constructor(
         private route: ActivatedRoute,
@@ -35,4 +35,15 @@ export class ArticuloDetalleComponent implements OnInit {
             }
         });
     }
+    getImagenUrl(imagen: string): string {
+        if (!imagen) {
+          return 'assets/img/default.jpg'; 
+        }
+      
+        if (imagen.startsWith('http') || imagen.startsWith('assets') || imagen.startsWith('data:image')) {
+          return imagen;
+        }
+      
+        return `http://localhost:9000${imagen}`;
+      }
 }

@@ -1,64 +1,27 @@
-<!--  <div *ngIf="articulo; else loading" class="container my-5 p-4">
-  <div class="card shadow-lg border-0">
-    <div class="card-body">
-      <h1 class="card-title text-center display-4 fw-bold">{{ articulo.titulo }}</h1>
-      <h2 class="card-subtitle text-muted text-center fs-4 mb-4">{{ articulo.subtitulo }}</h2>
-
-      <div class="text-center">
-        <img [src]="articulo.imagen" [alt]="articulo.titulo" class="img-fluid rounded shadow mb-4">
-      </div>
-
-      
-      <div class="lead lh-lg text-break" style="text-align: justify; white-space: pre-line;">
-        <p *ngFor="let paragraph of articulo.contenido | safeHtml | splitParagraphs" [innerHTML]="paragraph"></p>
-      </div>
-
-      <div class="text-center mt-4">
-        <a routerLink="/articles" class="btn btn-primary btn-lg">
-          <i class="bi bi-arrow-left"></i> Volver a la lista
-        </a>
-      </div>
-    </div>
-  </div>
-</div> -->
-
-<!-- <ng-template #loading>
-  <div class="text-center my-5">
-    <div class="spinner-border text-primary" role="status">
-      <span class="visually-hidden">Cargando...</span>
-    </div>
-    <p class="mt-3">Cargando artículo...</p>
-  </div>
-</ng-template> -->
 <div *ngIf="articulo; else loading" class="container my-5">
   <div class="card border-0 shadow-lg overflow-hidden">
-    <!-- Imagen superior con efecto overlay -->
     <div class="position-relative">
-      <img 
-        [src]="articulo.imagen" 
-        [alt]="articulo.titulo" 
-        class="img-fluid w-100" 
+
+      <img [src]="getImagenUrl(articulo.imagen)" [alt]="articulo.titulo" class="img-fluid w-100"
         style="max-height: 400px; object-fit: cover;">
       <div class="position-absolute top-0 start-0 w-100 h-100" style="background: rgba(0,0,0,0.3);"></div>
-      <h1 class="position-absolute bottom-0 start-0 text-white p-3 fw-bold display-5" style="text-shadow: 1px 1px 5px rgba(0,0,0,0.7);">
+      <h1 class="position-absolute bottom-0 start-0 text-white p-3 fw-bold display-5"
+        style="text-shadow: 1px 1px 5px rgba(0,0,0,0.7);">
         {{ articulo.titulo }}
       </h1>
     </div>
 
     <div class="card-body">
-      <!-- Subtítulo centrado -->
       <h2 class="card-subtitle text-center text-muted fs-5 mb-4">
         {{ articulo.subtitulo }}
       </h2>
 
-      <!-- Contenido del artículo con tipografía mejorada -->
       <div class="article-content" style="text-align: justify; white-space: pre-line;">
         <p class="mb-4" *ngFor="let paragraph of articulo.contenido.split('\n')">
           {{ paragraph }}
         </p>
       </div>
 
-      <!-- Botón para volver a la lista -->
       <div class="text-center mt-4">
         <a routerLink="/articles" class="btn btn-outline-primary btn-lg">
           <i class="bi bi-arrow-left"></i> Volver a la lista
@@ -68,7 +31,6 @@
   </div>
 </div>
 
-<!-- Indicador de carga -->
 <ng-template #loading>
   <div class="text-center my-5">
     <div class="spinner-border text-primary" role="status">
