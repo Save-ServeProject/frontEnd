@@ -1,41 +1,40 @@
 <div class="container d-flex justify-content-center mt-5 mb-5">
-    <div class="row g-3">
-
+    <div class="row g-4 w-100">
         <!-- Método de pago -->
-        <div class="col-md-6">
-            <h5>Método de pago</h5>
-            <div class="card">
+        <div class="col-lg-6 col-md-12">
+            <h5 class="mb-3">Método de pago</h5>
+            <div class="card p-3">
                 <div class="accordion" id="accordionExample">
-
                     <!-- Paypal Method -->
                     <div class="card">
                         <div class="card-header p-0" id="headingTwo">
                             <h2 class="mb-0">
-                                <button class="btn btn-light btn-block text-left collapsed p-3 rounded-0 border-bottom-custom"
+                                <button class="btn btn-light w-100 text-start p-3 border-bottom-custom"
                                     type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo"
                                     aria-expanded="false" aria-controls="collapseTwo">
                                     <div class="d-flex align-items-center justify-content-between">
-                                        <span>Paypal  </span>
+                                        <span>Paypal</span>
                                         <img src="https://i.imgur.com/7kQEsHU.png" width="30">
                                     </div>
                                 </button>
                             </h2>
                         </div>
-                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+                            data-bs-parent="#accordionExample">
                             <div class="card-body">
-                                <input type="email" class="form-control" placeholder="Paypal email" required>
+                                <input type="email" class="form-control" placeholder="Correo de Paypal" required>
                             </div>
                         </div>
                     </div>
-
                     <!-- Credit Card Method -->
-                    <div class="card">
+                    <div class="card mt-2">
                         <div class="card-header p-0">
                             <h2 class="mb-0">
-                                <button class="btn btn-light btn-block text-left p-3 rounded-0" data-bs-toggle="collapse"
-                                    data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                <button class="btn btn-light w-100 text-start p-3"
+                                    data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true"
+                                    aria-controls="collapseOne">
                                     <div class="d-flex align-items-center justify-content-between">
-                                        <span>Credit card</span>
+                                        <span>Tarjeta de crédito</span>
                                         <div class="icons">
                                             <img src="https://i.imgur.com/2ISgYja.png" width="30">
                                             <img src="https://i.imgur.com/W1vtnOV.png" width="30">
@@ -46,90 +45,57 @@
                                 </button>
                             </h2>
                         </div>
-
-                        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+                            data-bs-parent="#accordionExample">
                             <div class="card-body">
-
-                                <span class="d-block mb-2">Card Number</span>
+                                <label class="form-label">Número de tarjeta</label>
                                 <div class="mb-3 position-relative">
-                                    <i class="fa fa-credit-card position-absolute top-50 start-0 translate-middle-y ms-2" style="color: #989898;"></i>
-                                    <input type="text" class="form-control ps-5" placeholder="0000 0000 0000 0000" required>
+                                    <input type="text" class="form-control" placeholder="0000 0000 0000 0000" required>
                                 </div>
-
                                 <div class="row mt-3 mb-3">
                                     <div class="col-md-6">
-                                        <span class="d-block mb-2">Expiry Date</span>
-                                        <div class="position-relative">
-                                            <i class="fa fa-calendar position-absolute top-50 start-0 translate-middle-y ms-2" style="color: #989898;"></i>
-                                            <input type="text" class="form-control ps-5" placeholder="MM/YY" required>
-                                        </div>
+                                        <label class="form-label">Fecha de expiración</label>
+                                        <input type="text" class="form-control" placeholder="MM/YY" required>
                                     </div>
                                     <div class="col-md-6">
-                                        <span class="d-block mb-2">CVC/CVV</span>
-                                        <div class="position-relative">
-                                            <i class="fa fa-lock position-absolute top-50 start-0 translate-middle-y ms-2" style="color: #989898;"></i>
-                                            <input type="text" class="form-control ps-5" placeholder="000" required>
-                                        </div>
+                                        <label class="form-label">CVC/CVV</label>
+                                        <input type="text" class="form-control" placeholder="000" required>
                                     </div>
                                 </div>
-
-                                <span class="text-muted d-block mt-2"><i class="fa fa-lock"></i> Your transaction is secured with SSL certificate</span>
+                                <span class="text-muted d-block mt-2">
+                                    <i class="fa fa-lock"></i> Tu transacción es segura con SSL certificado
+                                </span>
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
 
-        <!-- Resumen de pago -->
-        <div class="col-md-6">
-            <h5>Resumen</h5>
-            <div class="card">
+        <!-- Resumen de compra -->
+        <div class="col-lg-6 col-md-12">
+            <h5 class="mb-3">Resumen</h5>
+            <div class="card p-3">
                 <div class="d-flex justify-content-between p-3">
                     <div class="d-flex flex-column">
-                        <span id="planType">Pro (Billed Monthly) 
-                            <i class="fa fa-caret-down"></i></span>
-                        <a href="#" class="text-muted" style="font-size: 12px;">Save 20% with annual billing</a>
+                        <span id="planType">{{ plan }} <i class="fa fa-caret-down"></i></span>
                     </div>
                     <div class="mt-1">
-                        <sup class="h4" id="price">$9.99</sup>
-                        <span class="text-muted" id="billingCycle">/Month</span>
+                        <sup class="h4" id="price">{{ price.toFixed(2) }}€<span class="text-muted"> /Mes</span></sup>
+                        
                     </div>
                 </div>
-
-                <hr class="mt-0">
-
-                <div class="p-3">
-                    <div class="d-flex justify-content-between mb-2">
-                        <span>Referral Bonuses</span>
-                        <span class="text-success">-$2.00</span>
-                    </div>
-
-                    <div class="d-flex justify-content-between">
-                        <span>Vat <i class="fa fa-clock-o"></i></span>
-                        <span class="text-danger">-20%</span>
-                    </div>
-                </div>
-
-                <hr class="mt-0">
-
+                <hr>
                 <div class="p-3 d-flex justify-content-between">
                     <div class="d-flex flex-column">
-                        <span>Today you pay (US Dollars)</span>
-                        <small class="text-muted">After 30 days <span id="totalPrice">$9.99</span></small>
+                        <span>Total</span>
                     </div>
-                    <span id="totalPriceAmount">$9.99</span>
+                    <span id="totalPriceAmount">{{ price.toFixed(2) }}€</span>
                 </div>
-
                 <div class="p-3">
-                    <button class="btn btn-primary w-100" style="height: 52px; font-size: 15px;">Try it free for 30 days</button>
-                    <div class="text-center mt-3">
-                        <a href="#" class="text-decoration-underline">Have a promo code?</a>
-                    </div>
+                    <button class="btn btn-primary w-100 py-2">Pagar</button>
                 </div>
             </div>
         </div>
-
     </div>
 </div>

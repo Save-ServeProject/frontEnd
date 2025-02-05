@@ -12,6 +12,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { SuscripcionService } from './services/suscripcionService/suscripcion.service';
 
 
 @NgModule({
@@ -30,7 +31,7 @@ import { CommonModule } from '@angular/common';
     CommonModule
     
   ],
-  providers: [],
+  providers: [SuscripcionService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
