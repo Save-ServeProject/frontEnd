@@ -15,7 +15,7 @@ import * as L from 'leaflet';
 })
 export class InformacionempresaComponent implements OnInit {
   private map: L.Map | null = null;
-  private marker: L.Marker | null = null;
+  private markers: L.Marker[] = [];
   empresas: Empresa[] = [];
 
   constructor(
@@ -47,18 +47,18 @@ export class InformacionempresaComponent implements OnInit {
       next: (empresas) => {
         this.empresas = empresas;
         empresas.forEach(empresa => {
-          this.obtenerCoordenadas(empresa.direccion, empresa.ciudad, empresa.nombre);
+          this.obtenerMostrarUbicacion(empresa);
         });
       },
-      error: (error) => console.error('Error al cargar bancos:', error)
+      error: (error) => console.error('Error al cargar empresas:', error)
     });
   }
 
-  obtenerCoordenadas(direccion: string, ciudad: string, nombre: string): void {
-    this.geocodingService.obtenerCoordenadas(direccion, ciudad).subscribe({
+  obtenerMostrarUbicacion(empresa: Empresa): void {
+    this.geocodingService.obtenerCoordenadas(empresa.direccion, empresa.ciudad).subscribe({
       next: (coordenadas) => {
         if (coordenadas) {
-          this.mostrarUbicacion(coordenadas.lat, coordenadas.lng, nombre);
+          this.mostrarUbicacion(coordenadas.lat, coordenadas.lng, empresa.nombre);
         }
       },
       error: (error) => console.error('Error al obtener coordenadas:', error)
@@ -71,11 +71,8 @@ export class InformacionempresaComponent implements OnInit {
       return;
     }
 
-    if (this.marker) {
-      this.map.removeLayer(this.marker);
-    }
-
-    this.marker = L.marker([lat, lng])
+    // Crea marcador mapa
+    const marker = L.marker([lat, lng])
       .addTo(this.map)
       .bindPopup(`
         <div class="popup-content">
@@ -85,6 +82,20 @@ export class InformacionempresaComponent implements OnInit {
       `)
       .openPopup();
 
+    // Guarda el marcador para que aparezcan todos los marcadores
+    this.markers.push(marker);
+
     this.map.setView([lat, lng], 15);
+  }
+
+  TotalDonaciones(empresa: Empresa): number {
+    let total = 0;
+    if (Array.isArray(empresa.donaciones)) {
+      total = empresa.donaciones.reduce((sum, donacion) => {
+        const donacionTotal = Number(donacion.totalDonacion) || 0;
+        return sum + donacionTotal;
+      }, 0);
+    }
+    return total;
   }
 }
