@@ -30,7 +30,7 @@ import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { HeroSectionBlogComponent } from '../../components/hero-section-blog/hero-section-blog.component';
 import { ArticuloService } from '../../services/articuloService/articulo.service';
-import { Articulos } from '../../models/articulos.model';
+import { Articulo } from '../../models/articulo.model';
 
 @Component({
   selector: 'app-articles',
@@ -40,13 +40,13 @@ import { Articulos } from '../../models/articulos.model';
   styleUrl: './articles.component.scss'
 })
 export class ArticlesComponent implements OnInit {
-  articulos: Articulos[] = [];
+  articulos: Articulo[] = [];
 
   constructor(private articuloService: ArticuloService) { }
 
   ngOnInit(): void {
     this.articuloService.obtenerArticulos().subscribe({
-      next: (data: Articulos[]) => {
+      next: (data: Articulo[]) => {
         console.log('Artículos recibidos:', data); // Para debugging
         this.articulos = data;
         // Verificar que cada artículo tiene un ID
@@ -57,4 +57,16 @@ export class ArticlesComponent implements OnInit {
       error: (error) => console.error('Error al cargar artículos:', error)
     });
   }
+  getImagenUrl(imagen: string): string {
+    if (!imagen) {
+      return 'assets/img/default.jpg'; 
+    }
+  
+    if (imagen.startsWith('http') || imagen.startsWith('assets') || imagen.startsWith('data:image')) {
+      return imagen;
+    }
+  
+    return `http://localhost:9000${imagen}`;
+  }
+  
 }

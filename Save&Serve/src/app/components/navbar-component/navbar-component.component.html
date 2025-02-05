@@ -171,15 +171,15 @@
 
             <div class="d-flex gap-2 mt-4">
                 <input type="radio" class="btn-check" name="plan-options" id="planBasic" value="BASIC"
-                    autocomplete="off">
+                    autocomplete="off" (change)="selectPlan('BASICO')">
                 <label class="btn btn-outline-warning" for="planBasic">Plan Básico</label>
 
                 <input type="radio" class="btn-check" name="plan-options" id="planStandard" value="STANDARD"
-                    autocomplete="off">
+                    autocomplete="off" (change)="selectPlan('ESTANDAR')">
                 <label class="btn btn-outline-warning" for="planStandard">Plan Standar</label>
 
                 <input type="radio" class="btn-check" name="plan-options" id="planPremium" value="PREMIUM"
-                    autocomplete="off">
+                    autocomplete="off" (change)="selectPlan('PREMIUM')">
                 <label class="btn btn-outline-warning" for="planPremium">Plan Premium</label>
             </div>
 

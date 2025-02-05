@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { SuscripcionService } from '../../services/suscripcionService/suscripcion.service';
 
 @Component({
   selector: 'app-navbar-component',
@@ -16,14 +17,13 @@ export class NavbarComponent implements OnInit {
 
   constructor(
     private modalService: NgbModal, 
-    private router: Router
+    private router: Router,
+    private subscriptionService: SuscripcionService
   ) {}
 
   ngOnInit(): void {
     
   }
-
-  
 
   onSearch() {
     if (this.searchTerm.trim()) {
@@ -38,5 +38,12 @@ export class NavbarComponent implements OnInit {
       behavior: 'smooth' 
     });
   }
-  
+
+  selectPlan(plan: string) {
+    this.subscriptionService.setPlan(plan);
+  }
+
+  goToPayment() {
+    this.router.navigate(['/pasarelaPago']);
+  }
 }

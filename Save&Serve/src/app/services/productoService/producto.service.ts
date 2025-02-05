@@ -48,31 +48,31 @@ import { Producto } from '../../models/producto.model';
   providedIn: 'root'
 })
 export class ProductoService {
-  private baseUrl = 'http://localhost:9000/productos';
+  private url = 'http://localhost:9000/productos';
 
   constructor(private http: HttpClient) { }
 
   obtenerTodos(): Observable<Producto[]> {
-    return this.http.get<Producto[]>(this.baseUrl);
+    return this.http.get<Producto[]>(this.url);
   }
 
   obtenerPorId(id: number): Observable<Producto> {
-    return this.http.get<Producto>(`${this.baseUrl}/${id}`);
+    return this.http.get<Producto>(`${this.url}/${id}`);
   }
 
   crear(producto: Producto): Observable<Producto> {
-    return this.http.post<Producto>(this.baseUrl, producto);
+    return this.http.post<Producto>(this.url, producto);
   }
 
   actualizar(id: number, producto: Producto): Observable<Producto> {
-    return this.http.put<Producto>(`${this.baseUrl}/${id}`, producto);
+    return this.http.put<Producto>(`${this.url}/${id}`, producto);
   }
 
   eliminar(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.baseUrl}/${id}`);
+    return this.http.delete<void>(`${this.url}/${id}`);
   }
 
   obtenerPorIdProducto(idProducto: string): Observable<Producto> {
-    return this.http.get<Producto>(`${this.baseUrl}/codigo/${idProducto}`);
+    return this.http.get<Producto>(`${this.url}/codigo/${idProducto}`);
   }
 }

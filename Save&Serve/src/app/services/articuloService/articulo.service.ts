@@ -1,6 +1,6 @@
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Articulos } from '../../models/articulos.model';
+import { Articulo } from '../../models/articulo.model';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -14,33 +14,33 @@ export class ArticuloService {
   constructor(private http: HttpClient) { }
 
   getAll() {
-    return this.http.get<Articulos[]>(this.url);
+    return this.http.get<Articulo[]>(this.url);
   }
-  getById(id: number) : Observable<Articulos> {
-    return this.http.get<Articulos>(`${this.url}/${id}`);
+  getById(id: number) : Observable<Articulo> {
+    return this.http.get<Articulo>(`${this.url}/${id}`);
   }
   // obtenerArticuloPorId(id: number): Observable<Articulos> {
   //   return this.http.get<Articulos>(`${this.url}/${id}`);
   // }
   
   getAllByTitulo(titulo: string) {
-    return this.http.get<Articulos[]>(`${this.url}/titulo/${titulo}`);
+    return this.http.get<Articulo[]>(`${this.url}/titulo/${titulo}`);
   }
-  obtenerArticulos(id?: string): Observable<Articulos[]> {
-    return this.http.get<Articulos[]>(this.url);
+  obtenerArticulos(id?: string): Observable<Articulo[]> {
+    return this.http.get<Articulo[]>(this.url);
   }
-  obtenerArticulosAll(): Observable<Articulos[]> {
-    return this.http.get<Articulos[]>(`${this.url}/articles`);
+  obtenerArticulosAll(): Observable<Articulo[]> {
+    return this.http.get<Articulo[]>(`${this.url}/articles`);
 }
 
-obtenerArticuloPorId(id: number): Observable<Articulos> {
-    return this.http.get<Articulos>(`${this.url}/${id}`);
+obtenerArticuloPorId(id: number): Observable<Articulo> {
+    return this.http.get<Articulo>(`${this.url}/${id}`);
 }
-  create(articulo: Articulos) {
-    return this.http.post<Articulos>(this.url, articulo, { headers: this.headers });
+  create(articulo: Articulo) {
+    return this.http.post<Articulo>(this.url, articulo, { headers: this.headers });
   }
-  update(id: number, articulo: Articulos) : Observable<Articulos> {
-    return this.http.put<Articulos>(`${this.url}/${id}`, articulo);
+  update(id: number, articulo: Articulo) : Observable<Articulo> {
+    return this.http.put<Articulo>(`${this.url}/${id}`, articulo);
   }
   delete(id: number) : Observable<void> {
     return this.http.delete<void>(`${this.url}/${id}`);

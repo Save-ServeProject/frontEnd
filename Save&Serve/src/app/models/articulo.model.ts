@@ -1,4 +1,4 @@
-export interface Articulos {
+export interface Articulo {
     idArticulo?: number;
     titulo: string;
     subtitulo: string;
