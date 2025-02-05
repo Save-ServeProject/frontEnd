@@ -7,31 +7,43 @@ import { Empresa } from '../../models/empresa.model';
   providedIn: 'root'
 })
 export class EmpresaService {
-  private ulr = 'http://localhost:9000/empresas'; //nube
+ 
+  private url = 'http://localhost:9000/empresas'; //nube
 
   constructor(private http: HttpClient) { }
 
   getAll(): Observable<Empresa[]> {
-    return this.http.get<Empresa[]>(this.ulr);
+    return this.http.get<Empresa[]>(this.url);
   }
 
   getById(id: number): Observable<Empresa> {
-    return this.http.get<Empresa>(`${this.ulr}/${id}`);
+    return this.http.get<Empresa>(`${this.url}/${id}`);
   }
 
   create(empresa: Empresa): Observable<Empresa> {
-    return this.http.post<Empresa>(this.ulr, empresa);
+    return this.http.post<Empresa>(this.url, empresa);
   }
 
   update(id: number, empresa: Empresa): Observable<Empresa> {
-    return this.http.put<Empresa>(`${this.ulr}/${id}`, empresa);
+    return this.http.put<Empresa>(`${this.url}/${id}`, empresa);
   }
 
   delete(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.ulr}/${id}`);
+    return this.http.delete<void>(`${this.url}/${id}`);
   }
 
   getEmpresasByTipo(tipo: string): Observable<Empresa[]> {
-    return this.http.get<Empresa[]>(`${this.ulr}/tipo/${tipo}`);
+    return this.http.get<Empresa[]>(`${this.url}/tipo/${tipo}`);
   }
+
+  //Leti
+
+  getEmpresa(id: number): Observable<any> {
+    return this.http.get(`${this.url}/${id}`);
+  }
+
+  updateEmpresa(id: number, empresa: any): Observable<any> {
+    return this.http.put(`${this.url}/${id}`, empresa);
+  }
+
 }

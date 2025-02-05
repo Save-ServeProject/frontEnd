@@ -36,6 +36,16 @@ export class DonacionService {
   }
 
   getDonacionesByBanco(bancoId: number): Observable<Donacion[]> {
-    return this.http.get<Donacion[]>(`${this.url}/banco/${bancoId}`);
+    return this.http.get<Donacion[]>(`${this.url}/bancos/${bancoId}`);
+  }
+
+  //leti
+
+  getBancos(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.url}/bancos`);
+  }
+
+  createDonacion(donacion: any): Observable<any> {
+    return this.http.post(`${this.url}/donaciones`, donacion);
   }
 }
