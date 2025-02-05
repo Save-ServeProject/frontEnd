@@ -1,101 +1,198 @@
 <div class="container d-flex justify-content-center mt-5 mb-5">
     <div class="row g-4 w-100">
-        <!-- Método de pago -->
-        <div class="col-lg-6 col-md-12">
-            <h5 class="mb-3">Método de pago</h5>
-            <div class="card p-3">
-                <div class="accordion" id="accordionExample">
-                    <!-- Paypal Method -->
-                    <div class="card">
-                        <div class="card-header p-0" id="headingTwo">
-                            <h2 class="mb-0">
-                                <button class="btn btn-light w-100 text-start p-3 border-bottom-custom"
-                                    type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo"
-                                    aria-expanded="false" aria-controls="collapseTwo">
-                                    <div class="d-flex align-items-center justify-content-between">
-                                        <span>Paypal</span>
-                                        <img src="https://i.imgur.com/7kQEsHU.png" width="30">
-                                    </div>
-                                </button>
-                            </h2>
-                        </div>
-                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
-                            data-bs-parent="#accordionExample">
-                            <div class="card-body">
-                                <input type="email" class="form-control" placeholder="Correo de Paypal" required>
-                            </div>
-                        </div>
+      <!-- Método de pago -->
+      <div class="col-lg-6 col-md-12">
+        <h5 class="mb-3">Método de pago</h5>
+        <div class="card p-3">
+          <div class="accordion" id="accordionExample">
+            <!-- Paypal Method -->
+            <div class="card">
+              <div class="card-header p-0">
+                <h2 class="mb-0">
+                  <button class="btn btn-light w-100 text-start p-3" id="paypalButton"
+                    type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo"
+                    aria-expanded="false" aria-controls="collapseTwo">
+                    <div class="d-flex align-items-center justify-content-between">
+                      <span>Paypal</span>
+                      <img src="https://i.imgur.com/7kQEsHU.png" width="30">
                     </div>
-                    <!-- Credit Card Method -->
-                    <div class="card mt-2">
-                        <div class="card-header p-0">
-                            <h2 class="mb-0">
-                                <button class="btn btn-light w-100 text-start p-3"
-                                    data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true"
-                                    aria-controls="collapseOne">
-                                    <div class="d-flex align-items-center justify-content-between">
-                                        <span>Tarjeta de crédito</span>
-                                        <div class="icons">
-                                            <img src="https://i.imgur.com/2ISgYja.png" width="30">
-                                            <img src="https://i.imgur.com/W1vtnOV.png" width="30">
-                                            <img src="https://i.imgur.com/35tC99g.png" width="30">
-                                            <img src="https://i.imgur.com/2ISgYja.png" width="30">
-                                        </div>
-                                    </div>
-                                </button>
-                            </h2>
-                        </div>
-                        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
-                            data-bs-parent="#accordionExample">
-                            <div class="card-body">
-                                <label class="form-label">Número de tarjeta</label>
-                                <div class="mb-3 position-relative">
-                                    <input type="text" class="form-control" placeholder="0000 0000 0000 0000" required>
-                                </div>
-                                <div class="row mt-3 mb-3">
-                                    <div class="col-md-6">
-                                        <label class="form-label">Fecha de expiración</label>
-                                        <input type="text" class="form-control" placeholder="MM/YY" required>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label class="form-label">CVC/CVV</label>
-                                        <input type="text" class="form-control" placeholder="000" required>
-                                    </div>
-                                </div>
-                                <span class="text-muted d-block mt-2">
-                                    <i class="fa fa-lock"></i> Tu transacción es segura con SSL certificado
-                                </span>
-                            </div>
-                        </div>
-                    </div>
+                  </button>
+                </h2>
+              </div>
+              <div id="collapseTwo" class="collapse" data-bs-parent="#accordionExample">
+                <div class="card-body">
+                  <div class="form-group">
+                    <label class="form-label">Correo de Paypal</label>
+                    <input type="email" id="paypalEmail" class="form-control" placeholder="Correo de Paypal">
+                    <small class="text-danger d-none" id="paypalEmailError">Correo inválido o vacío</small>
+                  </div>
                 </div>
+              </div>
             </div>
-        </div>
-
-        <!-- Resumen de compra -->
-        <div class="col-lg-6 col-md-12">
-            <h5 class="mb-3">Resumen</h5>
-            <div class="card p-3">
-                <div class="d-flex justify-content-between p-3">
-                    <div class="d-flex flex-column">
-                        <span id="planType">{{ plan }} <i class="fa fa-caret-down"></i></span>
+            <!-- Credit Card Method -->
+            <div class="card mt-2">
+              <div class="card-header p-0">
+                <h2 class="mb-0">
+                  <button class="btn btn-light w-100 text-start p-3" id="cardButton"
+                    data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true"
+                    aria-controls="collapseOne">
+                    <div class="d-flex align-items-center justify-content-between">
+                      <span>Tarjeta de crédito</span>
                     </div>
-                    <div class="mt-1">
-                        <sup class="h4" id="price">{{ price.toFixed(2) }}€<span class="text-muted"> /Mes</span></sup>
-                        
+                  </button>
+                </h2>
+              </div>
+              <div id="collapseOne" class="collapse show" data-bs-parent="#accordionExample">
+                <div class="card-body">
+                  <div class="form-group">
+                    <label class="form-label">Número de tarjeta</label>
+                    <input type="text" id="cardNumber" class="form-control" placeholder="0000 0000 0000 0000" maxlength="16">
+                    <small class="text-danger d-none" id="cardNumberError">Número de tarjeta inválido o vacío</small>
+                  </div>
+  
+                  <div class="row mt-3 mb-3">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label class="form-label">Fecha de expiración</label>
+                        <input type="text" id="expiryDate" class="form-control" placeholder="MM/YY" maxlength="5">
+                        <small class="text-danger d-none" id="expiryDateError">Fecha inválida o vacía</small>
+                      </div>
                     </div>
-                </div>
-                <hr>
-                <div class="p-3 d-flex justify-content-between">
-                    <div class="d-flex flex-column">
-                        <span>Total</span>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label class="form-label">CVC/CVV</label>
+                        <input type="text" id="cvv" class="form-control" placeholder="000" maxlength="4">
+                        <small class="text-danger d-none" id="cvvError">CVC inválido o vacío</small>
+                      </div>
                     </div>
-                    <span id="totalPriceAmount">{{ price.toFixed(2) }}€</span>
+                  </div>
+                  <span class="text-muted d-block mt-2">
+                    <i class="fa fa-lock"></i> Tu transacción es segura con SSL certificado
+                  </span>
                 </div>
-                <div class="p-3">
-                    <button class="btn btn-primary w-100 py-2">Pagar</button>
-                </div>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
+  
+      <!-- Resumen de compra -->
+      <div class="col-lg-6 col-md-12">
+        <h5 class="mb-3">Resumen</h5>
+        <div class="card p-3">
+          <div class="d-flex justify-content-between p-3">
+            <div class="d-flex flex-column">
+              <span id="planType">{{ plan }}</span>
+            </div>
+            <div class="mt-1">
+              <sup class="h4" id="price">{{ price.toFixed(2) }}€</sup>
+              <span class="text-muted"> /Mes</span>
+            </div>
+          </div>
+          <hr>
+          <div class="p-3 d-flex justify-content-between">
+            <div class="d-flex flex-column">
+              <span>Total</span>
+            </div>
+            <span id="totalPriceAmount">{{ price.toFixed(2) }}€</span>
+          </div>
+          <div class="p-3">
+            <button class="btn btn-primary w-100 py-2" id="payButton">Pagar</button>
+          </div>
+        </div>
+      </div>
     </div>
-</div>
+  </div>
+  
+  <!-- <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Formateo automático de la fecha de expiración
+      document.getElementById('expiryDate').addEventListener('input', function(e) {
+        let value = e.target.value.replace(/\D/g, '');
+        if (value.length >= 2) {
+          value = value.slice(0,2) + '/' + value.slice(2);
+        }
+        e.target.value = value;
+      });
+
+      // Formateo para aceptar solo números en campos numéricos
+      ['cardNumber', 'cvv'].forEach(id => {
+        document.getElementById(id).addEventListener('input', function(e) {
+          e.target.value = e.target.value.replace(/\D/g, '');
+        });
+      });
+
+      // Validación al enviar el formulario
+      document.getElementById("payButton").addEventListener("click", function(event) {
+        event.preventDefault();
+        let valid = true;
+        let firstErrorField = null;
+        
+        // Obtener el método de pago activo
+        const isPaypalActive = document.getElementById('collapseTwo').classList.contains('show');
+        
+        // Función de validación para un campo
+        function validateField(input, regex, errorMsg) {
+          const errorElement = document.getElementById(input.id + "Error");
+          if (!errorElement) return true;
+
+          // Limpiar error previo
+          errorElement.classList.add("d-none");
+          
+          // Si el campo está vacío
+          if (input.value.trim() === "") {
+            errorElement.textContent = "Este campo es obligatorio";
+            errorElement.classList.remove("d-none");
+            if (!firstErrorField) firstErrorField = input;
+            return false;
+          }
+          // Si el campo no cumple el formato
+          if (!regex.test(input.value.trim())) {
+            errorElement.textContent = errorMsg;
+            errorElement.classList.remove("d-none");
+            if (!firstErrorField) firstErrorField = input;
+            return false;
+          }
+          return true;
+        }
+        
+        if (isPaypalActive) {
+          // Validar solo PayPal
+          valid = validateField(
+            document.getElementById("paypalEmail"),
+            /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+            "Correo inválido"
+          );
+        } else {
+          // Validar tarjeta de crédito
+          valid = validateField(
+            document.getElementById("cardNumber"),
+            /^\d{16}$/,
+            "Número de tarjeta debe tener 16 dígitos"
+          ) && valid;
+
+          valid = validateField(
+            document.getElementById("expiryDate"),
+            /^(0[1-9]|1[0-2])\/\d{2}$/,
+            "Formato debe ser MM/YY"
+          ) && valid;
+
+          valid = validateField(
+            document.getElementById("cvv"),
+            /^\d{3,4}$/,
+            "CVC debe tener 3 o 4 dígitos"
+          ) && valid;
+        }
+        
+        // Si hay errores, enfocar el primer campo con error
+        if (firstErrorField) {
+          firstErrorField.focus();
+        }
+        
+        // Si todo es válido, mostrar mensaje de éxito
+        if (valid) {
+          alert("Pago realizado con éxito");
+        }
+      });
+    });
+  </script> -->
