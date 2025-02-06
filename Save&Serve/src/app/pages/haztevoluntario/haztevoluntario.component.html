@@ -10,7 +10,7 @@
                     <p class="card-text">📞 Tel: {{ banco.telefono }}</p>
                     <p class="card-text">📍 Ubicación: {{ banco.direccion }}, {{ banco.ciudad }}</p>
                     <button class="btn btn-primary w-100" 
-                            (click)="obtenerYMostrarUbicacion(banco)">
+                            (click)="obtenerYMostrarUbicacion(banco)" href="#map">
                         Ver en el mapa
                     </button>
                 </div>
@@ -19,7 +19,7 @@
     </div>
 
     <!-- Contenedor del mapa -->
-    <div class="row justify-content-center">
+    <div class="row justify-content-center" #mapSection>
         <div class="col-12">
             <div id="mapa"></div>
         </div>
