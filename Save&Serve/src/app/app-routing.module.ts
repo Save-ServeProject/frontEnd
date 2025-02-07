@@ -14,8 +14,7 @@ const routes: Routes = [
   { path: 'hazteVoluntario', loadComponent: () => import('./pages/haztevoluntario/haztevoluntario.component').then(m => m.HaztevoluntarioComponent) },
   { path: 'articulo-detalle/:idArticulo', loadComponent: () => import('./pages/articulo-detalle/articulo-detalle.component').then(m => m.ArticuloDetalleComponent) },
   { path: 'informacionEmpresas', loadComponent: () => import('./pages/informacionempresa/informacionempresa.component').then(m => m.InformacionempresaComponent) },
-
-
+  { path: 'gestionBeneficiarios', loadComponent: () => import('./pages/gestion-beneficiarios/gestion-beneficiarios.component').then(m => m.GestionBeneficiariosComponent) },
 
 ];
 
