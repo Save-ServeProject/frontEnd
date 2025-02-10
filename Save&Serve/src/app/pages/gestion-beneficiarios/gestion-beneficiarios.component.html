@@ -1,7 +1,6 @@
 <div class="container mt-4">
     <h2 class="mb-3 text-center">Gestión de Beneficiarios</h2>
     
-    <!-- Formulario para agregar beneficiarios -->
     <form (ngSubmit)="agregarBeneficiario()" class="p-4 border rounded bg-light">
       <div class="row g-3">
         <div class="col-md-6">
@@ -21,9 +20,12 @@
           <input type="email" [(ngModel)]="nuevoBeneficiario.email" name="email" class="form-control" placeholder="Email" required>
         </div>
         <div class="col-md-6">
-          <label class="form-label">Ciudad</label>
-          <input type="text" [(ngModel)]="nuevoBeneficiario.ciudad" name="ciudad" class="form-control" placeholder="Ciudad" required>
-        </div>
+            <label class="form-label">Ciudad</label>
+            <select [(ngModel)]="nuevoBeneficiario.ciudad" name="ciudad" class="form-control" required>
+              <option value="" disabled selected>Selecciona una ciudad</option>
+              <option *ngFor="let ciudad of ciudades" [value]="ciudad">{{ ciudad }}</option>
+            </select>
+          </div>
         <div class="col-md-6">
           <label class="form-label">Contraseña</label>
           <input type="password" [(ngModel)]="nuevoBeneficiario.contrasenia" name="contrasenia" class="form-control" placeholder="Contraseña" required>
@@ -35,13 +37,12 @@
           </div>
         </div>
         <div class="col-12 text-center">
-          <button type="submit" class="btn btn-primary">Agregar Beneficiario</button>
+          <button type="submit" class="btn btn-warning">Agregar Beneficiario</button>
         </div>
       </div>
     </form>
   
-    <!-- Tabla de Beneficiarios -->
-    <table class="table table-hover text-center align-middle mt-4">
+    <table class="table table-hover text-center align-middle mt-4 mb-5">
       <thead class="table-dark">
         <tr>
           <th>Nombre</th>
@@ -60,19 +61,19 @@
           <td>{{ beneficiario.email }}</td>
           <td>
             <span class="badge" [ngClass]="esValidada(beneficiario) ? 'bg-success' : 'bg-danger'">
-              {{ esValidada(beneficiario) ? '✅ Validado' : '❌ No validado' }}
-            </span>
+                <i class="bi" [ngClass]="esValidada(beneficiario) ? 'bi-check-circle' : 'bi-x-circle'"></i> 
+                {{ esValidada(beneficiario) ? 'Validado' : 'No validado' }}
+              </span>
           </td>
           <td>
-            <!-- Botón para validar/desvalidar -->
             <button class="btn btn-sm" [ngClass]="esValidada(beneficiario) ? 'btn-outline-danger' : 'btn-outline-success'" (click)="toggleValidacion(beneficiario)">
-              {{ esValidada(beneficiario) ? '❌ Quitar' : '✅ Validar' }}
-            </button>
+                <i class="bi" [ngClass]="esValidada(beneficiario) ? 'bi-x-circle' : 'bi-check-circle'"></i>
+                {{ esValidada(beneficiario) ? ' Quitar' : ' Validar' }}
+              </button>
     
-            <!-- Botón para eliminar -->
             <button class="btn btn-sm btn-outline-secondary ms-2" (click)="eliminarBeneficiario(beneficiario.id)">
-              🗑 Eliminar
-            </button>
+                <i class="bi bi-trash">Eliminar</i>
+              </button>
           </td>
         </tr>
       </tbody>
