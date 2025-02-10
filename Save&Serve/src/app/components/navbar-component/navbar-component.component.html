@@ -29,7 +29,8 @@
                         <ul class="dropdown-menu dropdown-menu-dark bg-dark" aria-labelledby="getInvolvedDropdown">
                             <li><a class="dropdown-item text-white" routerLink="/hazteVoluntario"
                                     routerLinkActive="active">Hazte Voluntario</a></li>
-                            <li><a class="dropdown-item text-white" href="#offcanvasRegister" routerLink="/informacionEmpresas" routerLinkActive="active"
+                            <li><a class="dropdown-item text-white" href="#offcanvasRegister"
+                                    routerLink="/informacionEmpresas" routerLinkActive="active"
                                     data-bs-toggle="offcanvas">Empresas</a></li>
                             <li><a class="dropdown-item text-white" routerLink="/suscription" routerLinkActive="active"
                                     data-bs-toggle="offcanvas">
@@ -50,17 +51,30 @@
                         </button>
                     </form><br>
                 </ul>
-                  <!-- CONTROLAR ESTO SOLO Empresa/Donante -->
-                  <a class="btn btn-dark text-white" routerLink="/empresas-donacion" routerLinkActive="active"
+                <!-- CONTROLAR ESTO SOLO Empresa/Donante -->
+                <!-- <a class="btn btn-dark text-white" routerLink="/empresas-donacion" routerLinkActive="active"
                   data-bs-toggle="offcanvas">
-                  Zona Empresa</a>
+                  Zona Empresa</a> -->
+
+                <a *ngIf="isLoggedIn && userRole === 'EMPRESA'" class="btn btn-dark text-white"
+                    routerLink="/empresas-donacion" routerLinkActive="active" data-bs-toggle="offcanvas">
+                    Zona Empresa
+                </a>
                 <!-- CONTROLAR ESTO SOLO ADMIN -->
                 <a class="btn btn-dark text-white" routerLink="/zonaAdmin" routerLinkActive="active"
                     data-bs-toggle="offcanvas">
                     Zona Admin</a>
 
-                <a class="btn btn-warning text-white" data-bs-toggle="offcanvas" href="#offcanvasLogin" role="button"
-                    aria-controls="offcanvasLogin">Iniciar Sesión</a>
+                <!-- <a class="btn btn-warning text-white" data-bs-toggle="offcanvas" href="#offcanvasLogin" role="button"
+                    aria-controls="offcanvasLogin">Iniciar Sesión</a> -->
+
+                <a *ngIf="!isLoggedIn" class="btn btn-warning text-white" data-bs-toggle="offcanvas"
+                    href="#offcanvasLogin" role="button" aria-controls="offcanvasLogin">
+                    Iniciar Sesión
+                </a>
+                <a *ngIf="isLoggedIn" class="btn btn-danger text-white" (click)="logout()">
+                    Cerrar Sesión ({{ userName }})
+                </a>
             </div>
         </div>
     </div>
@@ -77,7 +91,7 @@
 
     </div>
     <div class="offcanvas-body">
-        <form action="index.html" class="p-3">
+        <!-- <form action="index.html" class="p-3">
             <div class="mb-3">
                 <label for="floatingInput" class="form-label">Dirección Email</label>
                 <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" required>
@@ -88,7 +102,24 @@
                 <input type="password" class="form-control" id="floatingPassword" placeholder="Password" required>
             </div>
             <button type="submit" class="btn btn-warning w-100">Iniciar Sesión</button>
+        </form> -->
+        <!-- lo nuevo añadido -->
+        <!-- En la sección de login -->
+        <form (ngSubmit)="onLogin()" class="p-3">
+            <div class="mb-3">
+                <label for="floatingInput" class="form-label">Dirección Email</label>
+                <input type="email" class="form-control" id="floatingInput" [(ngModel)]="loginData.email" name="email"
+                    placeholder="name@example.com" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="floatingPassword" class="form-label">Contraseña</label>
+                <input type="password" class="form-control" id="floatingPassword" [(ngModel)]="loginData.password"
+                    name="password" placeholder="Password" required>
+            </div>
+            <button type="submit" class="btn btn-warning w-100">Iniciar Sesión</button>
         </form>
+        <!-- hasta aqui -->
 
         <div class="text-center mt-3">
             <a href="#offcanvasForgotPassword" data-bs-toggle="offcanvas"
@@ -191,7 +222,7 @@
                 });
 
             </script>
-            
+
 
             <div class="form-check mb-3  mt-3 d-flex justify-content-center gap-3">
                 <label class="form-check-label fs-6" for="terms">
