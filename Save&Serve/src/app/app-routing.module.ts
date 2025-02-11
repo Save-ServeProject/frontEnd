@@ -68,10 +68,10 @@ export const routes: Routes = [
     path: 'informacionEmpresas', 
     loadComponent: () => import('./pages/informacionempresa/informacionempresa.component').then(m => m.InformacionempresaComponent) 
   },
-  // { 
-  //   path: 'gestionBeneficiarios', 
-  //   loadComponent: () => import('./pages/gestion-beneficiarios/gestion-beneficiarios.component').then(m => m.GestionBeneficiariosComponent) 
-  // },
+  { 
+    path: 'gestionBeneficiarios', 
+    loadComponent: () => import('./pages/gestion-beneficiarios/gestion-beneficiarios.component').then(m => m.GestionBeneficiariosComponent) 
+  },
   { 
     path: 'banco-alimentos', 
     loadComponent: () => import('./pages/banco-alimentos/banco-alimentos.component').then(m => m.BancoAlimentosComponent) 
