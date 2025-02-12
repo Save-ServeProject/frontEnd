@@ -47,7 +47,7 @@
         <div class="card-body">
           <form [formGroup]="donacionForm" (ngSubmit)="onSubmit()">
             <!-- Selector de Empresa -->
-            <div class="mb-3">
+            <!-- <div class="mb-3">
               <label class="form-label">Empresa</label>
               @if (loadingEmpresas) {
                 <div class="d-flex align-items-center">
@@ -64,8 +64,16 @@
                   }
                 </select>
               }
+            </div> -->
+            <!-- Reemplazar el selector de empresa por un campo de solo lectura -->
+            <div class="mb-3">
+              <label class="form-label">Empresa</label>
+              <input 
+                type="text" 
+                [value]="empresa?.nombre + ' - ' + empresa?.ciudad" 
+                class="form-control" 
+                readonly>
             </div>
- 
             <!-- Selector de Banco -->
             <div class="mb-3">
               <label class="form-label">Banco de Alimentos</label>
@@ -206,3 +214,5 @@
     </div>
   </div>
  </div>
+
+ <app-donacion></app-donacion>
