@@ -195,8 +195,10 @@
 
             <div class="mb-3">
                 <label for="TipoEmpresa" class="form-label">Tipo empresa</label>
-                <input type="text" class="form-control" id="TipoEmpresa" name="TipoEmpresa"
-                    placeholder="Hotel, supermercado, restaurante..." required>
+                <select class="form-control" id="TipoEmpresa" name="TipoEmpresa" required>
+                    <option value="" disabled selected>Selecciona un tipo de empresa</option>
+                    <option *ngFor="let tipo of tiposDeEmpresa" [value]="tipo">{{ tipo }}</option>
+                </select>
             </div>
 
             <div class="mb-3">
@@ -256,14 +258,17 @@
 
             <div class="mb-3">
                 <label for="ciudadEmpresa" class="form-label">Ciudad</label>
-                <input type="ciudadEmpresa" class="form-control" id="ciudadEmpresa" name="ciudadEmpresa"
-                    placeholder="Ciudad">
+                <select class="form-control" id="ciudadEmpresa" name="ciudadEmpresa" required>
+                    <option value="" disabled selected>Selecciona una ciudad</option>
+                    <option *ngFor="let ciudad of ciudades" [value]="ciudad">{{ ciudad }}</option>
+                </select>
             </div>
+
 
 
             <div class="mb-3">
                 <label for="contraseñaEmpresa" class="form-label">Contraseña</label>
-                <input type="contraseñaEmpresa" class="form-control" id="contraseñaEmpresa" name="contraseñaEmpresa"
+                <input type="password" class="form-control" id="contraseñaEmpresa" name="contraseñaEmpresa"
                     placeholder="Introduce tu contraseña" required>
             </div>
 
@@ -350,14 +355,17 @@
             </div>
 
             <div class="mb-3">
-                <label for="ciudadBeneficiario" class="form-label">Ciudad</label>
-                <input type="ciudadBeneficiario" class="form-control" id="ciudadBeneficiario" name="ciudadBeneficiario"
-                    placeholder="Ciudad">
+                <label for="ciudadEmpresa" class="form-label">Ciudad</label>
+                <select class="form-control" id="ciudadEmpresa" name="ciudadEmpresa" required>
+                    <option value="" disabled selected>Selecciona una ciudad</option>
+                    <option *ngFor="let ciudad of ciudades" [value]="ciudad">{{ ciudad }}</option>
+                </select>
             </div>
+
 
             <div class="mb-3">
                 <label for="contraseñaBneficiario" class="form-label">Contraseña</label>
-                <input type="contraseñaBneficiario" class="form-control" id="contraseñaBneficiario"
+                <input type="password" class="form-control" id="contraseñaBneficiario"
                     name="contraseñaBneficiario" placeholder="Introduce tu contraseña" required>
             </div>
 
