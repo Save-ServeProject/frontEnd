@@ -4,15 +4,15 @@
     <div class="row justify-content-center mb-4">
         
         <!-- Carga cards empresa -->
-        <div class="col-md-6 col-lg-4 mb-3" *ngFor="let empresa of empresas">
-            <div class="card h-100">
-                <div class="card-body">
+        <div class="col-md-6 col-lg-4 mb-4" *ngFor="let empresa of empresas">
+            <div class="card h-100 empresa-card">
+                <div class="card-body d-flex flex-column">
                     <h3 class="card-title">{{empresa.nombre}}</h3>
                     <p class="card-text">📞 Tel: {{empresa.telefono}}</p>
                     <p class="card-text">📍 Ubicación: {{empresa.direccion}}, {{empresa.ciudad}}</p>
                     <p class="card-text">💰 Total Donaciones: {{TotalDonaciones(empresa) | currency}}</p>
-                    <button class="btn btn-primary w-100" 
-                            (click)="obtenerMostrarUbicacion(empresa)">
+                    <button class="btn btn-warning w-100 mt-auto" 
+                            (click)="obtenerMostrarUbicacion(empresa)" href="#map">
                         Ver en el mapa
                     </button>
                 </div>
@@ -21,7 +21,7 @@
     </div>
 
     <!-- Mapa -->
-    <div class="row justify-content-center">
+    <div class="row justify-content-center" #mapSection>
         <div class="col-12">
             <div id="mapa"></div>
         </div>

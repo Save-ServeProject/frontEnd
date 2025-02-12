@@ -71,4 +71,12 @@ export class BancoalimentosService {
   getAllWithLocations(): Observable<BancoDeAlimentos[]> {
     return this.getAll();
   }
+
+  getBancoAlimentos(id: number): Observable<any> {
+    return this.http.get(`${this.url}/${id}`);
+  }
+
+  updateBancoAlimentos(id: number, banco: any): Observable<BancoDeAlimentos> {
+    return this.http.put<BancoDeAlimentos>(`${this.url}/${id}`, banco);
+  }
 }
