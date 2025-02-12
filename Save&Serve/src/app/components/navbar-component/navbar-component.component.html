@@ -61,10 +61,20 @@
                     Zona Empresa
                 </a>
                 <!-- CONTROLAR ESTO SOLO ADMIN -->
-                <a class="btn btn-dark text-white" routerLink="/zonaAdmin" routerLinkActive="active"
+                <!-- <a class="btn btn-dark text-white" routerLink="/zonaAdmin" routerLinkActive="active"
                     data-bs-toggle="offcanvas">
-                    Zona Admin</a>
+                    Zona Admin</a> -->
+                <a *ngIf="isLoggedIn && userRole === 'ADMIN'" class="btn btn-dark text-white"
+                    routerLink="/zonaAdmin" routerLinkActive="active" data-bs-toggle="offcanvas">
+                    Zona Admin
+                </a>
 
+                <!-- cONTROLAR ESTO SOLO BENEFICIARIO -->
+
+                <a *ngIf="isLoggedIn && userRole === 'BANCO_DE_ALIMENTOS'" class="btn btn-dark text-white"
+                    routerLink="/banco-alimentos" routerLinkActive="active" data-bs-toggle="offcanvas">
+                    Zona Banco Alimentos
+                </a>
                 <!-- <a class="btn btn-warning text-white" data-bs-toggle="offcanvas" href="#offcanvasLogin" role="button"
                     aria-controls="offcanvasLogin">Iniciar Sesión</a> -->
 

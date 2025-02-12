@@ -18,13 +18,13 @@
 import { Donacion } from './donacion.model';
 
 export enum Suscripcion {
-    ADMIN = 'ADMIN',
-    USER = 'USER',
-    GUEST = 'GUEST'
+    BASICA = 'BASICA',
+    ESTANDAR = 'ESTANDAR',
+    PREMIUM = 'PREMIUM'
 }
 
 export interface Empresa {
-    id?: number;
+    id?: number | undefined;
     nombre: string;
     email: string;
     direccion: string;
@@ -35,6 +35,7 @@ export interface Empresa {
     ciudad: string;
     suscripcion?: Suscripcion;
     donaciones?: Donacion[];
+    documentacionValidada?: boolean;
 }
 
 

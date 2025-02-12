@@ -14,31 +14,25 @@ export class EmpresaService {
 
   getAll(): Observable<Empresa[]> {
     return this.http.get<Empresa[]>(this.url);
-    return this.http.get<Empresa[]>(this.url);
   }
 
   getById(id: number): Observable<Empresa> {
-    return this.http.get<Empresa>(`${this.url}/${id}`);
     return this.http.get<Empresa>(`${this.url}/${id}`);
   }
 
   create(empresa: Empresa): Observable<Empresa> {
     return this.http.post<Empresa>(this.url, empresa);
-    return this.http.post<Empresa>(this.url, empresa);
   }
 
   update(id: number, empresa: Empresa): Observable<Empresa> {
-    return this.http.put<Empresa>(`${this.url}/${id}`, empresa);
     return this.http.put<Empresa>(`${this.url}/${id}`, empresa);
   }
 
   delete(id: number): Observable<void> {
     return this.http.delete<void>(`${this.url}/${id}`);
-    return this.http.delete<void>(`${this.url}/${id}`);
   }
 
   getEmpresasByTipo(tipo: string): Observable<Empresa[]> {
-    return this.http.get<Empresa[]>(`${this.url}/tipo/${tipo}`);
     return this.http.get<Empresa[]>(`${this.url}/tipo/${tipo}`);
   }
 

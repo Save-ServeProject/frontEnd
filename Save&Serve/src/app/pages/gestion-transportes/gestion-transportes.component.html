@@ -1,0 +1,47 @@
+<table>
+    <thead>
+      <tr>
+        <th>Empresa</th>
+        <th>Fecha de entrega</th>
+        <th>Estado</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let donacion of donaciones">
+        <!-- Empresa -->
+        <td>{{ donacion.donacionPrincipal?.empresa?.nombre || 'Sin nombre' }}</td>
+  
+        <!-- Fecha de entrega -->
+        <td>{{ donacion.fechaEntrega | date: 'shortDate' }}</td>
+  
+        <!-- Estado -->
+        <td>
+          <span class="badge" [ngClass]="{
+            'badge-success': donacion.estadoEnvio === 'ENTREGADO',
+            'badge-warning': donacion.estadoEnvio === 'ENVIADO',
+            'badge-secondary': donacion.estadoEnvio === 'PENDIENTE'
+          }">
+            {{ donacion.estadoEnvio }}
+          </span>
+        </td>
+  
+        <!-- Acciones -->
+        <td>
+          <button *ngIf="donacion.idDonacion"
+                  (click)="cambiarEstadoDonacion(donacion.idDonacion, EstadoEnvio.ENTREGADO)">
+            Marcar como ENTREGADO
+          </button>
+          <button *ngIf="donacion.idDonacion"
+                  (click)="cambiarEstadoDonacion(donacion.idDonacion, EstadoEnvio.ENVIADO)">
+            Marcar como ENVIADO
+          </button>
+          <button *ngIf="donacion.idDonacion"
+                  (click)="cambiarEstadoDonacion(donacion.idDonacion, EstadoEnvio.PENDIENTE)">
+            Marcar como PENDIENTE
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  

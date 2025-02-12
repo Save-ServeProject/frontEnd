@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Transporte } from '../../models/transporte.model';
+import { Donacion } from '../../models/donacion.model';
 
 @Injectable({
   providedIn: 'root'
@@ -33,5 +34,11 @@ export class TransporteService {
 
   getByTipoTransporte(tipoId: number): Observable<Transporte[]> {
     return this.http.get<Transporte[]>(`${this.url}/tipo/${tipoId}`);
+  }
+  getDonacionesByTransporte(transporteId: number): Observable<Donacion[]> {
+    return this.http.get<Donacion[]>(`${this.url}transportes/${transporteId}/donaciones`);
+  }
+  cambiarEstadoDonacion(donacionId: number, nuevoEstado: string): Observable<any> {
+    return this.http.patch(`${this.url}donaciones/${donacionId}`, { estado: nuevoEstado });
   }
 }

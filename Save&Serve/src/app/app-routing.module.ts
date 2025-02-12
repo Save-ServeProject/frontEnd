@@ -72,6 +72,18 @@ export const routes: Routes = [
     path: 'gestionBeneficiarios', 
     loadComponent: () => import('./pages/gestion-beneficiarios/gestion-beneficiarios.component').then(m => m.GestionBeneficiariosComponent) 
   },
+  { 
+    path: 'banco-alimentos', 
+    loadComponent: () => import('./pages/banco-alimentos/banco-alimentos.component').then(m => m.BancoAlimentosComponent) 
+  },
+  { 
+    path: 'gestionEmpresas', 
+    loadComponent: () => import('./pages/gestion-empresas/gestion-empresas.component').then(m => m.GestionEmpresasComponent) 
+  },
+  { 
+    path: 'gestionTransportes', 
+    loadComponent: () => import('./pages/gestion-transportes/gestion-transportes.component').then(m => m.GestionTransportesComponent) 
+  },
   { path: '**', redirectTo: '', pathMatch: 'full' }
 
 
