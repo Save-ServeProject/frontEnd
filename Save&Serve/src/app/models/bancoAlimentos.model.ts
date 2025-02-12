@@ -11,4 +11,5 @@ export interface BancoDeAlimentos {
     contrasenia: string;
     donaciones?: Donacion[];
     documentacionValidada?: boolean;
+    // imagen: string; comentada a la espera de que se introduzca en base de datos
 }

@@ -7,4 +7,5 @@ export interface BancoDeAlimentos {
   ciudad: string;
   contrasenia: string;
   donaciones?: any[]; // Cambiado temporalmente a any[] hasta que implementes la interfaz Donacion
+  // imagen: string; comentada a la espera de que se introduzca en base de datos
 }
