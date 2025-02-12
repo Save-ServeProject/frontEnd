@@ -89,9 +89,9 @@ export class DonacionService {
     return this.http.delete<void>(`${this.donacionesUrl}/${id}`);
   }
 
-  getDonacionesByEmpresa(empresaId: number): Observable<Donacion[]> {
-    return this.http.get<Donacion[]>(`${this.donacionesUrl}/empresa/${empresaId}`);
-  }
+  // getDonacionesByEmpresa(empresaId: number): Observable<Donacion[]> {
+  //   return this.http.get<Donacion[]>(`${this.donacionesUrl}/empresa/${empresaId}`);
+  // }
 
   getDonacionesByBanco(bancoId: number): Observable<Donacion[]> {
     return this.http.get<Donacion[]>(`${this.donacionesUrl}/bancos/${bancoId}`);
@@ -139,5 +139,13 @@ export class DonacionService {
     );
   }
 
+  // getDonacionesByEmpresa(empresaId: number): Observable<any[]> {
+  //   return this.http.get<any[]>(`${this.baseUrl}/empresa/${empresaId}`);
+  // }
+// donacion.service.ts
+getDonacionesByEmpresa(empresaId: number): Observable<any[]> {
+  // Usar la URL completa de tu endpoint
+  return this.http.get<any[]>(`${this.baseUrl}/donaciones/empresa/${empresaId}`);
+}
 
 }

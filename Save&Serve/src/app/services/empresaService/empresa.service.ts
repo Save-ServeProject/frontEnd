@@ -52,4 +52,7 @@ export class EmpresaService {
     return this.http.put(`${this.url}/${id}`, empresa);
   }
 
+  getEmpresaByEmail(email: string): Observable<any> {
+    return this.http.get(`${this.url}/email/${email}`);
+  }
 }

@@ -73,6 +73,16 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/gestion-beneficiarios/gestion-beneficiarios.component').then(m => m.GestionBeneficiariosComponent) 
   },
   { path: '**', redirectTo: '', pathMatch: 'full' }
+
+
+
+
+
+
+
+  
+
+
 ];
 
 // Eliminar el decorador @NgModule y la exportación de la clase

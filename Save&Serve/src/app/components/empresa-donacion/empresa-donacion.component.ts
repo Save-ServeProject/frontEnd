@@ -485,13 +485,14 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EmpresaService } from '../../services/empresaService/empresa.service';
 import { DonacionService } from '../../services/donacionService/donacion.service';
+import { DonacionComponent } from '../donacion/donacion.component';
 
 @Component({
   selector: 'app-empresa-donacion',
   templateUrl: './empresa-donacion.component.html',
   styleUrls: ['./empresa-donacion.component.scss'],
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule]
+  imports: [CommonModule, FormsModule, ReactiveFormsModule,DonacionComponent]
 })
 export class EmpresaDonacionComponent implements OnInit {
   empresa: any = {};
