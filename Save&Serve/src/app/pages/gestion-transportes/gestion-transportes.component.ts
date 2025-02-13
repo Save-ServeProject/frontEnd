@@ -3,6 +3,9 @@ import { TransporteService } from '../../services/transporteService/transporte.s
 import { Donacion, EstadoEnvio } from '../../models/donacion.model';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { DonacionService } from '../../services/donacionService/donacion.service';
+import { EmpresaService } from '../../services/empresaService/empresa.service';
+import { AuthService } from '../../services/autentificacion/auth.service';
 
 @Component({
   selector: 'app-gestion-transportes',
@@ -11,38 +14,63 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./gestion-transportes.component.scss']
 })
 export class GestionTransportesComponent implements OnInit {
-  transportes: any[] = []; // Asumiendo que ya tienes transportes cargados
-  donaciones: Donacion[] = [];
-  transporteSeleccionado: number | null = null;
-  EstadoEnvio = EstadoEnvio;
-  constructor(private transporteService: TransporteService) {}
+  donaciones: any[] = [];
+  empresa: any = {};
+  loadingDonaciones: boolean = false;
+  errorDonaciones: string | null = null;
 
-  ngOnInit(): void {
-    // Lógica para cargar los transportes
-    // Llamada a cargar los transportes si no están cargados
+  constructor(
+    private donacionService: DonacionService,
+    private empresaService: EmpresaService,
+    private authService: AuthService
+  ) {}
+
+  ngOnInit() {
+    this.loadCurrentEmpresa();
   }
 
-  // Cargar las donaciones para un transporte específico
-  cargarDonaciones(transporteId: number): void {
-    this.transporteService.getDonacionesByTransporte(transporteId).subscribe((data) => {
-      this.donaciones = data;
-    });
-  }
-
-  // Cambiar el estado de una donación
-  cambiarEstadoDonacion(idDonacion: number | undefined, estado: EstadoEnvio): void {
-    if (idDonacion !== undefined) {
-      // Lógica para cambiar el estado
-      console.log(`Cambiando estado de la donación con ID ${idDonacion} a ${estado}`);
-      // Aquí agregarías la lógica para actualizar el estado de la donación en tu backend o en tu array
-    } else {
-      console.error('ID de donación no válido');
+  loadCurrentEmpresa() {
+    const userData = JSON.parse(localStorage.getItem('userData') || '{}');
+    if (userData && userData.email) {
+      this.empresaService.getEmpresaByEmail(userData.email).subscribe({
+        next: (data) => {
+          this.empresa = data;
+          this.loadDonacionesEmpresa(data.id);
+        },
+        error: (error) => {
+          console.error('Error al cargar empresa:', error);
+        }
+      });
     }
   }
 
-  // Mostrar las donaciones de un transporte
-  seleccionarTransporte(transporteId: number): void {
-    this.transporteSeleccionado = transporteId;
-    this.cargarDonaciones(transporteId);
+  loadDonacionesEmpresa(empresaId: number) {
+    this.loadingDonaciones = true;
+    this.donacionService.getDonacionesByEmpresa(empresaId).subscribe({
+      next: (data) => {
+        this.donaciones = data;
+        this.loadingDonaciones = false;
+      },
+      error: (error) => {
+        console.error('Error al cargar donaciones:', error);
+        this.errorDonaciones = 'Error al cargar las donaciones';
+        this.loadingDonaciones = false;
+      }
+    });
+  }
+
+  updateEstadoDonacion(donacionId: number, nuevoEstado: string) {
+    this.donacionService.updateEstadoDonacion(donacionId, nuevoEstado).subscribe({
+      next: () => {
+        // Actualizamos el estado localmente en la lista de donaciones
+        const donacion = this.donaciones.find(d => d.id === donacionId);
+        if (donacion) {
+          donacion.estadoEnvio = nuevoEstado;
+        }
+      },
+      error: (error) => {
+        console.error('Error al actualizar el estado:', error);
+      }
+    });
   }
 }

@@ -324,66 +324,53 @@
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body">
-        <form class="p-3 " action="#">
+        <form [formGroup]="beneficiarioForm" (ngSubmit)="agregarBeneficiario()" class="p-3">
             <div class="mb-3">
-                <label for="nombreBeneficiario" class="form-label">Nombre Beneficiario</label>
-                <input type="text" class="form-control" id="nombreBeneficiario" name="nombreBeneficiario"
-                    placeholder="Introduce el nombre de tu organización" required>
+                <label for="nombre" class="form-label">Nombre Beneficiario</label>
+                <input type="text" class="form-control" id="nombre" formControlName="nombre" 
+                       placeholder="Introduce el nombre" required>
+                <div class="invalid-feedback" *ngIf="beneficiarioForm.get('nombre')?.errors?.['required'] && beneficiarioForm.get('nombre')?.touched">
+                    El nombre es requerido
+                </div>
             </div>
-
+        
             <div class="mb-3">
-                <label for="telefonoBeneficiario" class="form-label">Teléfono</label>
-                <input type="tel" class="form-control" id="telefonoBeneficiario" name="telefonoBeneficiario"
-                    placeholder="Introduce el número de teléfono" required>
+                <label for="telefono" class="form-label">Teléfono</label>
+                <input type="tel" class="form-control" id="telefono" formControlName="telefono" 
+                       placeholder="Introduce el teléfono" required>
             </div>
+        
             <div class="mb-3">
-                <label for="emailBeneficiario" class="form-label">Email</label>
-                <input type="emailBeneficiario" class="form-control" id="emailBeneficiario" name="emailBeneficiario"
-                    placeholder="name@example.com" required>
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" formControlName="email" 
+                       placeholder="name@example.com" required>
             </div>
-
-            <div class="mb-3">
-                <label for="CIFBeneficiario" class="form-label">CIF</label>
-                <input type="CIFBeneficiario" class="form-control" id="CIFBeneficiario" name="CIFBeneficiario"
-                    placeholder="Introduce tu CIF">
-            </div>
-
-            <div class="mb-3">
-                <label for="direccionBeneficiario" class="form-label">Direccion</label>
-                <input type="direccionBeneficiario" class="form-control" id="direccionBeneficiario"
-                    name="direccionBeneficiario" placeholder="Direccion ">
-            </div>
-
+        
             <div class="mb-3">
                 <label for="ciudadEmpresa" class="form-label">Ciudad</label>
-                <select class="form-control" id="ciudadEmpresa" name="ciudadEmpresa" required>
+                <select class="form-control" id="ciudadEmpresa" formControlName="ciudadEmpresa" required>
                     <option value="" disabled selected>Selecciona una ciudad</option>
                     <option *ngFor="let ciudad of ciudades" [value]="ciudad">{{ ciudad }}</option>
                 </select>
             </div>
-
-
+        
             <div class="mb-3">
-                <label for="contraseñaBneficiario" class="form-label">Contraseña</label>
-                <input type="password" class="form-control" id="contraseñaBneficiario"
-                    name="contraseñaBneficiario" placeholder="Introduce tu contraseña" required>
+                <label for="direccion" class="form-label">Dirección</label>
+                <input type="text" class="form-control" id="direccion" formControlName="direccion" 
+                       placeholder="Dirección">
             </div>
-
-            <div class="form-check mb-3 d-flex justify-content-center gap-3">
-                <input class="form-check-input" type="checkbox" value="" id="terms" required>
-                <label class="form-check-label fs-6" for="terms">
-                    Yo acepto los
-                    <a href="#" class="text-decoration-underline text-white fs-6" data-bs-toggle="modal"
-                        data-bs-target="#termsModal">
-                        términos y condiciones
-                    </a>
-                </label>
+        
+            <div class="mb-3">
+                <label for="contrasenia" class="form-label">Contraseña</label>
+                <input type="password" class="form-control" id="contrasenia" formControlName="contrasenia" 
+                       placeholder="Introduce tu contraseña" required>
             </div>
-            <button type="button" class="btn btn-warning w-100" data-bs-toggle="modal" data-bs-target="#registerModal"
-                data-bs-dismiss="offcanvas">
+        
+            <button type="submit" class="btn btn-warning w-100" [disabled]="beneficiarioForm.invalid">
                 Registrarse
             </button>
         </form>
+            
     </div>
 </div>
 <!-- Modal de Términos y Condiciones -->
@@ -405,7 +392,7 @@
                     cualquier momento.</p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Cerrar</button>
             </div>
         </div>
     </div>

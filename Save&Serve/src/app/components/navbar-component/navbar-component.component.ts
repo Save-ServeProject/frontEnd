@@ -378,20 +378,23 @@
 
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { SuscripcionService } from '../../services/suscripcionService/suscripcion.service';
 import { AuthService } from '../../services/autentificacion/auth.service';
+import { BancoalimentosService } from '../../services/bancoAlimentoService/bancoalimentos.service';
+import { BancoDeAlimentos } from '../../models/bancoAlimentos.model';
 
 @Component({
   selector: 'app-navbar-component',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterModule],
+  imports: [CommonModule, FormsModule, RouterModule,ReactiveFormsModule],
   templateUrl: './navbar-component.component.html',
   styleUrls: ['./navbar-component.component.scss']
 })
 export class NavbarComponent implements OnInit {
+  beneficiarioForm!: FormGroup;
   searchTerm: string = '';
   
   loginData = {
@@ -423,12 +426,25 @@ export class NavbarComponent implements OnInit {
     private modalService: NgbModal, 
     private router: Router,
     private subscriptionService: SuscripcionService,
-    private authService: AuthService
+    private authService: AuthService,
+    private formBuilder: FormBuilder, 
+    private bancoAlimentoService: BancoalimentosService
   ) {}
 
   ngOnInit(): void {
     this.checkAuthStatus();
+   this.initForm();
   }
+  private initForm(): void {
+    this.beneficiarioForm = this.formBuilder.group({
+        nombre: ['', [Validators.required, Validators.minLength(3)]],
+        telefono: ['', [Validators.required, Validators.pattern('^[0-9]{9}$')]],
+        email: ['', [Validators.required, Validators.email]],
+        ciudadEmpresa: ['', Validators.required],
+        direccion: ['', Validators.required],
+        contrasenia: ['', [Validators.required, Validators.minLength(6)]]
+    });
+}
 
   private checkAuthStatus() {
     this.isLoggedIn = this.authService.isLoggedIn();
@@ -438,7 +454,45 @@ export class NavbarComponent implements OnInit {
       this.userName = this.authService.getUserName();
     }
   }
+  agregarBeneficiario() {
+    if (this.beneficiarioForm.invalid) {
+        Object.keys(this.beneficiarioForm.controls).forEach(key => {
+            const control = this.beneficiarioForm.get(key);
+            if (control?.invalid) {
+                control.markAsTouched();
+            }
+        });
+        return;
+    }
 
+    const beneficiario: BancoDeAlimentos = {
+        nombre: this.beneficiarioForm.value.nombre,
+        telefono: this.beneficiarioForm.value.telefono,
+        email: this.beneficiarioForm.value.email,
+        ciudad: this.beneficiarioForm.value.ciudadEmpresa,
+        direccion: this.beneficiarioForm.value.direccion,
+        contrasenia: this.beneficiarioForm.value.contrasenia
+    };
+
+    console.log('Enviando beneficiario:', beneficiario); // Para debugging
+
+    this.bancoAlimentoService.create(beneficiario).subscribe({
+        next: (response) => {
+            console.log('Respuesta:', response); // Para debugging
+            alert('Beneficiario registrado exitosamente');
+            this.beneficiarioForm.reset();
+            // const offcanvasElement = document.getElementById('offcanvasRegisterBeneficiario');
+            // if (offcanvasElement) {
+            //     const bsOffcanvas = bootstrap.Offcanvas.getInstance(offcanvasElement);
+            //     bsOffcanvas?.hide();
+            // }
+        },
+        error: (error) => {
+            console.error('Error al registrar:', error);
+            alert('Error al registrar el beneficiario. Por favor, inténtelo de nuevo.');
+        }
+    });
+}
   onLogin() {
     this.authService.login(this.loginData.email, this.loginData.password)
       .subscribe({
