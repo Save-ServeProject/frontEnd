@@ -75,10 +75,10 @@
                     routerLink="/banco-alimentos" routerLinkActive="active" data-bs-toggle="offcanvas">
                     Zona Banco Alimentos
                 </a>
-                <!-- <a class="btn btn-warning text-white" data-bs-toggle="offcanvas" href="#offcanvasLogin" role="button"
+                <!-- <a class="btn btn-primary text-white" data-bs-toggle="offcanvas" href="#offcanvasLogin" role="button"
                     aria-controls="offcanvasLogin">Iniciar Sesión</a> -->
 
-                <a *ngIf="!isLoggedIn" class="btn btn-warning text-white" data-bs-toggle="offcanvas"
+                <a *ngIf="!isLoggedIn" class="btn btn-primary text-white" data-bs-toggle="offcanvas"
                     href="#offcanvasLogin" role="button" aria-controls="offcanvasLogin">
                     Iniciar Sesión
                 </a>
@@ -111,7 +111,7 @@
                 <label for="floatingPassword" class="form-label">Contraseña</label>
                 <input type="password" class="form-control" id="floatingPassword" placeholder="Password" required>
             </div>
-            <button type="submit" class="btn btn-warning w-100">Iniciar Sesión</button>
+            <button type="submit" class="btn btn-primary w-100">Iniciar Sesión</button>
         </form> -->
         <!-- lo nuevo añadido -->
         <!-- En la sección de login -->
@@ -127,7 +127,7 @@
                 <input type="password" class="form-control" id="floatingPassword" [(ngModel)]="loginData.password"
                     name="password" placeholder="Password" required>
             </div>
-            <button type="submit" class="btn btn-warning w-100">Iniciar Sesión</button>
+            <button type="submit" class="btn btn-primary w-100">Iniciar Sesión</button>
         </form>
         <!-- hasta aqui -->
 
@@ -155,7 +155,7 @@
             <label for="donante" class="form-label fs-5 fw-bold">Contrata nuestros servicios</label>
         </div>
         <div class="d-grid gap-2">
-            <button type="button" class="btn btn-warning btn-lg" id="donanteButton" data-bs-toggle="offcanvas"
+            <button type="button" class="btn btn-primary btn-lg" id="donanteButton" data-bs-toggle="offcanvas"
                 data-bs-target="#offcanvasRegisterDonante">
                 <span id="donanteButtonText">Ser Donante</span>
                 <span id="donanteButtonSpinner" class="spinner-border spinner-border-sm d-none" role="status"
@@ -169,7 +169,7 @@
             <label for="beneficiario" class="form-label fs-5 fw-bold">Recibe nuestras donaciones</label>
         </div>
         <div class="d-grid gap-2">
-            <button type="submit" class="btn btn-warning btn-lg" id="beneficiarioButton" data-bs-toggle="offcanvas"
+            <button type="submit" class="btn btn-primary btn-lg" id="beneficiarioButton" data-bs-toggle="offcanvas"
                 data-bs-target="#offcanvasRegisterBeneficiario">
                 <span id="beneficiarioButtonText">Ser Beneficiario</span>
                 <span id="beneficiarioButtonSpinner" class="spinner-border spinner-border-sm d-none" role="status"
@@ -282,7 +282,7 @@
                     </a>
                 </label>
             </div>
-            <button type="button" class="btn btn-warning w-100" routerLink="/pasarelaPago" rout data-bs-toggle="modal"
+            <button type="button" class="btn btn-primary w-100" routerLink="/pasarelaPago" rout data-bs-toggle="modal"
                 data-bs-target="#registerModal" routerLinkActive="active" data-bs-dismiss="offcanvas">
                 Registrarse
             </button>
@@ -366,7 +366,7 @@
                        placeholder="Introduce tu contraseña" required>
             </div>
         
-            <button type="submit" class="btn btn-warning w-100" [disabled]="beneficiarioForm.invalid">
+            <button type="submit" class="btn btn-primary w-100" [disabled]="beneficiarioForm.invalid">
                 Registrarse
             </button>
         </form>
@@ -417,7 +417,7 @@
                 </div>
             </div>
 
-            <button type="submit" class="btn btn-warning w-100" id="sendButton">
+            <button type="submit" class="btn btn-primary w-100" id="sendButton">
                 <span id="sendButtonText">Enviar</span>
                 <span id="sendButtonSpinner" class="spinner-border spinner-border-sm d-none" role="status"
                     aria-hidden="true"></span>
