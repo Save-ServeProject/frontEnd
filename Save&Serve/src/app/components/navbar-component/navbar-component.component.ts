@@ -1,381 +1,3 @@
-// import { Component, OnInit } from '@angular/core';
-// import { CommonModule } from '@angular/common';
-// import { FormsModule } from '@angular/forms';
-// import { Router, RouterModule } from '@angular/router';
-// import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-// import { SuscripcionService } from '../../services/suscripcionService/suscripcion.service';
-
-// @Component({
-//   selector: 'app-navbar-component',
-//   standalone: true,
-//   imports: [CommonModule, FormsModule,RouterModule],
-//   templateUrl: './navbar-component.component.html',
-//   styleUrls: ['./navbar-component.component.scss']
-// })
-// export class NavbarComponent implements OnInit {
-//   searchTerm: string = '';
-
-//   constructor(
-//     private modalService: NgbModal, 
-//     private router: Router,
-//     private subscriptionService: SuscripcionService
-//   ) {}
-
-//   ngOnInit(): void {
-
-//   }
-
-//   onSearch() {
-//     if (this.searchTerm.trim()) {
-//       this.router.navigate(['/search'], { 
-//         queryParams: { q: this.searchTerm } 
-//       });
-//     }
-//   }
-
-//   scrollToSection(sectionId: string) {
-//     document.getElementById(sectionId)?.scrollIntoView({ 
-//       behavior: 'smooth' 
-//     });
-//   }
-
-//   selectPlan(plan: string) {
-//     this.subscriptionService.setPlan(plan);
-//   }
-
-//   goToPayment() {
-//     this.router.navigate(['/pasarelaPago']);
-//   }
-// }
-
-
-//segundo internto: 
-
-// import { Component, OnInit } from '@angular/core';
-// import { CommonModule } from '@angular/common';
-// import { FormsModule } from '@angular/forms';
-// import { Router, RouterModule } from '@angular/router';
-// import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-// import { SuscripcionService } from '../../services/suscripcionService/suscripcion.service';
-// import { AuthService } from '../../services/autentificacion/auth.service'; // Nuevo servicio de autenticación
-
-// @Component({
-//   selector: 'app-navbar-component',
-//   standalone: true,
-//   imports: [CommonModule, FormsModule, RouterModule],
-//   templateUrl: './navbar-component.component.html',
-//   styleUrls: ['./navbar-component.component.scss']
-// })
-// export class NavbarComponent implements OnInit {
-//   searchTerm: string = '';
-
-//   // Datos para el login
-//   loginData = {
-//     email: '',
-//     password: ''
-//   };
-
-//   // Estado de autenticación
-//   isLoggedIn: boolean = false;
-//   userRole: string | null = null;
-
-//   constructor(
-//     private modalService: NgbModal, 
-//     private router: Router,
-//     private subscriptionService: SuscripcionService,
-//     private authService: AuthService // Inyectar servicio de autenticación
-//   ) {}
-
-//   ngOnInit(): void {
-//     // Verificar si hay un token al iniciar
-//     this.checkAuthStatus();
-//   }
-
-//   // Método para verificar estado de autenticación
-//   private checkAuthStatus() {
-//     const token = localStorage.getItem('authToken');
-//     this.isLoggedIn = !!token;
-
-//     if (this.isLoggedIn) {
-//       // Aquí podrías implementar un método en el servicio de auth 
-//       // para decodificar el token y obtener el rol
-//       this.userRole = this.getUserRoleFromToken();
-//     }
-//   }
-
-//   // Método de inicio de sesión
-//   onLogin() {
-//     this.authService.login(this.loginData.email, this.loginData.password)
-//       .subscribe({
-//         next: (response) => {
-//           // Guardar token
-//           localStorage.setItem('authToken', response.token);
-
-//           // Actualizar estado de autenticación
-//           this.checkAuthStatus();
-
-//           // Redirigir según el rol
-//           this.navigateBasedOnRole(this.userRole);
-
-//           // Cerrar modal de login
-//           this.modalService.dismissAll();
-//         },
-//         error: (error) => {
-//           console.error('Error de inicio de sesión', error);
-//           // Mostrar mensaje de error al usuario
-//           alert('Error al iniciar sesión. Compruebe sus credenciales.');
-//         }
-//       });
-//   }
-
-//   // Método de cierre de sesión
-//   logout() {
-//     // Eliminar token
-//     localStorage.removeItem('authToken');
-
-//     // Resetear estado de autenticación
-//     this.isLoggedIn = false;
-//     this.userRole = null;
-
-//     // Redirigir a página principal
-//     this.router.navigate(['/']);
-//   }
-
-//   // Navegación según rol
-//   private navigateBasedOnRole(role: string | null) {
-//     switch(role) {
-//       case 'EMPRESA':
-//         this.router.navigate(['/empresas-donacion']);
-//         break;
-//       case 'ADMIN':
-//         this.router.navigate(['/zonaAdmin']);
-//         break;
-//       case 'BANCO_DE_ALIMENTOS':
-//         this.router.navigate(['/banco-alimentos']);
-//         break;
-//       default:
-//         this.router.navigate(['/']);
-//     }
-//   }
-
-//   // Método para obtener rol desde el token (implementación básica)
-//   private getUserRoleFromToken(): string | null {
-//     const token = localStorage.getItem('authToken');
-//     if (token) {
-//       // Aquí deberías implementar la lógica para decodificar el token
-//       // Por ahora, un placeholder
-//       try {
-//         // Ejemplo básico, deberías usar una librería como jwt-decode
-//         const tokenParts = token.split('.');
-//         if (tokenParts.length > 1) {
-//           const payload = JSON.parse(atob(tokenParts[1]));
-//           return payload.role || null;
-//         }
-//       } catch (error) {
-//         console.error('Error al decodificar token', error);
-//       }
-//     }
-//     return null;
-//   }
-
-//   // Métodos existentes
-//   onSearch() {
-//     if (this.searchTerm.trim()) {
-//       this.router.navigate(['/search'], { 
-//         queryParams: { q: this.searchTerm } 
-//       });
-//     }
-//   }
-
-//   scrollToSection(sectionId: string) {
-//     document.getElementById(sectionId)?.scrollIntoView({ 
-//       behavior: 'smooth' 
-//     });
-//   }
-
-//   selectPlan(plan: string) {
-//     this.subscriptionService.setPlan(plan);
-//   }
-
-//   goToPayment() {
-//     this.router.navigate(['/pasarelaPago']);
-//   }
-// }
-
-
-//tercer intento:
-
-// import { Component, OnInit } from '@angular/core';
-// import { CommonModule } from '@angular/common';
-// import { FormsModule } from '@angular/forms';
-// import { Router, RouterModule } from '@angular/router';
-// import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-// import { SuscripcionService } from '../../services/suscripcionService/suscripcion.service';
-// import { AuthService } from '../../services/autentificacion/auth.service';
-
-// @Component({
-//   selector: 'app-navbar-component',
-//   standalone: true,
-//   imports: [CommonModule, FormsModule, RouterModule],
-//   templateUrl: './navbar-component.component.html',
-//   styleUrls: ['./navbar-component.component.scss']
-// })
-// export class NavbarComponent implements OnInit {
-//   searchTerm: string = '';
-
-//   // Datos para el login
-//   loginData = {
-//     email: '',
-//     password: ''
-//   };
-
-//   // Estado de autenticación
-//   isLoggedIn: boolean = false;
-//   userRole: string | null = null;
-
-//   constructor(
-//     private modalService: NgbModal, 
-//     private router: Router,
-//     private subscriptionService: SuscripcionService,
-//     private authService: AuthService
-//   ) {}
-
-//   ngOnInit(): void {
-//     // Verificar si hay un token al iniciar
-//     this.checkAuthStatus();
-//   }
-
-//   // Método para verificar estado de autenticación
-//   private checkAuthStatus() {
-//     this.isLoggedIn = this.authService.isLoggedIn();
-
-//     if (this.isLoggedIn) {
-//       this.userRole = this.authService.getUserRole();
-//     }
-//   }
-
-//   // Método de inicio de sesión
-//   // onLogin() {
-//   //   this.authService.login(this.loginData.email, this.loginData.password)
-//   //     .subscribe({
-//   //       next: (response: any) => {
-//   //         // Actualizar estado de autenticación
-//   //         this.checkAuthStatus();
-
-//   //         // Redirigir según el rol
-//   //         this.navigateBasedOnRole(this.userRole);
-
-//   //         // Cerrar modal de login
-//   //         this.modalService.dismissAll();
-//   //       },
-//   //       error: (error: any) => {
-//   //         console.error('Error de inicio de sesión', error);
-//   //         // Mostrar mensaje de error al usuario
-//   //         alert('Error al iniciar sesión. Compruebe sus credenciales.');
-//   //       }
-//   //     });
-//   // }
-
-//   onLogin() {
-//     this.authService.login(this.loginData.email, this.loginData.password)
-//       .subscribe({
-//         next: (response: any) => {
-//           // Actualizar estado de autenticación
-//           this.checkAuthStatus();
-
-//           // Redirigir según el rol
-//           this.navigateBasedOnRole(this.userRole);
-
-//           // Mostrar mensaje de éxito
-//           alert(`Bienvenido, ${this.loginData.email}!`);
-
-//           // Cerrar modal de login
-//           this.modalService.dismissAll();
-//         },
-//         error: (error: any) => {
-//           console.error('Error de inicio de sesión', error);
-//           // Mostrar mensaje de error al usuario
-//           alert('Error al iniciar sesión. Compruebe sus credenciales.');
-//         }
-//       });
-//   }
-
-//   // Método de cierre de sesión
-//   logout() {
-//     // Llamar al método de logout del servicio de autenticación
-//     this.authService.logout();
-
-//     // Actualizar estado de autenticación
-//     this.checkAuthStatus();
-
-//     // Redirigir a página principal
-//     this.router.navigate(['/']);
-//   }
-
-//   // Navegación según rol
-//   // private navigateBasedOnRole(role: string | null) {
-//   //   switch(role) {
-//   //     case 'EMPRESA':
-//   //       this.router.navigate(['/empresas-donacion']);
-//   //       break;
-//   //     case 'ADMIN':
-//   //       this.router.navigate(['/zonaAdmin']);
-//   //       break;
-//   //     case 'BANCO_DE_ALIMENTOS':
-//   //       this.router.navigate(['/banco-alimentos']);
-//   //       break;
-//   //     default:
-//   //       this.router.navigate(['/']);
-//   //   }
-//   // }
-//   private navigateBasedOnRole(role: string | null) {
-//     console.log('Navigating with role:', role);
-//     switch(role) {
-//       case 'EMPRESA':
-//         this.router.navigate(['/empresas-donacion']);
-//         break;
-//       case 'ADMIN':
-//         this.router.navigate(['/zonaAdmin']);
-//         break;
-//       case 'BANCO_DE_ALIMENTOS':
-//         this.router.navigate(['/banco-alimentos']);
-//         break;
-//       default:
-//         console.log('No specific role, navigating to home');
-//         this.router.navigate(['/']);
-//     }
-//   }
-
-//   // Métodos existentes
-//   onSearch() {
-//     if (this.searchTerm.trim()) {
-//       this.router.navigate(['/search'], { 
-//         queryParams: { q: this.searchTerm } 
-//       });
-//     }
-//   }
-
-//   scrollToSection(sectionId: string) {
-//     document.getElementById(sectionId)?.scrollIntoView({ 
-//       behavior: 'smooth' 
-//     });
-//   }
-
-//   selectPlan(plan: string) {
-//     this.subscriptionService.setPlan(plan);
-//   }
-
-//   goToPayment() {
-//     this.router.navigate(['/pasarelaPago']);
-//   }
-// }
-
-
-
-
-
-//////cuarto intento:
-
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -439,11 +61,12 @@ export class NavbarComponent implements OnInit {
     private empresaService: EmpresaService,
     private registroDataService: RegistroDataService,
   ) { }
-  
+
   ngOnInit(): void {
     this.checkAuthStatus();
     this.initForm();
     this.initEmpresaForm();
+    this.selectedPlan = this.subscriptionService.getPlan() || 'BASICA';
 
   }
   private initForm(): void {
@@ -504,11 +127,7 @@ export class NavbarComponent implements OnInit {
         console.log('Respuesta:', response); // Para debugging
         alert('Beneficiario registrado exitosamente');
         this.beneficiarioForm.reset();
-        // const offcanvasElement = document.getElementById('offcanvasRegisterBeneficiario');
-        // if (offcanvasElement) {
-        //     const bsOffcanvas = bootstrap.Offcanvas.getInstance(offcanvasElement);
-        //     bsOffcanvas?.hide();
-        // }
+       
       },
       error: (error) => {
         console.error('Error al registrar:', error);
@@ -516,39 +135,6 @@ export class NavbarComponent implements OnInit {
       }
     });
   }
-
-  // registrarEmpresa() {
-  //   if (this.empresaForm.invalid) {
-  //     Object.keys(this.empresaForm.controls).forEach(key => {
-  //       const control = this.empresaForm.get(key);
-  //       if (control?.invalid) {
-  //         control.markAsTouched();
-  //       }
-  //     });
-  //     return;
-  //   }
-
-  //   const empresa: Empresa = this.empresaForm.value;
-    
-  //   this.empresaService.registrarEmpresa(empresa).subscribe({
-  //     next: (response: any) => {
-  //       console.log('Empresa registrada:', response);
-  //       alert('Empresa registrada exitosamente');
-  //       this.empresaForm.reset();
-  //       const offcanvasElement = document.getElementById('offcanvasRegisterDonante');
-  //       // if (offcanvasElement) {
-  //       //   const bsOffcanvas = new bootstrap.Offcanvas(offcanvasElement);
-  //       //   bsOffcanvas.hide();
-  //       // }
-  //       this.router.navigate(['/pasarelaPago']);
-  //     },
-  //     error: (error: any) => {
-  //       console.error('Error al registrar:', error);
-  //       alert('Error al registrar la empresa. Por favor, inténtelo de nuevo.');
-  //     }
-  //   });
-  // }
-
   registrarEmpresa() {
     if (this.empresaForm.invalid) {
       Object.keys(this.empresaForm.controls).forEach(key => {
@@ -559,18 +145,17 @@ export class NavbarComponent implements OnInit {
       });
       return;
     }
-  
+
     const empresa: Empresa = {
       ...this.empresaForm.value,
-      suscripcion: this.selectedPlan  // Asocia el plan seleccionado
+      suscripcion: this.selectedPlan  
     };
-  
+
     this.empresaService.create(empresa).subscribe({
       next: (response: any) => {
         console.log('Empresa registrada:', response);
         alert('Empresa registrada exitosamente');
         this.empresaForm.reset();
-        // Puedes redirigir a la pasarela de pago después del registro
         this.router.navigate(['/pasarelaPago']);
       },
       error: (error: any) => {
@@ -579,7 +164,7 @@ export class NavbarComponent implements OnInit {
       }
     });
   }
-  
+
   onLogin() {
     this.authService.login(this.loginData.email, this.loginData.password)
       .subscribe({
@@ -587,7 +172,6 @@ export class NavbarComponent implements OnInit {
           this.checkAuthStatus();
           this.navigateBasedOnRole(this.userRole);
 
-          // Mostrar mensaje de bienvenida con el nombre de usuario
           alert(`¡Bienvenido, ${this.userName}!`);
 
           this.modalService.dismissAll();
@@ -607,7 +191,6 @@ export class NavbarComponent implements OnInit {
     this.router.navigate(['/']);
   }
 
-  // Resto de métodos igual que antes...
 
   private navigateBasedOnRole(role: string | null) {
     switch (role) {
@@ -638,19 +221,12 @@ export class NavbarComponent implements OnInit {
       behavior: 'smooth'
     });
   }
-
-  // selectPlan(plan: string) {
-  //   this.subscriptionService.setPlan(plan);
-  // }
   selectPlan(plan: string): void {
     this.selectedPlan = plan;
     this.subscriptionService.setPlan(plan);
     this.empresaForm.patchValue({ suscripcion: plan });
   }
 
-  // goToPayment() {
-  //   this.router.navigate(['/pasarelaPago']);
-  // }
   goToPayment(): void {
     if (this.empresaForm.invalid) {
       Object.keys(this.empresaForm.controls).forEach(key => {
@@ -661,9 +237,7 @@ export class NavbarComponent implements OnInit {
       });
       return;
     }
-    // Guardamos los datos de registro en el servicio
     this.registroDataService.setEmpresaData(this.empresaForm.value);
-    // Redirigimos a la pasarela de pago
     this.router.navigate(['/pasarelaPago']);
   }
 }
