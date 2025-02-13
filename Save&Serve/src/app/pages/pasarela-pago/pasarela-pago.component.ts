@@ -1,4 +1,4 @@
-import { Component, OnInit,AfterViewInit  } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { SuscripcionService } from '../../services/suscripcionService/suscripcion.service';
 
 @Component({
@@ -7,7 +7,7 @@ import { SuscripcionService } from '../../services/suscripcionService/suscripcio
   templateUrl: './pasarela-pago.component.html',
   styleUrl: './pasarela-pago.component.scss'
 })
-export class PasarelaPagoComponent implements OnInit, AfterViewInit  {
+export class PasarelaPagoComponent implements OnInit, AfterViewInit {
   // plan: string = '';
   // price: number = 0;
 
@@ -17,10 +17,10 @@ export class PasarelaPagoComponent implements OnInit, AfterViewInit  {
   //   this.plan = this.subscriptionService.getPlan();
   //   this.price = this.subscriptionService.getPrice();
   // }
-  plan: string = 'Premium'; // Nombre inicial del plan
+  plan: string = 'Premium';
   price: number = 0;
 
-  constructor(private subscriptionService: SuscripcionService) {}
+  constructor(private subscriptionService: SuscripcionService) { }
   ngAfterViewInit() {
     this.setupValidations();
   }
@@ -30,21 +30,20 @@ export class PasarelaPagoComponent implements OnInit, AfterViewInit  {
   }
 
   seleccionarPlan(plan: string) {
-    this.subscriptionService.setPlan(plan); // Actualiza el plan en el servicio
+    this.subscriptionService.setPlan(plan);
     this.plan = plan;
     this.price = this.subscriptionService.getPrice();
   }
 
- 
+
   setupValidations() {
-    // Formateo automático de la fecha de expiración
     const expiryDateInput = document.getElementById('expiryDate') as HTMLInputElement;
     if (expiryDateInput) {
       expiryDateInput.addEventListener('input', (e: Event) => {
         const input = e.target as HTMLInputElement;
         let value = input.value.replace(/\D/g, '');
         if (value.length >= 2) {
-          value = value.slice(0,2) + '/' + value.slice(2);
+          value = value.slice(0, 2) + '/' + value.slice(2);
         }
         input.value = value;
       });
@@ -84,14 +83,14 @@ export class PasarelaPagoComponent implements OnInit, AfterViewInit  {
       if (!errorElement) return true;
 
       errorElement.classList.add("d-none");
-      
+
       if (input.value.trim() === "") {
         errorElement.textContent = "Este campo es obligatorio";
         errorElement.classList.remove("d-none");
         if (!firstErrorField) firstErrorField = input;
         return false;
       }
-      
+
       if (!regex.test(input.value.trim())) {
         errorElement.textContent = errorMsg;
         errorElement.classList.remove("d-none");

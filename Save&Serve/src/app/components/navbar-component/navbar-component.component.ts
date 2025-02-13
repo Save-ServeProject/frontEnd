@@ -387,6 +387,7 @@ import { BancoalimentosService } from '../../services/bancoAlimentoService/banco
 import { BancoDeAlimentos } from '../../models/bancoAlimentos.model';
 import { Empresa } from '../../models/empresa.model';
 import { EmpresaService } from '../../services/empresaService/empresa.service';
+import { RegistroDataService } from '../../services/registro-data.service';
 
 @Component({
   selector: 'app-navbar-component',
@@ -435,7 +436,8 @@ export class NavbarComponent implements OnInit {
     private authService: AuthService,
     private formBuilder: FormBuilder,
     private bancoAlimentoService: BancoalimentosService,
-    private empresaService: EmpresaService
+    private empresaService: EmpresaService,
+    private registroDataService: RegistroDataService,
   ) { }
   
   ngOnInit(): void {
@@ -637,11 +639,31 @@ export class NavbarComponent implements OnInit {
     });
   }
 
-  selectPlan(plan: string) {
+  // selectPlan(plan: string) {
+  //   this.subscriptionService.setPlan(plan);
+  // }
+  selectPlan(plan: string): void {
+    this.selectedPlan = plan;
     this.subscriptionService.setPlan(plan);
+    this.empresaForm.patchValue({ suscripcion: plan });
   }
 
-  goToPayment() {
+  // goToPayment() {
+  //   this.router.navigate(['/pasarelaPago']);
+  // }
+  goToPayment(): void {
+    if (this.empresaForm.invalid) {
+      Object.keys(this.empresaForm.controls).forEach(key => {
+        const control = this.empresaForm.get(key);
+        if (control?.invalid) {
+          control.markAsTouched();
+        }
+      });
+      return;
+    }
+    // Guardamos los datos de registro en el servicio
+    this.registroDataService.setEmpresaData(this.empresaForm.value);
+    // Redirigimos a la pasarela de pago
     this.router.navigate(['/pasarelaPago']);
   }
 }
