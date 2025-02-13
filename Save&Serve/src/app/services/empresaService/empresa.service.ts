@@ -21,7 +21,7 @@ export class EmpresaService {
   }
 
   create(empresa: Empresa): Observable<Empresa> {
-    return this.http.post<Empresa>(this.url, empresa);
+    return this.http.post<Empresa>(`${this.url}/registro`, empresa);
   }
 
   update(id: number, empresa: Empresa): Observable<Empresa> {
