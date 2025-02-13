@@ -9,7 +9,7 @@ export class SuscripcionService {
   private selectedPlan: string = '';
 
   private prices: Record<string, number> = {
-    BASICO: 50,
+    BASICA: 50,
     ESTANDAR: 250,
     PREMIUM: 500
   };
