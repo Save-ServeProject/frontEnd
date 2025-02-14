@@ -1,11 +1,10 @@
 $primary: #ffc107;  
+$secondary: #4a90e2;
+$dark-mode: false; 
 
 @import "../node_modules/bootstrap/scss/mixins/banner";
 @include bsBanner("");
 
-
-// scss-docs-start import-stack
-// Configuration
 @import "../node_modules/bootstrap/scss/functions";
 @import "../node_modules/bootstrap/scss/variables";
 @import "../node_modules/bootstrap/scss/variables-dark";
@@ -13,7 +12,6 @@ $primary: #ffc107;
 @import "../node_modules/bootstrap/scss/mixins";
 @import "../node_modules/bootstrap/scss/utilities";
 
-// Layout & components
 @import "../node_modules/bootstrap/scss/root";
 @import "../node_modules/bootstrap/scss/reboot";
 @import "../node_modules/bootstrap/scss/type";
@@ -46,10 +44,93 @@ $primary: #ffc107;
 @import "../node_modules/bootstrap/scss/offcanvas";
 @import "../node_modules/bootstrap/scss/placeholders";
 
-// Helpers
 @import "../node_modules/bootstrap/scss/helpers";
 
-// Utilities
 @import "../node_modules/bootstrap/scss/utilities/api";
-// scss-docs-end import-stack
 
+
+@mixin rounded($radius: 10px) {
+  border-radius: $radius;
+}
+
+@function lighten-color($color, $amount) {
+  @return lighten($color, $amount);
+}
+
+@if $dark-mode {
+  body {
+    background-color: #222;
+    color: #fff;
+  }
+} @else {
+  body {
+    background-color: #fff;
+    color: #000;
+  }
+}
+
+.button {
+  padding: 10px 20px;
+  font-weight: bold;
+  cursor: pointer;
+  @include rounded(5px);
+}
+
+.btn-primary {
+  @extend .button;
+  background-color: $primary;
+  &:hover {
+    background-color: lighten-color($primary, 10%);
+  }
+}
+
+.btn-secondary {
+  @extend .button;
+  background-color: $secondary;
+  &:hover {
+    background-color: lighten-color($secondary, 10%);
+  }
+}
+
+@for $i from 1 through 5 {
+  .mt-#{$i} {
+    margin-top: #{$i}rem;
+  }
+  .mb-#{$i} {
+    margin-bottom: #{$i}rem;
+  }
+}
+
+$colors: (
+  "primary": $primary,
+  "secondary": $secondary,
+  "success": #28a745,
+  "danger": #dc3545,
+  "warning": #f0c74d
+);
+
+@each $name, $color in $colors {
+  .text-#{$name} {
+    color: $color;
+  }
+  .bg-#{$name} {
+    background-color: $color;
+  }
+}
+
+.navbar-custom {
+  background-color: $primary;
+  padding: 15px;
+  
+  .nav-item {
+    margin-right: 15px;
+    
+    .nav-link {
+      color: white;
+      
+      &:hover {
+        color: darken($primary, 15%);
+      }
+    }
+  }
+}
