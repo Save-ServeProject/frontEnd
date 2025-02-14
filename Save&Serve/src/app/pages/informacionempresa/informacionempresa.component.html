@@ -11,7 +11,7 @@
                     <p class="card-text">📞 Tel: {{empresa.telefono}}</p>
                     <p class="card-text">📍 Ubicación: {{empresa.direccion}}, {{empresa.ciudad}}</p>
                     <p class="card-text">💰 Total Donaciones: {{TotalDonaciones(empresa) | currency}}</p>
-                    <button class="btn btn-warning w-100 mt-auto" 
+                    <button class="btn btn-primary w-100 mt-auto" 
                             (click)="obtenerMostrarUbicacion(empresa)" href="#map">
                         Ver en el mapa
                     </button>
