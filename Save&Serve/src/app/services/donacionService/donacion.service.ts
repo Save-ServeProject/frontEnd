@@ -447,16 +447,16 @@ export class DonacionService {
 //   return this.http.get<any[]>(`${this.baseUrl}/donaciones/empresa/${empresaId}`);
 // }
 
-// updateEstadoDonacion(id: number, nuevoEstado: string): Observable<Donacion> {
-//   // Aquí enviamos la solicitud PUT con el nuevo estado
-//   return this.http.put<Donacion>(`${this.donacionesUrl}/${id}`, { estadoEnvio: nuevoEstado }).pipe(
-//     tap(response => console.log('Estado de donación actualizado:', response)),
-//     catchError(error => {
-//       console.error('Error al actualizar el estado de la donación:', error);
-//       return throwError(() => error);
-//     })
-//   );
-// }
+updateEstadoDonacion(id: number, nuevoEstado: string): Observable<Donacion> {
+  // Aquí enviamos la solicitud PUT con el nuevo estado
+  return this.http.put<Donacion>(`${this.baseUrl}/${id}`, { estadoEnvio: nuevoEstado }).pipe(
+    tap(response => console.log('Estado de donación actualizado:', response)),
+    catchError(error => {
+      console.error('Error al actualizar el estado de la donación:', error);
+      return throwError(() => error);
+    })
+  );
+}
 // }
 
 }
