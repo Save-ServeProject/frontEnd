@@ -1,5 +1,8 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { SuscripcionService } from '../../services/suscripcionService/suscripcion.service';
+import { RegistroDataService } from '../../services/registro-data.service';
+import { Router } from '@angular/router';
+import { EmpresaService } from '../../services/empresaService/empresa.service';
 
 @Component({
   selector: 'app-pasarela-pago',
@@ -8,21 +11,17 @@ import { SuscripcionService } from '../../services/suscripcionService/suscripcio
   styleUrl: './pasarela-pago.component.scss'
 })
 export class PasarelaPagoComponent implements OnInit, AfterViewInit {
-  // plan: string = '';
-  // price: number = 0;
 
-  // constructor(private subscriptionService: SuscripcionService) {}
-
-  // ngOnInit() {
-  //   this.plan = this.subscriptionService.getPlan();
-  //   this.price = this.subscriptionService.getPrice();
-  // }
   plan: string = 'Premium';
   price: number = 0;
 
-  constructor(private subscriptionService: SuscripcionService) { }
+  constructor(private subscriptionService: SuscripcionService, private router: Router,
+    private registroDataService: RegistroDataService,
+    private empresaService: EmpresaService) { }
+
   ngAfterViewInit() {
-    this.setupValidations();
+    this.setupPaymentValidations();
+
   }
   ngOnInit() {
     this.plan = this.subscriptionService.getPlan() || 'Premium';
@@ -35,117 +34,138 @@ export class PasarelaPagoComponent implements OnInit, AfterViewInit {
     this.price = this.subscriptionService.getPrice();
   }
 
-
-  setupValidations() {
+  setupPaymentValidations(): void {
+    const cardNumberInput = document.getElementById('cardNumber') as HTMLInputElement;
     const expiryDateInput = document.getElementById('expiryDate') as HTMLInputElement;
+    const cvvInput = document.getElementById('cvv') as HTMLInputElement;
+    const payButton = document.getElementById('payButton');
+
     if (expiryDateInput) {
       expiryDateInput.addEventListener('input', (e: Event) => {
         const input = e.target as HTMLInputElement;
         let value = input.value.replace(/\D/g, '');
         if (value.length >= 2) {
-          value = value.slice(0, 2) + '/' + value.slice(2);
+          value = value.slice(0, 2) + '/' + value.slice(2, 4);
         }
         input.value = value;
       });
     }
 
-    // Formateo para campos numéricos
-    ['cardNumber', 'cvv'].forEach(id => {
-      const element = document.getElementById(id) as HTMLInputElement;
-      if (element) {
-        element.addEventListener('input', (e: Event) => {
-          const input = e.target as HTMLInputElement;
-          input.value = input.value.replace(/\D/g, '');
+    [cardNumberInput, cvvInput].forEach(input => {
+      if (input) {
+        input.addEventListener('input', (e: Event) => {
+          const target = e.target as HTMLInputElement;
+          target.value = target.value.replace(/\D/g, '');
         });
       }
     });
 
-    // Validación del formulario
-    const payButton = document.getElementById('payButton');
     if (payButton) {
-      payButton.addEventListener('click', (event) => {
+      payButton.addEventListener('click', (event: Event) => {
         event.preventDefault();
-        this.validateForm();
+        const isPaypalActive = document.getElementById('collapseTwo')?.classList.contains('show');
+        if (isPaypalActive) {
+          if (this.validatePaypalPayment()) {
+            alert('Pago realizado con éxito (Paypal)');
+            this.processRegistration();
+          }
+        } else {
+          if (this.validateCreditCardPayment()) {
+            alert('Pago realizado con éxito (Tarjeta de crédito)');
+            this.processRegistration();
+          }
+        }
       });
     }
   }
 
-  validateForm() {
+  validateCreditCardPayment(): boolean {
     let valid = true;
-    let firstErrorField: HTMLElement | null = null;
+    let firstError: HTMLElement | null = null;
 
-    // Obtener método de pago activo
-    const isPaypalActive = document.getElementById('collapseTwo')?.classList.contains('show');
+    const cardNumber = document.getElementById('cardNumber') as HTMLInputElement;
+    const expiryDate = document.getElementById('expiryDate') as HTMLInputElement;
+    const cvv = document.getElementById('cvv') as HTMLInputElement;
+    const cardNumberError = document.getElementById('cardNumberError');
+    const expiryDateError = document.getElementById('expiryDateError');
+    const cvvError = document.getElementById('cvvError');
 
-    // Función de validación
-    const validateField = (input: HTMLInputElement, regex: RegExp, errorMsg: string): boolean => {
-      const errorElement = document.getElementById(input.id + "Error");
-      if (!errorElement) return true;
+    if (cardNumberError) cardNumberError.classList.add('d-none');
+    if (expiryDateError) expiryDateError.classList.add('d-none');
+    if (cvvError) cvvError.classList.add('d-none');
 
-      errorElement.classList.add("d-none");
-
-      if (input.value.trim() === "") {
-        errorElement.textContent = "Este campo es obligatorio";
-        errorElement.classList.remove("d-none");
-        if (!firstErrorField) firstErrorField = input;
-        return false;
+    if (cardNumber.value.trim() === '' || !/^\d{16}$/.test(cardNumber.value.trim())) {
+      if (cardNumberError) {
+        cardNumberError.textContent = 'Número de tarjeta debe tener 16 dígitos';
+        cardNumberError.classList.remove('d-none');
       }
-
-      if (!regex.test(input.value.trim())) {
-        errorElement.textContent = errorMsg;
-        errorElement.classList.remove("d-none");
-        if (!firstErrorField) firstErrorField = input;
-        return false;
-      }
-      return true;
-    };
-
-    if (isPaypalActive) {
-      const paypalEmail = document.getElementById("paypalEmail") as HTMLInputElement;
-      if (paypalEmail) {
-        valid = validateField(
-          paypalEmail,
-          /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-          "Correo inválido"
-        );
-      }
-    } else {
-      const cardNumber = document.getElementById("cardNumber") as HTMLInputElement;
-      const expiryDate = document.getElementById("expiryDate") as HTMLInputElement;
-      const cvv = document.getElementById("cvv") as HTMLInputElement;
-
-      if (cardNumber) {
-        valid = validateField(
-          cardNumber,
-          /^\d{16}$/,
-          "Número de tarjeta debe tener 16 dígitos"
-        ) && valid;
-      }
-
-      if (expiryDate) {
-        valid = validateField(
-          expiryDate,
-          /^(0[1-9]|1[0-2])\/\d{2}$/,
-          "Formato debe ser MM/YY"
-        ) && valid;
-      }
-
-      if (cvv) {
-        valid = validateField(
-          cvv,
-          /^\d{3,4}$/,
-          "CVC debe tener 3 o 4 dígitos"
-        ) && valid;
-      }
+      valid = false;
+      if (!firstError) firstError = cardNumber;
     }
 
-    if (firstErrorField) {
-      (firstErrorField as HTMLElement).focus();
+    if (expiryDate.value.trim() === '' || !/^(0[1-9]|1[0-2])\/\d{2}$/.test(expiryDate.value.trim())) {
+      if (expiryDateError) {
+        expiryDateError.textContent = 'Formato debe ser MM/YY';
+        expiryDateError.classList.remove('d-none');
+      }
+      valid = false;
+      if (!firstError) firstError = expiryDate;
     }
 
-    if (valid) {
-      alert("Pago realizado con éxito");
+    if (cvv.value.trim() === '' || !/^\d{3,4}$/.test(cvv.value.trim())) {
+      if (cvvError) {
+        cvvError.textContent = 'CVC debe tener 3 o 4 dígitos';
+        cvvError.classList.remove('d-none');
+      }
+      valid = false;
+      if (!firstError) firstError = cvv;
     }
+
+    if (firstError) {
+      firstError.focus();
+    }
+    return valid;
+  }
+
+  validatePaypalPayment(): boolean {
+    let valid = true;
+    let firstError: HTMLElement | null = null;
+    const paypalEmail = document.getElementById('paypalEmail') as HTMLInputElement;
+    const paypalEmailError = document.getElementById('paypalEmailError');
+
+    if (paypalEmailError) paypalEmailError.classList.add('d-none');
+
+    if (paypalEmail.value.trim() === '' || !/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(paypalEmail.value.trim())) {
+      if (paypalEmailError) {
+        paypalEmailError.textContent = 'Correo inválido o vacío';
+        paypalEmailError.classList.remove('d-none');
+      }
+      valid = false;
+      if (!firstError) firstError = paypalEmail;
+    }
+
+    if (firstError) firstError.focus();
+    return valid;
+  }
+
+  processRegistration(): void {
+    const empresaData = this.registroDataService.getEmpresaData();
+    if (!empresaData) {
+      alert('No se encontraron datos de registro. Completa el formulario nuevamente.');
+      this.router.navigate(['/']);
+      return;
+    }
+    this.empresaService.create(empresaData).subscribe({
+      next: (response) => {
+        alert('Empresa registrada y pago realizado exitosamente');
+        this.registroDataService.clearEmpresaData();
+        this.router.navigate(['/dashboard']);
+      },
+      error: (error) => {
+        console.error('Error al registrar la empresa:', error);
+        alert('Error al registrar la empresa. Por favor, inténtelo de nuevo.');
+      }
+    });
   }
 }
 
