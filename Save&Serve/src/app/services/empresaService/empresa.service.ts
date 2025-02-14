@@ -42,9 +42,12 @@ export class EmpresaService {
     return this.http.get(`${this.url}/${id}`);
   }
 
-  updateEmpresa(id: number, empresa: any): Observable<any> {
-    return this.http.put(`${this.url}/${id}`, empresa);
-  }
+  // updateEmpresa(id: number, empresa: any): Observable<any> {
+  //   return this.http.put(`${this.url}/${id}`, empresa);
+  // }
+  updateEmpresa(id: number, empresa: any) {
+    return this.http.put<any>(`${this.url}/${id}`, empresa);
+}
 
   getEmpresaByEmail(email: string): Observable<any> {
     return this.http.get(`${this.url}/email/${email}`);

@@ -39,38 +39,95 @@ export class DonacionComponent implements OnInit {
     this.loadCurrentEmpresa();
   }
 
-  loadCurrentEmpresa() {
-    const userData = JSON.parse(localStorage.getItem('userData') || '{}');
-    if (userData && userData.email) {
-      this.empresaService.getEmpresaByEmail(userData.email).subscribe({
-        next: (data) => {
+  // loadCurrentEmpresa() {
+  //   const userData = JSON.parse(localStorage.getItem('userData') || '{}');
+  //   if (userData && userData.email) {
+  //     this.empresaService.getEmpresaByEmail(userData.email).subscribe({
+  //       next: (data) => {
+  //         this.empresa = data;
+  //         this.loadDonacionesEmpresa(data.id);
+  //       },
+  //       error: (error) => {
+  //         console.error('Error al cargar empresa:', error);
+  //       }
+  //     });
+  //   }
+  // }
+
+  // loadDonacionesEmpresa(empresaId: number) {
+  //   this.loadingDonaciones = true;
+  //   this.donacionService.getDonacionesByEmpresa(empresaId).subscribe({
+  //     next: (data) => {
+  //       this.donaciones = data;
+  //       this.loadingDonaciones = false;
+  //     },
+  //     error: (error) => {
+  //       console.error('Error al cargar donaciones:', error);
+  //       this.errorDonaciones = 'Error al cargar las donaciones';
+  //       this.loadingDonaciones = false;
+  //     }
+  //   });
+  // }
+// donacion.component.ts
+loadDonacionesEmpresa(empresaId: number) {
+  this.loadingDonaciones = true;
+  this.errorDonaciones = null;
+
+  this.donacionService.getDonacionesByEmpresa(empresaId).subscribe({
+    next: (data) => {
+      if (Array.isArray(data)) {
+        this.donaciones = data;
+      } else {
+        this.donaciones = [];
+        console.warn('Datos de donaciones no válidos:', data);
+      }
+      this.loadingDonaciones = false;
+    },
+    error: (error) => {
+      console.error('Error al cargar donaciones:', error);
+      this.errorDonaciones = 'No se pudieron cargar las donaciones';
+      this.donaciones = [];
+      this.loadingDonaciones = false;
+    }
+  });
+}
+
+loadCurrentEmpresa() {
+  const userDataStr = localStorage.getItem('userData');
+  if (!userDataStr) {
+    console.warn('No hay datos de usuario en localStorage');
+    return;
+  }
+
+  try {
+    const userData = JSON.parse(userDataStr);
+    if (!userData?.email) {
+      console.warn('Email de usuario no encontrado');
+      return;
+    }
+
+    this.empresaService.getEmpresaByEmail(userData.email).subscribe({
+      next: (data) => {
+        if (data && data.id) {
           this.empresa = data;
           this.loadDonacionesEmpresa(data.id);
-        },
-        error: (error) => {
-          console.error('Error al cargar empresa:', error);
+        } else {
+          console.warn('Datos de empresa no válidos:', data);
         }
-      });
-    }
-  }
-
-  loadDonacionesEmpresa(empresaId: number) {
-    this.loadingDonaciones = true;
-    this.donacionService.getDonacionesByEmpresa(empresaId).subscribe({
-      next: (data) => {
-        this.donaciones = data;
-        this.loadingDonaciones = false;
       },
       error: (error) => {
-        console.error('Error al cargar donaciones:', error);
-        this.errorDonaciones = 'Error al cargar las donaciones';
-        this.loadingDonaciones = false;
+        console.error('Error al cargar empresa:', error);
+        this.errorDonaciones = 'Error al cargar información de la empresa';
       }
     });
+  } catch (error) {
+    console.error('Error al procesar datos de usuario:', error);
   }
-
+}
   verDetalleDonacion(donacion: any) {
     // Implementar lógica para mostrar detalles de la donación
     console.log('Detalle de donación:', donacion);
   }
+
+  
 }
