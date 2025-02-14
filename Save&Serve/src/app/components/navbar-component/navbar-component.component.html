@@ -92,7 +92,7 @@
     </div>
 </nav>
 <!-- Login -->
-<div class="offcanvas offcanvas-start bg-dark text-white" tabindex="-1" id="offcanvasLogin"
+<!-- <div class="offcanvas offcanvas-start bg-dark text-white" tabindex="-1" id="offcanvasLogin"
     aria-labelledby="offcanvasLoginLabel" data-bs-backdrop="true">
 
     <div class="offcanvas-header">
@@ -101,20 +101,7 @@
 
     </div>
     <div class="offcanvas-body">
-        <!-- <form action="index.html" class="p-3">
-            <div class="mb-3">
-                <label for="floatingInput" class="form-label">Dirección Email</label>
-                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" required>
-            </div>
-
-            <div class="mb-3">
-                <label for="floatingPassword" class="form-label">Contraseña</label>
-                <input type="password" class="form-control" id="floatingPassword" placeholder="Password" required>
-            </div>
-            <button type="submit" class="btn btn-primary w-100">Iniciar Sesión</button>
-        </form> -->
-        <!-- lo nuevo añadido -->
-        <!-- En la sección de login -->
+       
         <form (ngSubmit)="onLogin()" class="p-3">
             <div class="mb-3">
                 <label for="floatingInput" class="form-label">Dirección Email</label>
@@ -129,7 +116,6 @@
             </div>
             <button type="submit" class="btn btn-primary w-100">Iniciar Sesión</button>
         </form>
-        <!-- hasta aqui -->
 
         <div class="text-center mt-3">
             <a href="#offcanvasForgotPassword" data-bs-toggle="offcanvas"
@@ -139,7 +125,82 @@
                 href="#offcanvasOpciones" role="button" aria-controls="offcanvasExample">Registrate</a>
         </div>
     </div>
+</div> -->
+<div class="offcanvas offcanvas-start bg-dark text-white" tabindex="-1" id="offcanvasLogin"
+    aria-labelledby="offcanvasLoginLabel" data-bs-backdrop="true">
+  <div class="offcanvas-header border-bottom border-secondary">
+    <h5 class="offcanvas-title" id="offcanvasLoginLabel">
+      <i class="bi bi-person-circle me-2"></i>Iniciar sesión
+    </h5>
+    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <div class="text-center mb-4">
+      <div class="bg-primary bg-opacity-10 rounded-circle p-3 d-inline-block mb-3">
+        <i class="bi bi-person-fill text-primary" style="font-size: 2rem;"></i>
+      </div>
+      <p class="text-white-50">
+        Inicia sesión para acceder a tu cuenta.
+      </p>
+    </div>
+
+    <form (ngSubmit)="onLogin()" class="p-3 needs-validation" novalidate>
+      <div class="mb-3">
+        <label for="floatingInput" class="form-label">
+          <i class="bi bi-envelope me-2"></i>Dirección Email
+        </label>
+        <div class="input-group">
+          <span class="input-group-text bg-dark border-secondary">
+            <i class="bi bi-at text-primary"></i>
+          </span>
+          <input type="email" class="form-control bg-dark border-secondary text-white" id="floatingInput"
+                 [(ngModel)]="loginData.email" name="email" placeholder="name@example.com" required>
+        </div>
+        <div class="invalid-feedback">
+          Por favor, introduce una dirección de email válida.
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="floatingPassword" class="form-label">
+          <i class="bi bi-lock me-2"></i>Contraseña
+        </label>
+        <div class="input-group">
+          <span class="input-group-text bg-dark border-secondary">
+            <i class="bi bi-shield-lock text-primary"></i>
+          </span>
+          <input type="password" class="form-control bg-dark border-secondary text-white" id="floatingPassword"
+                 [(ngModel)]="loginData.password" name="password" placeholder="Password" required>
+        </div>
+        <div class="invalid-feedback">
+          Por favor, ingresa tu contraseña.
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary w-100 position-relative" id="loginButton">
+        <span id="loginButtonText">
+          <i class="bi bi-box-arrow-in-right me-2"></i>Iniciar Sesión
+        </span>
+        <span id="loginButtonSpinner"
+              class="spinner-border spinner-border-sm position-absolute top-50 start-50 translate-middle d-none"
+              role="status" aria-hidden="true"></span>
+      </button>
+    </form>
+
+    <div class="text-center mt-3">
+      <a href="#offcanvasForgotPassword" data-bs-toggle="offcanvas" class="text-white text-decoration-underline">
+        Olvidaste tu contraseña?
+      </a>
+      <br>
+      ¿No tienes cuenta? 
+      <a class="btn btn-p text-white text-decoration-underline" data-bs-toggle="offcanvas"
+         href="#offcanvasOpciones" role="button" aria-controls="offcanvasOpciones">
+        Regístrate
+      </a>
+    </div>
+  </div>
 </div>
+
 <!-- Opciones Registro Leti -->
 
 <div class="offcanvas offcanvas-start bg-dark text-white" tabindex="-1" id="offcanvasOpciones"
@@ -359,7 +420,7 @@
 
 
 <!-- Registro Bancos de alimentos // Beneficiario -->
-<div class="offcanvas offcanvas-start bg-dark text-white" tabindex="-1" id="offcanvasRegisterBeneficiario"
+<!-- <div class="offcanvas offcanvas-start bg-dark text-white" tabindex="-1" id="offcanvasRegisterBeneficiario"
     aria-labelledby="offcanvasRegisterBeneficiarioLabel">
     <div class="offcanvas-header">
         <h5 class="offcanvas-title" id="offcanvasRegisterBeneficiarioLabel">Registrate como Beneficiario</h5>
@@ -424,7 +485,127 @@
         </form>
 
     </div>
+</div> -->
+<div class="offcanvas offcanvas-start bg-dark text-white" tabindex="-1" id="offcanvasRegisterBeneficiario"
+    aria-labelledby="offcanvasRegisterBeneficiarioLabel">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasRegisterBeneficiarioLabel">Registrate como Beneficiario</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <form [formGroup]="beneficiarioForm" (ngSubmit)="agregarBeneficiario()" class="p-3">
+            <!-- Nombre -->
+            <div class="mb-3">
+                <label for="nombre" class="form-label">Nombre Beneficiario *</label>
+                <input type="text" 
+                       class="form-control"
+                       [ngClass]="{'is-invalid': beneficiarioForm.get('nombre')?.invalid && beneficiarioForm.get('nombre')?.touched,
+                                 'is-valid': beneficiarioForm.get('nombre')?.valid && beneficiarioForm.get('nombre')?.touched}"
+                       id="nombre" 
+                       formControlName="nombre" 
+                       placeholder="Introduce el nombre">
+                <div class="invalid-feedback" *ngIf="beneficiarioForm.get('nombre')?.errors && beneficiarioForm.get('nombre')?.touched">
+                    <span *ngIf="beneficiarioForm.get('nombre')?.errors?.['required']">El nombre es obligatorio</span>
+                    <span *ngIf="beneficiarioForm.get('nombre')?.errors?.['minlength']">El nombre debe tener al menos 3 caracteres</span>
+                </div>
+            </div>
+
+            <!-- Teléfono -->
+            <div class="mb-3">
+                <label for="telefono" class="form-label">Teléfono *</label>
+                <input type="tel" 
+                       class="form-control"
+                       [ngClass]="{'is-invalid': beneficiarioForm.get('telefono')?.invalid && beneficiarioForm.get('telefono')?.touched,
+                                 'is-valid': beneficiarioForm.get('telefono')?.valid && beneficiarioForm.get('telefono')?.touched}"
+                       id="telefono" 
+                       formControlName="telefono" 
+                       placeholder="Ej: 612345678">
+                <div class="invalid-feedback" *ngIf="beneficiarioForm.get('telefono')?.errors && beneficiarioForm.get('telefono')?.touched">
+                    <span *ngIf="beneficiarioForm.get('telefono')?.errors?.['required']">El teléfono es obligatorio</span>
+                    <span *ngIf="beneficiarioForm.get('telefono')?.errors?.['pattern']">Debe ser un número de 9 dígitos</span>
+                </div>
+            </div>
+
+            <!-- Email -->
+            <div class="mb-3">
+                <label for="email" class="form-label">Email *</label>
+                <input type="email" 
+                       class="form-control"
+                       [ngClass]="{'is-invalid': beneficiarioForm.get('email')?.invalid && beneficiarioForm.get('email')?.touched,
+                                 'is-valid': beneficiarioForm.get('email')?.valid && beneficiarioForm.get('email')?.touched}"
+                       id="email" 
+                       formControlName="email" 
+                       placeholder="name@example.com">
+                <div class="invalid-feedback" *ngIf="beneficiarioForm.get('email')?.errors && beneficiarioForm.get('email')?.touched">
+                    <span *ngIf="beneficiarioForm.get('email')?.errors?.['required']">El email es obligatorio</span>
+                    <span *ngIf="beneficiarioForm.get('email')?.errors?.['email']">Introduce un email válido</span>
+                </div>
+            </div>
+
+            <!-- Ciudad -->
+            <div class="mb-3">
+                <label for="ciudadEmpresa" class="form-label">Ciudad *</label>
+                <select class="form-control"
+                        [ngClass]="{'is-invalid': beneficiarioForm.get('ciudadEmpresa')?.invalid && beneficiarioForm.get('ciudadEmpresa')?.touched,
+                                  'is-valid': beneficiarioForm.get('ciudadEmpresa')?.valid && beneficiarioForm.get('ciudadEmpresa')?.touched}"
+                        id="ciudadEmpresa" 
+                        formControlName="ciudadEmpresa">
+                    <option value="" disabled selected>Selecciona una ciudad</option>
+                    <option *ngFor="let ciudad of ciudades" [value]="ciudad">{{ ciudad }}</option>
+                </select>
+                <div class="invalid-feedback" *ngIf="beneficiarioForm.get('ciudadEmpresa')?.errors && beneficiarioForm.get('ciudadEmpresa')?.touched">
+                    <span *ngIf="beneficiarioForm.get('ciudadEmpresa')?.errors?.['required']">Selecciona una ciudad</span>
+                </div>
+            </div>
+
+            <!-- Dirección -->
+            <div class="mb-3">
+                <label for="direccion" class="form-label">Dirección *</label>
+                <input type="text" 
+                       class="form-control"
+                       [ngClass]="{'is-invalid': beneficiarioForm.get('direccion')?.invalid && beneficiarioForm.get('direccion')?.touched,
+                                 'is-valid': beneficiarioForm.get('direccion')?.valid && beneficiarioForm.get('direccion')?.touched}"
+                       id="direccion" 
+                       formControlName="direccion" 
+                       placeholder="Introduce la dirección">
+                <div class="invalid-feedback" *ngIf="beneficiarioForm.get('direccion')?.errors && beneficiarioForm.get('direccion')?.touched">
+                    <span *ngIf="beneficiarioForm.get('direccion')?.errors?.['required']">La dirección es obligatoria</span>
+                </div>
+            </div>
+
+            <!-- Contraseña -->
+            <div class="mb-3">
+                <label for="contrasenia" class="form-label">Contraseña *</label>
+                <input type="password" 
+                       class="form-control"
+                       [ngClass]="{'is-invalid': beneficiarioForm.get('contrasenia')?.invalid && beneficiarioForm.get('contrasenia')?.touched,
+                                 'is-valid': beneficiarioForm.get('contrasenia')?.valid && beneficiarioForm.get('contrasenia')?.touched}"
+                       id="contrasenia" 
+                       formControlName="contrasenia" 
+                       placeholder="Mínimo 6 caracteres">
+                <div class="invalid-feedback" *ngIf="beneficiarioForm.get('contrasenia')?.errors && beneficiarioForm.get('contrasenia')?.touched">
+                    <span *ngIf="beneficiarioForm.get('contrasenia')?.errors?.['required']">La contraseña es obligatoria</span>
+                    <span *ngIf="beneficiarioForm.get('contrasenia')?.errors?.['minlength']">La contraseña debe tener al menos 6 caracteres</span>
+                </div>
+            </div>
+
+            <div class="text-white-50 mb-3">
+                * Campos obligatorios
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100" [disabled]="beneficiarioForm.invalid">
+                Registrarse
+            </button>
+            <div class="text-center mt-4">
+                <a data-bs-toggle="offcanvas" href="#offcanvasLogin" aria-controls="offcanvasLogin"
+                    class="text-white text-decoration-none" id="backToLogin">
+                    <i class="bi bi-arrow-left me-2"></i>Volver al inicio de sesión
+                </a>
+            </div>
+        </form>
+    </div>
 </div>
+
 <!-- Modal de Términos y Condiciones -->
 <div class="modal fade" id="termsModal" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true">
     <div class="modal-dialog">
