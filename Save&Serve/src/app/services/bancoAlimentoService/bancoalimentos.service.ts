@@ -73,12 +73,17 @@ export class BancoalimentosService {
     return this.getAll();
   }
 
+  getBancoAlimentosByEmail(email: string): Observable<any> {
+    return this.http.get(`${this.url}/email/${email}`);
+  }
+
   getBancoAlimentos(id: number): Observable<any> {
     return this.http.get(`${this.url}/${id}`);
   }
 
-  updateBancoAlimentos(id: number, banco: any): Observable<BancoDeAlimentos> {
-    return this.http.put<BancoDeAlimentos>(`${this.url}/${id}`, banco);
+  updateBancoAlimentos(id: number, banco: any): Observable<any> {
+    console.log(banco);
+    return this.http.put(`${this.url}/${id}`, banco);
   }
   obtenerBancosPaginadas(pagina: number = 0, tamanoPagina: number = 9): Observable<RespuestaPaginada<
   BancoDeAlimentos>> {

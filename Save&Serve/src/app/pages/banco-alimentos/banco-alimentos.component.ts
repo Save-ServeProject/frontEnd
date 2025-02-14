@@ -1,9 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { FormGroup } from '@angular/forms';
+import { FormBuilder, FormArray, FormGroup, Validators} from '@angular/forms';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { BancoalimentosService } from '../../services/bancoAlimentoService/bancoalimentos.service';
+import { AuthService } from '../../services/autentificacion/auth.service';
 
 @Component({
   selector: 'app-banco-alimentos',
@@ -18,30 +19,60 @@ export class BancoAlimentosComponent  {
   editedFields: { [key: string]: string } = {};
   hasChanges: boolean = false;
   bancoAlimentosForm!: FormGroup;
-
   bancosAlimentos: any[] = [];
   loadingBancoAlimentos: boolean = false;
   errorBancoAlimentos: string | null = null;
 
-  constructor(private bancoalimentosService: BancoalimentosService) {}
+  constructor(
+    private bancoalimentosService: BancoalimentosService,
+    private authService: AuthService,
+    private fb: FormBuilder) 
+    {
+      this.initForm();
+    }
 
-  ngOnInit(): void {
+  private initForm() {
+      this.bancoAlimentosForm = this.fb.group({
+        bancoDeAlimentosId: ['', Validators.required]
+      });
+    }
+
+  ngOnInit() {
     this.loadBancoAlimentos();
+    this.getBancoAlimentosLogged();
   }
 
-  loadBancoAlimentos(): void {
-    this.bancoalimentosService.getById(this.bancoAlimentos.id).subscribe(data => {
+  loadBancoAlimentos() {
+    this.bancoalimentosService.getBancoAlimentos(this.bancoAlimentos.id).subscribe(data => {
       this.bancoAlimentos = data;
     });
   }
 
-  startEditing(field: string): void {
+  getBancoAlimentosLogged() {
+    const userEmail = this.authService.getUserName();
+    if (userEmail) {
+      this.bancoalimentosService.getBancoAlimentosByEmail(userEmail).subscribe({
+        next: (bancoAlimentosData) => {
+          this.bancoAlimentos = bancoAlimentosData;
+          this.bancoAlimentosForm.patchValue({
+            bancoId: bancoAlimentosData.id
+          });
+        },
+        error: (error) => {
+          console.error('Error al cargar el banco de alimentos:', error);
+          alert('Error al cargar la información del banco de alimentos');
+        }
+      });
+    }
+  }
+
+  startEditing(field: string) {
     this.editing[field] = true;
     this.editedFields[field] = this.bancoAlimentos[field];
     this.hasChanges = true;
   }
 
-  cancelEdit(field: string): void {
+  cancelEdit(field: string) {
     this.editing[field] = false;
     this.bancoAlimentos[field] = this.editedFields[field];
     delete this.editedFields[field];
@@ -51,7 +82,17 @@ export class BancoAlimentosComponent  {
   }
 
   saveChanges() {
-    this.bancoalimentosService.updateBancoAlimentos(this.bancoAlimentos.id, this.bancoAlimentos).subscribe({
+    const bancoAlimentosUpdated = {
+      id: this.bancoAlimentos.id,
+      nombre: this.bancoAlimentos.nombre,
+      direccion: this.bancoAlimentos.direccion,
+      telefono: this.bancoAlimentos.telefono,
+      email: this.bancoAlimentos.email,
+      ciudad: this.bancoAlimentos.ciudad,
+      contrasenia: this.bancoAlimentos.contrasenia
+    };
+
+    this.bancoalimentosService.updateBancoAlimentos(this.bancoAlimentos.id, bancoAlimentosUpdated).subscribe({
       next: (updateBancoAlimentos) => {
         this.bancoAlimentos = updateBancoAlimentos;
         this.hasChanges = false;
