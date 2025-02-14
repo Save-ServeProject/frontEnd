@@ -106,7 +106,7 @@ import { CommonModule } from '@angular/common';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { GeocodingService } from '../../services/geocoding.service';
-import { EmpresaService } from '../../services/empresaService/empresa.service';
+import { EmpresaService, RespuestaPaginada } from '../../services/empresaService/empresa.service';
 import { Empresa } from '../../models/empresa.model';
 import * as L from 'leaflet';
 
@@ -121,7 +121,9 @@ export class InformacionempresaComponent implements OnInit {
   private map: L.Map | null = null;
   private markersMap: Map<string, L.Marker> = new Map();
   empresas: Empresa[] = [];
-
+  paginaActual = 0;
+  totalPaginas = 0;
+  tamanoPagina = 9;
   @ViewChild('mapSection') mapSection!: ElementRef;
 
   constructor(
@@ -135,6 +137,8 @@ export class InformacionempresaComponent implements OnInit {
     console.log('ngOnInit ejecutado');
     this.initMap();
     this.cargarEmpresas();
+    this.cargarEmpresasPaginadas();
+
   }
 
   private initMap(): void {
@@ -245,4 +249,45 @@ export class InformacionempresaComponent implements OnInit {
     // }
     return total;
   }
+  private cargarEmpresasPaginadas(): void {
+    this.empresaService.obtenerEmpresasPaginadas(this.paginaActual, this.tamanoPagina).subscribe({
+      next: (respuesta: RespuestaPaginada<Empresa>) => {
+        this.empresas = respuesta.content;
+        this.totalPaginas = respuesta.totalPages;
+        // Limpiar marcadores existentes
+        this.markersMap.forEach(marker => marker.remove());
+        this.markersMap.clear();
+        // Agregar marcadores para las nuevas empresas
+        this.empresas.forEach(empresa => {
+          this.agregarMarcador(empresa, false);
+        });
+      },
+      error: (error) => {
+        console.error('Error al cargar empresas paginadas:', error);
+      }
+    });
+  }
+// Añade este método en tu clase InformacionempresaComponent
+arrayDePaginas(): number[] {
+  // Si hay muchas páginas, puedes limitar cuántas se muestran
+  const paginasAMostrar = 5;
+  const arrayPaginas: number[] = [];
+  
+  let inicio = Math.max(1, this.paginaActual - Math.floor(paginasAMostrar / 2));
+  let fin = Math.min(this.totalPaginas, inicio + paginasAMostrar - 1);
+  
+  // Ajustar el inicio si estamos cerca del final
+  inicio = Math.max(1, fin - paginasAMostrar + 1);
+  
+  for (let i = inicio; i <= fin; i++) {
+      arrayPaginas.push(i);
+  }
+  
+  return arrayPaginas;
+}
+  cambiarPagina(nuevaPagina: number): void {
+    this.paginaActual = nuevaPagina;
+    this.cargarEmpresasPaginadas();
+  }
+
 }

@@ -56,7 +56,7 @@ export class BancoalimentosService {
   }
 
   create(banco: BancoDeAlimentos): Observable<BancoDeAlimentos> {
-    return this.http.post<BancoDeAlimentos>(this.url, banco);
+    return this.http.post<BancoDeAlimentos>(`${this.url}/registro`, banco);
   }
 
   update(id: number, banco: BancoDeAlimentos): Observable<BancoDeAlimentos> {
