@@ -138,6 +138,7 @@ import { GeocodingService } from '../../services/geocoding.service';
 import { BancoalimentosService } from '../../services/bancoAlimentoService/bancoalimentos.service';
 import { BancoDeAlimentos } from '../../models/bancoAlimentos.model';
 import * as L from 'leaflet';
+import { RespuestaPaginada } from '../../services/empresaService/empresa.service';
 
 @Component({
   selector: 'app-haztevoluntario',
@@ -150,6 +151,9 @@ export class HaztevoluntarioComponent implements OnInit {
   private map: L.Map | null = null;
   private markersMap: Map<string, L.Marker> = new Map();
   bancos: BancoDeAlimentos[] = [];
+  paginaActual = 0;
+  totalPaginas = 0;
+  tamanoPagina = 9;
 
   @ViewChild('mapSection') mapSection!: ElementRef;
 
@@ -164,6 +168,8 @@ export class HaztevoluntarioComponent implements OnInit {
     console.log('ngOnInit ejecutado');
     this.initMap();
     this.cargarBancos();
+    this.cargarBancosPaginadas();
+
   }
 
   private initMap(): void {
@@ -265,4 +271,44 @@ export class HaztevoluntarioComponent implements OnInit {
       });
     }
   }
+  private cargarBancosPaginadas(): void {
+      this.bancoService.obtenerBancosPaginadas(this.paginaActual, this.tamanoPagina).subscribe({
+        next: (respuesta: RespuestaPaginada<BancoDeAlimentos>) => {
+          this.bancos = respuesta.content;
+          this.totalPaginas = respuesta.totalPages;
+          // Limpiar marcadores existentes
+          this.markersMap.forEach(marker => marker.remove());
+          this.markersMap.clear();
+          // Agregar marcadores para las nuevas empresas
+          this.bancos.forEach(bancos => {
+            this.agregarMarcador(bancos, false);
+          });
+        },
+        error: (error) => {
+          console.error('Error al cargar empresas paginadas:', error);
+        }
+      });
+    }
+    arrayDePaginas(): number[] {
+      // Si hay muchas páginas, puedes limitar cuántas se muestran
+      const paginasAMostrar = 5;
+      const arrayPaginas: number[] = [];
+      
+      let inicio = Math.max(1, this.paginaActual - Math.floor(paginasAMostrar / 2));
+      let fin = Math.min(this.totalPaginas, inicio + paginasAMostrar - 1);
+      
+      // Ajustar el inicio si estamos cerca del final
+      inicio = Math.max(1, fin - paginasAMostrar + 1);
+      
+      for (let i = inicio; i <= fin; i++) {
+          arrayPaginas.push(i);
+      }
+      
+      return arrayPaginas;
+    }
+      cambiarPagina(nuevaPagina: number): void {
+        this.paginaActual = nuevaPagina;
+        this.cargarBancosPaginadas();
+      }
+    
 }

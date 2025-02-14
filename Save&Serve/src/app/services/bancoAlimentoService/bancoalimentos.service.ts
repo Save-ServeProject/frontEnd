@@ -35,9 +35,10 @@
 //El de atras es el antiguo, no borro por si la lio
 
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { BancoDeAlimentos } from '../../models/bancoAlimentos.model';
+import { RespuestaPaginada } from '../empresaService/empresa.service';
 
 @Injectable({
   providedIn: 'root'
@@ -79,4 +80,12 @@ export class BancoalimentosService {
   updateBancoAlimentos(id: number, banco: any): Observable<BancoDeAlimentos> {
     return this.http.put<BancoDeAlimentos>(`${this.url}/${id}`, banco);
   }
-}
+  obtenerBancosPaginadas(pagina: number = 0, tamanoPagina: number = 9): Observable<RespuestaPaginada<
+  BancoDeAlimentos>> {
+      const params = new HttpParams()
+        .set('page', pagina.toString())
+        .set('size', tamanoPagina.toString());
+      
+      return this.http.get<RespuestaPaginada<BancoDeAlimentos>>(`${this.url}/paginadas`, { params });
+    }
+  }
