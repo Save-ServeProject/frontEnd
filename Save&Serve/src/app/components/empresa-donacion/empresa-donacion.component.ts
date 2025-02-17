@@ -298,24 +298,24 @@ actualizarTransportesDisponibles() {
 }
 
   //Esto no se si va
-  loadDonaciones() {
-    if (this.empresa?.id) {
-      this.loadingDonaciones = true;
-      this.donacionService.getDonacionesByEmpresa(this.empresa.id).subscribe({
-        next: (donaciones) => {
-          this.donaciones = donaciones;
-          this.loadingDonaciones = false;
-          console.log('Donaciones cargadas:', this.donaciones);
-        },
-        error: (error) => {
-          console.error('Error al cargar donaciones:', error);
-          this.errorDonaciones = 'Error al cargar las donaciones';
-          this.donaciones = [];
-          this.loadingDonaciones = false;
-        }
-      });
-    }
-  }
+  // loadDonaciones() {
+  //   if (this.empresa?.id) {
+  //     this.loadingDonaciones = true;
+  //     this.donacionService.getDonacionesByEmpresa(this.empresa.id).subscribe({
+  //       next: (donaciones) => {
+  //         this.donaciones = donaciones;
+  //         this.loadingDonaciones = false;
+  //         console.log('Donaciones cargadas:', this.donaciones);
+  //       },
+  //       error: (error) => {
+  //         console.error('Error al cargar donaciones:', error);
+  //         this.errorDonaciones = 'Error al cargar las donaciones';
+  //         this.donaciones = [];
+  //         this.loadingDonaciones = false;
+  //       }
+  //     });
+  //   }
+  // }
 
 onSubmit() {
   if (this.donacionForm.valid) {
