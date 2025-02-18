@@ -33,7 +33,7 @@ export class DonacionComponent implements OnInit {
     private donacionService: DonacionService,
     private empresaService: EmpresaService,
     private authService: AuthService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.loadCurrentEmpresa();
@@ -68,66 +68,87 @@ export class DonacionComponent implements OnInit {
   //     }
   //   });
   // }
-// donacion.component.ts
-loadDonacionesEmpresa(empresaId: number) {
-  this.loadingDonaciones = true;
-  this.errorDonaciones = null;
+  // donacion.component.ts
+  loadDonacionesEmpresa(empresaId: number) {
+    this.loadingDonaciones = true;
+    this.errorDonaciones = null;
 
-  this.donacionService.getDonacionesByEmpresa(empresaId).subscribe({
-    next: (data) => {
-      if (Array.isArray(data)) {
-        this.donaciones = data;
-      } else {
+    this.donacionService.getDonacionesByEmpresa(empresaId).subscribe({
+      next: (data) => {
+        if (Array.isArray(data)) {
+          this.donaciones = data;
+        } else {
+          this.donaciones = [];
+          console.warn('Datos de donaciones no válidos:', data);
+        }
+        this.loadingDonaciones = false;
+      },
+      error: (error) => {
+        console.error('Error al cargar donaciones:', error);
+        this.errorDonaciones = 'No se pudieron cargar las donaciones';
         this.donaciones = [];
-        console.warn('Datos de donaciones no válidos:', data);
+        this.loadingDonaciones = false;
       }
-      this.loadingDonaciones = false;
-    },
-    error: (error) => {
-      console.error('Error al cargar donaciones:', error);
-      this.errorDonaciones = 'No se pudieron cargar las donaciones';
-      this.donaciones = [];
-      this.loadingDonaciones = false;
-    }
-  });
-}
-
-loadCurrentEmpresa() {
-  const userDataStr = localStorage.getItem('userData');
-  if (!userDataStr) {
-    console.warn('No hay datos de usuario en localStorage');
-    return;
+    });
   }
 
-  try {
-    const userData = JSON.parse(userDataStr);
-    if (!userData?.email) {
-      console.warn('Email de usuario no encontrado');
+  loadCurrentEmpresa() {
+    const userDataStr = localStorage.getItem('userData');
+    if (!userDataStr) {
+      console.warn('No hay datos de usuario en localStorage');
       return;
     }
 
-    this.empresaService.getEmpresaByEmail(userData.email).subscribe({
-      next: (data) => {
-        if (data && data.id) {
-          this.empresa = data;
-          this.loadDonacionesEmpresa(data.id);
-        } else {
-          console.warn('Datos de empresa no válidos:', data);
-        }
-      },
-      error: (error) => {
-        console.error('Error al cargar empresa:', error);
-        this.errorDonaciones = 'Error al cargar información de la empresa';
+    try {
+      const userData = JSON.parse(userDataStr);
+      if (!userData?.email) {
+        console.warn('Email de usuario no encontrado');
+        return;
       }
-    });
-  } catch (error) {
-    console.error('Error al procesar datos de usuario:', error);
+
+      this.empresaService.getEmpresaByEmail(userData.email).subscribe({
+        next: (data) => {
+          if (data && data.id) {
+            this.empresa = data;
+            this.loadDonacionesEmpresa(data.id);
+          } else {
+            console.warn('Datos de empresa no válidos:', data);
+          }
+        },
+        error: (error) => {
+          console.error('Error al cargar empresa:', error);
+          this.errorDonaciones = 'Error al cargar información de la empresa';
+        }
+      });
+    } catch (error) {
+      console.error('Error al procesar datos de usuario:', error);
+    }
   }
-}
+  // verDetalleDonacion(donacion: any) {
+  //   // Implementar lógica para mostrar detalles de la donación
+  //   console.log('Detalle de donación:', donacion);
+  // }
+  selectedDonacion: any = null;
+
   verDetalleDonacion(donacion: any) {
-    // Implementar lógica para mostrar detalles de la donación
-    console.log('Detalle de donación:', donacion);
+    console.log('Donación seleccionada:', donacion); // <-- Verificar datos
+    this.selectedDonacion = donacion;
+
+    const detalleModal = document.getElementById('detalleModal');
+    if (detalleModal) {
+      detalleModal.style.display = 'block';
+    }
   }
 
-  
+
+  cerrarDetalleDonacion() {
+    this.selectedDonacion = null;
+    const detalleModal = document.getElementById('detalleModal');
+    if (detalleModal) {
+      detalleModal.style.display = 'none';
+    }
+  }
+
+
+
 }
