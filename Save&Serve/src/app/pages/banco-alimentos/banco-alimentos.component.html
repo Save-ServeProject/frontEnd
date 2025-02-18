@@ -4,7 +4,7 @@
         <h1 class="text-center mb-3">Edicion Perfil</h1>
         <h2 class="text-center mb-4 text-primary">{{ bancoAlimentos.nombre }}</h2>
         <div class="p-4 border rounded-lg shadow">
-          <div class="form-group mb-3" *ngFor="let field of ['nombre','direccion', 'telefono', 'email', 'ciudad', 'contraseña']">
+          <div class="form-group mb-3" *ngFor="let field of ['nombre','direccion', 'telefono', 'email', 'ciudad']">
             <div class="row align-items-center">
               <div class="col-4">
                 <label class="font-weight-bold">{{field | titlecase}}:</label>
