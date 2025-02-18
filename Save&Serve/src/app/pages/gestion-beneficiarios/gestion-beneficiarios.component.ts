@@ -62,6 +62,8 @@ export class GestionBeneficiariosComponent implements OnInit {
 
   ngOnInit(): void {
     this.cargarBeneficiarios();
+    this.ciudades.sort((a, b) => a.localeCompare(b));
+
   }
   cargarBeneficiarios() {
     this.bancoAlimentoService.getAll().subscribe(data => {

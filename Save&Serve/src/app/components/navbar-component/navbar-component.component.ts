@@ -67,6 +67,8 @@ export class NavbarComponent implements OnInit {
     this.initForm();
     this.initEmpresaForm();
     this.selectedPlan = this.subscriptionService.getPlan() || 'BASICA';
+    this.ciudades.sort((a, b) => a.localeCompare(b));
+
 
   }
   private initForm(): void {

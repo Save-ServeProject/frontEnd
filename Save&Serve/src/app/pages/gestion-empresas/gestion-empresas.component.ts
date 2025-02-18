@@ -56,6 +56,8 @@ export class GestionEmpresasComponent implements OnInit {
  
   ngOnInit(): void {
     this.cargarEmpresas();
+    this.ciudades.sort((a, b) => a.localeCompare(b));
+
   }
 
   cargarEmpresas() {

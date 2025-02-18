@@ -56,12 +56,32 @@ export class EmpresaDonacionComponent implements OnInit {
     });
   }
 
+ 
+
+  ciudades: string[] = [
+    'Madrid', 'Barcelona', 'Valencia', 'Sevilla', 'Zaragoza',
+    'Málaga', 'Murcia', 'Palma de Mallorca', 'Las Palmas de Gran Canaria', 'Bilbao',
+    'Alicante', 'Córdoba', 'Valladolid', 'Vigo', 'Gijón', "L'Hospitalet de Llobregat",
+    'A Coruña', 'Vitoria-Gasteiz', 'Elche', 'Granada', 'Oviedo',
+    'Badalona', 'Cartagena', 'Terrassa', 'Jerez de la Frontera', 'Sabadell',
+    'Móstoles', 'Alcalá de Henares', 'Getafe', 'Almería', 'Santander',
+    'Castellón de la Plana', 'Burgos', 'Albacete', 'San Sebastián', 'Logroño',
+    'Cáceres', 'Salamanca', 'Huelva', 'Badajoz', 'Tarragona',
+    'León', 'Lleida', 'Cádiz', 'Jaén', 'Tenerife',
+    'Marbella', 'Fuenlabrada', 'Santa Cruz de Tenerife', 'Mataró', 'Tarragona',
+    'San Cristóbal de La Laguna', 'Reus', 'Pamplona', 'Toledo', 'Girona',
+    'Algeciras', 'Córdoba', 'San Sebastián de los Reyes', 'Sant Cugat del Vallès', 'Torrejón de Ardoz',
+    'Pontevedra', 'Segovia', 'Soria', 'Cuenca', 'Teruel',
+    'Córdoba', 'Huesca', 'Ciudad Real', 'Zamora', 'Vigo'
+  ];
   ngOnInit() {
     this.loadLoggedInEmpresa();
     this.loadBancos();
     this.loadTransportes();
     this.loadAlergenos();
+    this.ciudades.sort((a, b) => a.localeCompare(b));
   }
+  
 ////////////////////////////////
 // Método para obtener los tipos de transporte necesarios
 getTiposTransporteNecesarios(): Set<string> {
