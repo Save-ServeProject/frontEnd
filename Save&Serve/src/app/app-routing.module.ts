@@ -20,15 +20,10 @@
 //   { path: '**', redirectTo: '', pathMatch: 'full' }
 // ];
 
-// @NgModule({
-//   imports: [RouterModule.forRoot(routes)],
-//   exports: [RouterModule],
-// })
-// export class AppRoutingModule { }
 
-
-import { Routes } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { IndexComponent } from './pages/index/index.component';
+import { NgModule } from '@angular/core';
 
 export const routes: Routes = [
   { path: '', component: IndexComponent },
@@ -84,17 +79,11 @@ export const routes: Routes = [
     path: 'gestionTransportes', 
     loadComponent: () => import('./pages/gestion-transportes/gestion-transportes.component').then(m => m.GestionTransportesComponent) 
   },
+  { 
+    path: 'reporte', 
+    loadComponent: () => import('./pages/reporte/reporte.component').then(m => m.ReporteComponent) 
+  },
   { path: '**', redirectTo: '', pathMatch: 'full' }
-
-
-
-
-
-
-
-  
-
-
 ];
 
 // Eliminar el decorador @NgModule y la exportación de la clase

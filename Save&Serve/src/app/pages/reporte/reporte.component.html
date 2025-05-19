@@ -1,0 +1,61 @@
+<!-- <div class="container mt-5">
+    <h1 class="text-center">Reporte Anual de Donaciones</h1>
+
+    <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
+
+    <div *ngIf="reporte">
+        <p class="lead text-center">
+            En el año {{ reporte.year }}, se realizaron {{ reporte.totalDonaciones }} donaciones,
+            con un monto total de ${{ reporte.totalMonto }}. El producto más donado fue:
+            <strong>{{ reporte.productoMasDonado }}</strong>.
+        </p>
+        <div class="row">
+            <div class="col-md-12">
+                <canvas #myChart></canvas>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+
+<div class="container mt-5">
+    <h1 class="text-center mb-4">📊 Reporte Anual de Donaciones</h1>
+
+    <!-- 🔴 Mensaje de error -->
+    <div *ngIf="error" class="alert alert-danger text-center">
+        {{ error }}
+    </div>
+
+    <!-- 📌 Mostrar el reporte si los datos están disponibles -->
+    <div *ngIf="reporte" class="card shadow p-4">
+        <h2 class="text-center">Resumen de {{ reporte.year }}</h2>
+        <p class="lead text-center">
+            Se realizaron <strong>{{ reporte.totalDonaciones }}</strong> donaciones, 
+            con un monto total de <strong>${{ reporte.totalMonto }}</strong>.
+        </p>
+        <p class="text-center">
+            🏆 El producto más donado fue: 
+            <strong class="text-primary">{{ reporte.productoMasDonado }}</strong>.
+        </p>
+
+        <!-- 📊 Sección de gráficos -->
+        <div class="row">
+            <div class="col-md-6">
+                <h5 class="text-center">📌 Estadísticas Generales</h5>
+                <canvas #myChart></canvas>
+            </div>
+            <div class="col-md-6">
+                <h5 class="text-center">📌 Productos Más Donados</h5>
+                <canvas #productChart></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- ⏳ Mensaje de carga si aún no hay datos -->
+    <div *ngIf="!reporte && !error" class="text-center">
+        <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Cargando...</span>
+        </div>
+        <p class="mt-2">Cargando reporte...</p>
+    </div>
+</div>

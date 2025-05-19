@@ -96,7 +96,7 @@
 // })
 // export class AppModule { }
 
-
+//ACA
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -108,6 +108,7 @@ import { NavbarComponent } from './components/navbar-component/navbar-component.
 import { FooterComponent } from './components/footer-component/footer-component.component'; 
 import { HerosectionComponent } from './components/herosection-component/herosection-component.component';
 import { HowworksComponent } from './components/howworks-component/howworks-component.component';
+
 //import { AppRoutingModule } from './app-routing.module';
 import { CommonModule } from '@angular/common';
 
@@ -120,6 +121,7 @@ import { AuthInterceptor } from './auth';
 
 //importo para el router
 import { RouterModule } from '@angular/router';
+
 
 @NgModule({
   declarations: [
